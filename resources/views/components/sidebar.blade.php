@@ -13,7 +13,7 @@
             <div class="flex items-center space-x-3">
                 <img src="https://placehold.co/40x40/4a5568/ffffff?text=G" alt="Foto Profil" class="w-10 h-10 rounded-full object-cover ring-2 ring-gray-600">
                 <div>
-                    <a href="/login" class="text-sm font-semibold">Guru Bahasa Indonesia</a>
+                    <p class="text-sm font-semibold">Guru Bahasa Indonesia</p>
                     <p class="text-xs text-gray-400">19 Januari 2018</p>
                 </div>
             </div>

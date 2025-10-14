@@ -1,71 +1,145 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Raport Sidebar Expand</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-gray-100">
+<x-layout>
+    <x-slot:heading>
+        Seluruh Siswaphp Kelas X IPA A
+    </x-slot:heading>
+<!-- Kontrol Tabel (Search dan Entries) -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-3 md:space-y-0">
+                    <div class="flex items-center space-x-2">
+                        <label for="show-entries" class="text-sm text-gray-600">Show</label>
+                        <select id="show-entries" class="border rounded-lg p-1.5 text-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                        </select>
+                        <span class="text-sm text-gray-600">entries</span>
+                    </div>
+                    <div class="flex items-center space-x-2 w-full md:w-auto">
+                        <label for="search-siswa" class="text-sm text-gray-600">Search:</label>
+                        <input type="text" id="search-siswa" class="border rounded-lg p-1.5 text-sm w-full md:w-64 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari Siswa...">
+                    </div>
+                </div>
 
-  <!-- Header -->
-  <header id="header" class="fixed top-0 left-0 w-full flex items-center justify-between bg-red-800 text-white p-4 transition-all duration-300 z-10">
-    <button id="menu-toggle" class="flex items-center space-x-2">
-      <i data-lucide="menu" class="w-6 h-6"></i>
-      <span>Menu</span>
-    </button>
-    <h1 class="font-semibold text-lg">E-Raport</h1>
-    <div class="flex items-center space-x-3">
-      <i data-lucide="user" class="w-5 h-5"></i>
-      <span>Guru</span>
-    </div>
-  </header>
-
-  <!-- Wrapper -->
-  <div class="flex pt-16"> <!-- memberi jarak untuk header fixed -->
-    
-    <!-- Sidebar -->
-    <aside id="sidebar" class="bg-gray-800 text-white w-64 h-screen p-4 fixed top-16 left-0 transition-transform duration-300">
-      <h2 class="text-xl font-bold mb-4">Menu Utama</h2>
-      <ul class="space-y-2">
-        <li><a href="#" class="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded">
-          <i data-lucide="home" class="w-5 h-5"></i><span>Dashboard</span>
-        </a></li>
-        <li><a href="#" class="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded">
-          <i data-lucide="book" class="w-5 h-5"></i><span>Data Siswa</span>
-        </a></li>
-        <li><a href="#" class="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded">
-          <i data-lucide="file-text" class="w-5 h-5"></i><span>Raport</span>
-        </a></li>
-      </ul>
-    </aside>
-
-    <!-- Konten utama -->
-    <main id="main-content" class="ml-64 flex-1 p-6 transition-all duration-300">
-      <h2 class="text-2xl font-bold mb-4">Selamat Datang di E-Raport</h2>
-      <p class="text-gray-700">Ini adalah halaman utama aplikasi E-Raport.</p>
-    </main>
-  </div>
-
-  <!-- Script -->
-  <script>
-    lucide.createIcons();
-
-    const toggleBtn = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const main = document.getElementById('main-content');
-    const header = document.getElementById('header');
-
-    toggleBtn.addEventListener('click', () => {
-      // Sembunyikan sidebar
-      sidebar.classList.toggle('-translate-x-64');
-
-      // Ubah lebar konten dan header
-      main.classList.toggle('ml-64');
-      header.classList.toggle('pl-64'); // agar header juga melebar mulus
-    });
-  </script>
-
-</body>
-</html>
+<!-- Tabel Data Siswa -->
+                <div class="overflow-x-auto rounded-lg border">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
+                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-blue-600 flex items-center justify-between">
+                                    <span>NISN</span>
+                                    <i data-lucide="chevrons-up-down" class="w-3 h-3 ml-1"></i>
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-blue-600 flex items-center justify-between">
+                                    <span>NAMA</span>
+                                    <i data-lucide="chevrons-up-down" class="w-3 h-3 ml-1"></i>
+                                </th>
+                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-blue-600 flex items-center justify-between">
+                                    <span>GENDER</span>
+                                    <i data-lucide="chevrons-up-down" class="w-3 h-3 ml-1"></i>
+                                </th>
+                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TTL</th>
+                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-blue-600 flex items-center justify-between">
+                                    <span>OPSI</span>
+                                    <i data-lucide="chevrons-up-down" class="w-3 h-3 ml-1"></i>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Baris Data Siswa -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">62346434</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Alvaro Morata</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 6 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">252532535</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Lionel Messi Hahahaha</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 6 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">792070952</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">M. Ronaldo</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 2 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">7217343</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Mesut Ozil Arsenal</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 4 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">7097409214</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Michael Essien Woi</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 3 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">6</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">121313313</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Muhammad Nur Hidayat</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 1 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">7</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800 cursor-pointer">463263464</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Muhammad Rizky Ridho</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Laki - Laki</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-500">Nganjuk, 9 November 2017</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Setting Rapot
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Tambahkan baris data lainnya di sini -->
+                        </tbody>
+                    </table>
+                </div>
+                <x-pagination />
+</x-layout>
