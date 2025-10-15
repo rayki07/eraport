@@ -95,7 +95,7 @@
 
         <!-- Footer -->
         <footer class="bg-white p-3 text-center text-xs text-gray-500 border-t mt-auto shadow-inner">
-            <p>Copyright © 2018 NAMA SEKOLAH ANDA oleh Rino Oktavianto | Version 2.3.8</p>
+            <p>Copyright © 2025 NAMA SEKOLAH ANDA oleh Firman Wahyudi</p>
         </footer>
     </div>
 
