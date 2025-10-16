@@ -19,7 +19,7 @@ class StudentsFactory extends Factory
     {
         return [
             'student_id' => $this->faker->unique()->numerify('########'),
-            'grade_id' => \App\Models\Grade::factory(),
+            'grade_id' => Grade::factory(),
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'gender' => $this->faker->randomElement(['male', 'female']),

@@ -21,18 +21,25 @@
 
         <!-- Konten Menu -->
         <nav class="sidebar-content flex-grow overflow-y-auto pt-2 pb-4 space-y-1">
-            <a href="/students" class="flex items-center py-2 px-4 text-sm font-medium hover:bg-gray-700 rounded-lg mx-2 transition-colors bg-gray-700">
-                <i data-lucide="file-text" class="w-5 h-5 mr-3"></i>
+            <x-side-style href="/students" :active="request()->is('students')">
+                <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Siswa</span>
-            </a>
-            <a href="/grades" class="flex items-center py-2 px-4 text-sm font-medium hover:bg-gray-700 rounded-lg mx-2 transition-colors">
+            </x-side-style>
+
+            <x-side-style href="/grades" :active="request()->is('grades')">
                 <i data-lucide="clipboard-list" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Kelas</span>
-            </a>
-            <a href="#" class="flex items-center py-2 px-4 text-sm font-medium hover:bg-gray-700 rounded-lg mx-2 transition-colors">
+            </x-side-style>
+
+            <x-side-style href="/teachers" :active="request()->is('teachers')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
-                <span>Wali Murid</span>
-            </a>
+                <span>Daftar Guru</span>
+            </x-side-style>
+
+            <x-side-style href="/lessons" :active="request()->is('lessons')">
+                <i data-lucide="book" class="w-5 h-5 mr-3"></i>
+                <span>Daftar Mata Pelajaran</span>
+            </x-side-style>
 
             <!-- Submenu Mata Pelajaran -->
             <div class="pt-3 px-4">
