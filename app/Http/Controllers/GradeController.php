@@ -14,4 +14,11 @@ class GradeController extends Controller
         'grades' => $grades
     ]);
     }
+
+    public function show(Grade $grade)
+    {
+        return view('grades.show', [
+            'grade' => $grade
+        ]);
+    }
 }

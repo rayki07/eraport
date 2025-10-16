@@ -15,4 +15,6 @@ class studentController extends Controller
         'students' => $students
       ]);
     }
+
+    
 }

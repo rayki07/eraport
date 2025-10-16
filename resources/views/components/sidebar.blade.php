@@ -1,3 +1,10 @@
+@php
+    //ambil data lessons dari database
+    $lesson = App\Models\Lessons::all();
+    
+@endphp
+
+
 <!-- 1. Sidebar (Menu Samping) -->
     <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 z-40 flex flex-col w-64 bg-gray-800 text-white shadow-xl md:relative md:translate-x-0">
         <!-- Header Sidebar Merah -->
@@ -45,57 +52,18 @@
             <div class="pt-3 px-4">
                 <p class="text-xs font-semibold uppercase text-gray-400 mb-2">Mata Pelajaran</p>
                 <div class="space-y-1">
-                    <!-- Item Mapel Aktif -->
-                    <a href="#" class="flex justify-between items-center py-2 px-2 text-sm text-white bg-gray-900 rounded-lg">
-                        <span class="truncate">Bahasa Indonesia</span>
-                        <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                    </a>
-                    <!-- Item Mapel Lainnya -->
-                    <div class="space-y-1 pl-2">
+
+                    @foreach ($lesson as $lessons)
                         <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Bahasa Inggris</span>
+                            <span class="truncate">{{ $lessons->lesson }}</span>
                             <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
                         </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Bimbingan Konseling</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Fisika</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Ilmu Pengetahuan Alam</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Ilmu Pengetahuan Sosial</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Kimia</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Matematika</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Pendidikan Agama</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Pendidikan JOK</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Pendidikan Kewarganegaraan</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">Produktif Pemrograman</span>
-                            <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
-                        </div>
+                        
+                        {{-- <x-side-style href="/lessons/{{ $lessons->id }}" :active="request()->is('lessons/{{ $lessons->id }}')">
+                            <span>{{ $lessons->lesson }}</span>
+                        </x-side-style> --}}
+                    @endforeach
+                    
                     </div>
                 </div>
             </div>

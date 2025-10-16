@@ -1,6 +1,8 @@
+
+
 <x-layout>
     <x-slot:heading>
-        Seluruh Kelas
+        {{ $grade['grade'] }}
     </x-slot:heading>
 <!-- Kontrol Tabel (Search dan Entries) -->
                 <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-3 md:space-y-0">
@@ -32,12 +34,12 @@
                         <tbody class="bg-white divide-y divide-gray-200">
 
                             <!-- Baris Data Siswa -->
-                            @foreach ($grades as $index => $grade)         
+                            @foreach ($grade as $index)         
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $grade['grade'] }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <button href="/grades/{{ $grade['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Setting Rapot
                                     </button>

@@ -17,8 +17,15 @@ Route::get('/welcome', function () {
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);
+
+//Untuk menampilkan detail grade
 Route::get('/grades', [GradeController::class, 'index']);
+Route::get('/grades/{grade}', [GradeController::class, 'show']);
+
+//Untuk menampilkan detail teacher
 Route::get('/teachers', [TeachersController::class,'index']);
+
+//Untuk menampilkan matapelajaran
 Route::get('/lessons', [LessonsController::class,'index']);
 
 
