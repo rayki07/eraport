@@ -34,14 +34,14 @@
                             <!-- Baris Data Siswa -->
                             @foreach ($grades as $index => $grade)         
                             <tr class="hover:bg-gray-50">
-                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $grade['grade'] }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index + 1 }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $grade->grade }} {{ $grade->grade_name }}</td>
+                                {{-- <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
                                     <button href="/grades/{{ $grade['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Setting Rapot
                                     </button>
-                                </td>
+                                </td> --}}
                             </tr>
                              @endforeach
                              

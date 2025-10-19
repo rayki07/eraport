@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;   
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\gradeController;
+use App\Http\Controllers\gradesController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\LessonsController;
 
@@ -19,8 +19,8 @@ Route::get('/welcome', function () {
 Route::get('/students', [StudentController::class, 'index']);
 
 //Untuk menampilkan detail grade
-Route::get('/grades', [GradeController::class, 'index']);
-Route::get('/grades/{grade}', [GradeController::class, 'show']);
+Route::get('/grades', [GradesController::class, 'index']);
+Route::get('/grades/{grade}', [GradesController::class, 'show']);
 
 //Untuk menampilkan detail teacher
 Route::get('/teachers', [TeachersController::class,'index']);

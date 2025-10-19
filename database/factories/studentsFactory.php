@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Grade;
+use App\Models\Grades;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Students>
@@ -18,15 +18,15 @@ class StudentsFactory extends Factory
     public function definition(): array
     {
         return [
-            'student_id' => $this->faker->unique()->numerify('########'),
-            'grade_id' => Grade::factory(),
+            'student_id' => $this->faker->unique()->numberBetween(1000, 9999),
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'gender' => $this->faker->randomElement(['male', 'female']),
-            //email diambil dari first_name
-            'email' => strtolower($this->faker->firstName() . '@example.com'),
+            //email diambil dari first_name dan last_name
+            'email' => strtolower($this->faker->firstName() . '.' . $this->faker->lastName() . '@example.com'),
             //password is always 'password' tidak di hash
-            'password' => 'password'
+            'password' => 'password',
+            /* 'grade_id' => Grades::factory(), */
         ];
     }
 }

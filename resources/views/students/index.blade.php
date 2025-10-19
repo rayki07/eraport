@@ -1,3 +1,4 @@
+
 <x-layout>
     <x-slot:heading>
         Seluruh Siswa
@@ -38,10 +39,10 @@
                             @foreach ($students as $index => $student)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->student_id }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->first_name }} {{ $student->last_name }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->gender }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->grade->grade }} {{ $student->grade->grade_name }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->students->student_id }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->students->first_name }} {{ $student->students->last_name }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->students->gender }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $student->grades->first()->grade }} {{ $student->grades->first()->grade_name }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
                                     <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>

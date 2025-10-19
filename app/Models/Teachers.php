@@ -9,4 +9,6 @@ class Teachers extends Model
 {
     /** @use HasFactory<\Database\Factories\TeachersFactory> */
     use HasFactory;
+
+    protected $table = 'teachers';
 }
