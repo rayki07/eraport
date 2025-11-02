@@ -28,22 +28,22 @@
 
         <!-- Konten Menu -->
         <nav class="sidebar-content flex-grow overflow-y-auto pt-2 pb-4 space-y-1">
-            <x-side-style href="/students" :active="request()->is('students')">
+            <x-side-style href="/siswa" :active="request()->is('students')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Siswa</span>
             </x-side-style>
 
-            <x-side-style href="/grades" :active="request()->is('grades')">
+            <x-side-style href="/kelas" :active="request()->is('grades')">
                 <i data-lucide="clipboard-list" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Kelas</span>
             </x-side-style>
 
-            <x-side-style href="/teachers" :active="request()->is('teachers')">
+            <x-side-style href="/guru" :active="request()->is('teachers')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Guru</span>
             </x-side-style>
 
-            <x-side-style href="/lessons" :active="request()->is('lessons')">
+            <x-side-style href="/mapel" :active="request()->is('lessons')">
                 <i data-lucide="book" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Mata Pelajaran</span>
             </x-side-style>

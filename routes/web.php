@@ -1,11 +1,13 @@
 <?php
 
 
+use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Route;   
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\gradesController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\LessonsController;
+use App\Http\Controllers\SiswaController;
 
 Route::get('/', function () {
     return view('home');
@@ -14,6 +16,12 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+// menampilkan detail siswa
+Route::get('/siswa', [SiswaController::class,'index']);
+
+//menampilkan detail kelas
+Route::get('/kelas', [KelasController::class,'index']);
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

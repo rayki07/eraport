@@ -17,7 +17,7 @@ class TahunAjaranFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'tahun'=>$this->faker->randomElement(['2025','2026']),
         ];
     }
 }

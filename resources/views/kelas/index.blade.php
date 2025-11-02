@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading>
-        Daftar Mapel
+        Seluruh Kelas
     </x-slot:heading>
 <!-- Kontrol Tabel (Search dan Entries) -->
                 <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-3 md:space-y-0">
@@ -25,23 +25,17 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NO</th>
-                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">MATA PELAJARAN</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Grade</th>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">OPSI</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
 
                             <!-- Baris Data Siswa -->
-                            @foreach ($lesson as $index => $lessons)
+                            @foreach ($kelas as $index => $item)         
                             <tr class="hover:bg-gray-50">
-                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $lessons->lesson }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
-                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
-                                        Setting Rapot
-                                    </button>
-                                </td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index + 1 }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $item->kelas }} {{ $item->nama }}</td>
                             </tr>
                              @endforeach
                              
@@ -50,5 +44,4 @@
                 </div>
                 
               {{-- {{ $grades->links() }} --}}
-              
 </x-layout>

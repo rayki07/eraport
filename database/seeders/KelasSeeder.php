@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Kelas;
+use Database\Factories\GradesFactory;
 
 class KelasSeeder extends Seeder
 {
@@ -12,6 +14,6 @@ class KelasSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Kelas::factory(6)->create();
     }
 }
