@@ -15,4 +15,21 @@ class KelasController extends Controller
             "kelas"=> $kelas
         ]);
     }
+
+    public function show(kelas $kelas)
+    {
+        return view('kelas.show', ['kelas' =>$kelas]);
+    }
+
+    // Halaman daftar siswa berdasarkan kelas
+    public function siswa($id)
+    {
+        $kelas = Kelas::findOrFail($id);
+
+        // ambil semua siswa di kelas itu
+        $siswa = $kelas->siswa()->orderBy('nama')->get();
+
+        return view('kelas.siswa', compact('kelas', 'siswa'));
+    }
+
 }

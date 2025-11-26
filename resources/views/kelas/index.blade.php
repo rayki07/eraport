@@ -36,6 +36,12 @@
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index + 1 }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $item->kelas }} {{ $item->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
+                                    <a href="{{ route('kelas.siswa', $item->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                        <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                                        Detail
+                                    </a>
+                                </td>
                             </tr>
                              @endforeach
                              

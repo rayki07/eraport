@@ -19,9 +19,25 @@ Route::get('/welcome', function () {
 
 // menampilkan detail siswa
 Route::get('/siswa', [SiswaController::class,'index']);
+Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
+Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+
+Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit']);
+Route::put('/siswa/{siswa}', [SiswaController::class, 'update']);
+Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+
+Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
+
+
 
 //menampilkan detail kelas
 Route::get('/kelas', [KelasController::class,'index']);
+Route::get('/kelas/{kelas}', [KelasController::class,'show']);
+// Halaman siswa berdasarkan kelas
+Route::get('/kelas/{id}/siswa', [KelasController::class,'siswa'])->name('kelas.siswa');
+Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store');
+Route::post('/kelas/import', [KelasController::class, 'import'])->name('kelas.import');
+
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

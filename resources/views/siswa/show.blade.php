@@ -1,6 +1,7 @@
+
 <x-layout>
     <x-slot:heading>
-        Seluruh Kelas
+        {{ $siswa->nama }}
     </x-slot:heading>
 <!-- Kontrol Tabel (Search dan Entries) -->
                 <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-3 md:space-y-0">
@@ -25,7 +26,11 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NO</th>
-                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Grade</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NISN</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NISN</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NAMA</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">GENDER</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">KELAS</th>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">OPSI</th>
                             </tr>
                         </thead>
@@ -34,14 +39,19 @@
                             <!-- Baris Data Siswa -->
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">1</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->kelas }} {{ $kelas->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->nis }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->nisn }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->gender }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{-- {{ $student->grades->first()->grade }} {{ $student->grades->first()->grade_name }} --}}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="/kelas/{{ $kelas['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <button class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
-                                        Detail
-                                    </a>
+                                        Setting Rapot
+                                    </button>
                                 </td>
-                            </tr>                             
+                            </tr>
+                             
                         </tbody>
                     </table>
                 </div>

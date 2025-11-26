@@ -32,16 +32,19 @@
                         <tbody class="bg-white divide-y divide-gray-200">
 
                             <!-- Baris Data Siswa -->
+                            @foreach ($kelas as $index => $item)         
                             <tr class="hover:bg-gray-50">
-                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">1</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->kelas }} {{ $kelas->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index + 1 }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $item->kelas }} {{ $item->nama }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="/kelas/{{ $kelas['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <a href="/kelas/{{ $item['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Detail
                                     </a>
                                 </td>
-                            </tr>                             
+                            </tr>
+                             @endforeach
+                             
                         </tbody>
                     </table>
                 </div>

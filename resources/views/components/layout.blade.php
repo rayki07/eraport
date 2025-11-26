@@ -75,22 +75,7 @@
 
         <!-- Konten Dashboard -->
         <main class="p-4 md:p-6 flex-1">
-            <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
-                <!-- Header Konten -->
-                <div class="flex items-center justify-between border-b pb-4 mb-4">
-                    <div class="flex items-center space-x-2 text-gray-700">
-                        <i data-lucide="users-2" class="w-6 h-6"></i>
-                        <h2 class="text-xl font-semibold">{{ $heading }}</h2>
-                    </div>
-                    <button class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
-                        <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
-                        Print Rapot
-                    </button>
-                </div>
-
-                {{ $slot }}
-
-            </div>
+            {{ $slot }}
         </main>
 
         <!-- Footer -->
