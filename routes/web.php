@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
 });
 
 // menampilkan detail siswa
-Route::get('/siswa', [SiswaController::class,'index']);
+Route::get('/siswa', [SiswaController::class,'index'])->name('siswa.index');
 Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
 
@@ -27,6 +27,7 @@ Route::put('/siswa/{siswa}', [SiswaController::class, 'update']);
 Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
 
 Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
+Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
 
 
 
