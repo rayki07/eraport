@@ -8,6 +8,8 @@ use App\Http\Controllers\gradesController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SiswaImportController;
+use App\Http\Controllers\RaportAttController;
 
 Route::get('/', function () {
     return view('home');
@@ -22,13 +24,23 @@ Route::get('/siswa', [SiswaController::class,'index'])->name('siswa.index');
 Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
 
+/* //Import file excel
+Route::get('/siswa/import', [SiswaImportController::class, 'index'])->name('siswa.import.form');
+Route::post('/siswa/import/preview', [SiswaImportController::class, 'preview'])->name('siswa.import.preview');
+Route::post('/siswa/confirm', [SiswaImportController::class, 'confirm'])->name('siswa.import.confirm');
+//Import file excel */
+
 Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit']);
 Route::put('/siswa/{siswa}', [SiswaController::class, 'update']);
 Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
 
 Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
 Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
+Route::post('/siswa/import/preview', [SiswaController::class, 'import'])->name('siswa.preview');
 
+// Mata pelajaran ATT
+Route::get('/nilai/att/{siswa}', [RaportAttController::class, 'inputNilaiATT'])->name('nilai.input_att');
+Route::post('/nilai/att/{siswa}', [RaportAttController::class, 'storeNilaiATT'])->name('nilai.store_att');
 
 
 //menampilkan detail kelas

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Imports\SiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
+use illuminate\Support\Str;
 
 class SiswaController extends Controller
 {
@@ -73,5 +74,23 @@ class SiswaController extends Controller
             // Jika ada error pada format file, duplikasi, atau error server lainnya
             return redirect()->back()->withInput()->with('error', 'Gagal memproses file. Pastikan format file sudah benar dan tidak ada duplikasi data NISN.');
         }
+    }
+
+     // Preview sebelum disimpan
+    public function preview(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        $path = $request->file('file')->getRealPath();
+
+        //Ambil data tanpa simpan
+        $data = Excel::toArray([], $path)[0];
+
+        return view('siswa.preview', [
+            'data' => $data,
+            'file' => base64_encode(file_get_contents($request->file('file')))
+        ]);
     }
 }
