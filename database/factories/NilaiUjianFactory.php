@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mapel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Nilai_ujian>
  */
-class MapelFactory extends Factory
+class NilaiUjianFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class MapelFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => $this->faker->randomElement(['ATT'])
+            //
         ];
     }
 }

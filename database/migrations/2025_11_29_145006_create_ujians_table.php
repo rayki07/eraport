@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kelas', function (Blueprint $table) {
+        Schema::create('ujians', function (Blueprint $table) {
             $table->id();
-            $table->integer('kelas');
-            $table->string('nama');
-            $table->foreignId('wali_kelas_id')->nullable()->constrained('wali_kelas')->cascadeOnDelete();
-            $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajarans')->cascadeOnDelete();
+            $table->string('name_ujian');// contoh :  Tahfidz, Praktik Sholat, Wudhu
+            $table->string('kategori')->nullable(); // kategori opsional contoh : Tahfidz, Akhlak, Ibadah
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('ujians');
     }
 };

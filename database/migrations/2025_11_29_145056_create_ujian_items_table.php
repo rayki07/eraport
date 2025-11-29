@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kelas', function (Blueprint $table) {
+        Schema::create('ujian_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('kelas');
-            $table->string('nama');
-            $table->foreignId('wali_kelas_id')->nullable()->constrained('wali_kelas')->cascadeOnDelete();
-            $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajarans')->cascadeOnDelete();
+            $table->foreignId('ujian_id')->constrained('ujian')->cascadeOnDelete();
+            $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
+            $table->string('jenis')->nullable(); //contoh: surah, gerakan, doa, hadis
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('ujian_items');
     }
 };

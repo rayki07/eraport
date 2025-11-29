@@ -10,6 +10,7 @@ use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaImportController;
 use App\Http\Controllers\RaportAttController;
+use App\Http\Controllers\MapelController;
 
 Route::get('/', function () {
     return view('home');
@@ -54,6 +55,8 @@ Route::get('/kelas/{id}/siswa', [KelasController::class,'siswa'])->name('kelas.s
 Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store');
 Route::post('/kelas/import', [KelasController::class, 'import'])->name('kelas.import');
 
+// Menampilkan Mapel
+Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

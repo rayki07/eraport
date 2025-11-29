@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('kelas_siswas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id');
-            $table->foreignId('kelas_id');
-            $table->foreignId('semester_id');
-            $table->foreignId('tahun_ajaran_id');
+            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->cascadeOnDelete();
+            $table->foreignId('kelas_id')->nullable()->constrained('kelas')->cascadeOnDelete();
+            $table->foreignId('semester_id')->nullable()->constrained('semesters')->cascadeOnDelete();
+            $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajarans')->cascadeOnDelete();
             $table->timestamps();
         });
     }
