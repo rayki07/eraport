@@ -30,13 +30,16 @@ Route::post('/siswa/import/preview', [SiswaImportController::class, 'preview'])-
 Route::post('/siswa/confirm', [SiswaImportController::class, 'confirm'])->name('siswa.import.confirm');
 //Import file excel */
 
-Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit']);
-Route::put('/siswa/{siswa}', [SiswaController::class, 'update']);
-Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
+Route::post('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
-Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
+Route::get('/siswa/{siswa}', [SiswaController::class, 'show'])->name('siswa.show');
 Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
 Route::post('/siswa/import/preview', [SiswaController::class, 'import'])->name('siswa.preview');
+
+//update data satu siswa
+/* Route::patch('/siswa') */
 
 // Mata pelajaran ATT
 Route::get('/nilai/att/{siswa}', [RaportAttController::class, 'inputNilaiATT'])->name('nilai.input_att');

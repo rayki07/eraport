@@ -28,6 +28,12 @@ class SiswaController extends Controller
         return view('siswa.show', ['siswa' =>$siswa]);
     }
 
+    public function edit(Siswa $siswa)
+    {
+        return view('siswa.edit', ['siswa' =>$siswa]);
+
+    }
+
     public function store(Request $request)
     {
         request()->validate([
@@ -92,5 +98,29 @@ class SiswaController extends Controller
             'data' => $data,
             'file' => base64_encode(file_get_contents($request->file('file')))
         ]);
+    }
+
+    public function update(Siswa $siswa)
+    {
+        // authorize
+        // validate
+        request()->validate([
+            'nis' => ['required'],
+            'nisn' => ['required'],
+            'nama' => ['required'],
+            'gender' => ['required']
+        ]);
+
+        //update siswa
+        $siswa->update([
+            'nis' => request('nis'),
+            'nisn' => request('nisn'),
+            'nama' => request('nama'),
+            'gender' => request('gender')
+        ]);
+
+        //kembali ke halaman siswa
+        return redirect("/siswa/{$siswa->id}");
+
     }
 }
