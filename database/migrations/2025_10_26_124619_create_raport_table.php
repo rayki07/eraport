@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nilai_eskuls', function (Blueprint $table) {
+        Schema::create('raport', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('siswa_id');
+            $table->foreignId('kelas_id');
+            $table->foreignId('semester_id');
+            $table->foreignId('tahun_ajaran_id');
+            $table->text('catatan');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nilai_eskuls');
+        Schema::dropIfExists('raport');
     }
 };

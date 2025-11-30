@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('raports', function (Blueprint $table) {
+        Schema::create('guru_eskul', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id');
-            $table->foreignId('kelas_id');
-            $table->foreignId('semester_id');
-            $table->foreignId('tahun_ajaran_id');
-            $table->text('catatan');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('raports');
+        Schema::dropIfExists('guru_eskul');
     }
 };

@@ -9,4 +9,6 @@ class Ujian_item extends Model
 {
     /** @use HasFactory<\Database\Factories\UjianItemFactory> */
     use HasFactory;
+
+    protected $table = 'ujian_item';
 }

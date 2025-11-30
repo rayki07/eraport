@@ -9,6 +9,8 @@ class Ujian extends Model
 {
     /** @use HasFactory<\Database\Factories\UjianFactory> */
     use HasFactory;
+
+    protected $table = 'ujian';
     protected $fillable = [
         'nama_ujian',
         'kategori',

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ujians', function (Blueprint $table) {
+        Schema::create('semester', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ujian');// contoh :  Tahfidz, Praktik Sholat, Wudhu
-            $table->string('kategori')->nullable(); // kategori opsional contoh : Tahfidz, Akhlak, Ibadah
+            $table->string('nama');
+            $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ujians');
+        Schema::dropIfExists('semester');
     }
 };

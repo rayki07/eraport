@@ -9,4 +9,13 @@ class Semester extends Model
 {
     /** @use HasFactory<\Database\Factories\SemesterFactory> */
     use HasFactory;
+
+    protected $table = 'semester';
+    protected $fillable = ['semester_id'];
+
+    //setiap semester memiliki banyak relasi gradesStudents
+    public function gradesStudent()
+    {
+        return $this->hasMany(GradesStudents::class, 'semester_id');
+    }
 }

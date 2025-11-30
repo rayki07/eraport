@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('semesters', function (Blueprint $table) {
+        Schema::create('ujian_item', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->foreignId('tahun_ajarans_id');
+            $table->foreignId('ujian_id')->constrained('ujian')->cascadeOnDelete();
+            $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
+            $table->string('jenis')->nullable(); //contoh: surah, gerakan, doa, hadis
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('semesters');
+        Schema::dropIfExists('ujian_item');
     }
 };

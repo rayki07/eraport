@@ -19,7 +19,7 @@ class KelasFactory extends Factory
         return [
             //nama grade hanya ada 1 diantara dalam kurung (Yordan,Yaman), 2 (Qatar,Libia), 3 (Mesir,Maroko), 4 (Tunisia,Kuwait), 5 (Bahrain,Oman), 6 (Palestina,Saudi Arabia)
 
-            'kelas' => $this->faker->unique()->numberBetween(1, 6),
+            'rombel' => $this->faker->unique()->numberBetween(1, 6),
             'nama' => $this->faker->randomElement(['Yordan','Yaman','Qatar','Libia','Mesir','Maroko','Tunisia','Kuwait','Bahrain','Oman','Palestina','Saudi Arabia']),
             /* 'grade' => (1), // Default to grade 1
             'grade_name' => 'Yordan', // Default to grade name Yordan */

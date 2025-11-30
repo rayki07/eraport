@@ -50,7 +50,7 @@
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->gender }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{-- {{ $student->grades->first()->grade }} {{ $student->grades->first()->grade_name }} --}}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="/siswa/{{ $siswa->id }}/edit" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <a href="{{-- /siswa/{{ $siswa->id }}/edit --}}{{ route('siswa.edit', $siswa->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Edit Siswa
                                     </a>

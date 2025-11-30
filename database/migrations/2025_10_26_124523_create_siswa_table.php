@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ujian_items', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ujian_id')->constrained('ujian')->cascadeOnDelete();
-            $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
-            $table->string('jenis')->nullable(); //contoh: surah, gerakan, doa, hadis
+            $table->string('nis')->nullable();
+            $table->string('nisn')->nullable();
+            $table->string('nama');
+            $table->string('gender');
+            /* $table->foreignId('user_id'); */
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ujian_items');
+        Schema::dropIfExists('siswa');
     }
 };

@@ -28,17 +28,17 @@
 
         <!-- Konten Menu -->
         <nav class="sidebar-content flex-grow overflow-y-auto pt-2 pb-4 space-y-1">
-            <x-side-style href="/siswa" :active="request()->is('students')">
+            <x-side-style href="/siswa" :active="request()->is('siswa')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Siswa</span>
             </x-side-style>
 
-            <x-side-style href="/kelas" :active="request()->is('grades')">
+            <x-side-style href="/kelas" :active="request()->is('kelas')">
                 <i data-lucide="clipboard-list" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Kelas</span>
             </x-side-style>
 
-            <x-side-style href="/guru" :active="request()->is('teachers')">
+            <x-side-style href="/guru" :active="request()->is('guru')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Guru</span>
             </x-side-style>
@@ -46,6 +46,16 @@
             <x-side-style href="/mapel" :active="request()->is('lessons')">
                 <i data-lucide="book" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Mata Pelajaran</span>
+            </x-side-style>
+
+            <x-side-style href="/tahunajaran" :active="request()->is('tahunajaran')">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
+                <span>Daftar Tahun Ajaran</span>
+            </x-side-style>
+
+            <x-side-style href="/ujian" :active="request()->is('ujian')">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
+                <span>Ujian</span>
             </x-side-style>
 
             <!-- Submenu Mata Pelajaran -->

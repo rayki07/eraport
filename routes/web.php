@@ -11,6 +11,8 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaImportController;
 use App\Http\Controllers\RaportAttController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\UjianController;
+use App\Http\Controllers\TahunAjaranController;
 
 Route::get('/', function () {
     return view('home');
@@ -48,15 +50,28 @@ Route::post('/nilai/att/{siswa}', [RaportAttController::class, 'storeNilaiATT'])
 
 
 //menampilkan detail kelas
-Route::get('/kelas', [KelasController::class,'index']);
-Route::get('/kelas/{kelas}', [KelasController::class,'show']);
+Route::get('/kelas', [KelasController::class,'index'])->name('kelas.index');
+Route::get('/kelas/create', [KelasController::class, 'create'])->name('kelas.create');
+Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store');
+Route::get('/kelas/{kelas}', [KelasController::class,'show'])->name('kelas.show');
 // Halaman siswa berdasarkan kelas
 Route::get('/kelas/{id}/siswa', [KelasController::class,'siswa'])->name('kelas.siswa');
-Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store');
+Route::get('/kelas/{kelas}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
 Route::post('/kelas/import', [KelasController::class, 'import'])->name('kelas.import');
+Route::patch('/kelas/{kelas}', [KelasController::class, 'update'])->name('kelas.update');
 
 // Menampilkan Mapel
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
+
+// Menampilkan Tahun Ajaran
+Route::get('/tahunajaran', [TahunAjaranController::class, 'index'])->name('tahunajaran.index');
+Route::get('/tahunajaran/create', [TahunAjaranController::class, 'create'])->name('tahunajaran.create');
+Route::post('/tahunajaran', [TahunAjaranController::class, 'store'])->name('tahunajaran.store');
+Route::get('/tahunajaran/{tahunajaran}/edit', [TahunAjaranController::class, 'edit'])->name('tahunajaran.edit');
+Route::patch('/tahunajaran/{tahunajaran}', [TahunAjaranController::class, 'update'])->name('tahunajaran.update');
+
+// Menampilkan Ujian
+Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

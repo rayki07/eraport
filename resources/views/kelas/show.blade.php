@@ -1,7 +1,16 @@
 <x-layout>
-    <x-slot:heading>
-        Seluruh Kelas
-    </x-slot:heading>
+    <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
+        <!-- Header Konten -->
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+            <div class="flex items-center space-x-2 text-gray-700">
+                <i data-lucide="users-2" class="w-6 h-6"></i>
+                <h2 class="text-xl font-semibold">{{ $kelas->rombel }} {{ $kelas->nama }}</h2>
+            </div>
+            <a href="{{ route('kelas.create') }}" class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
+                Tambah kelas
+            </a>                
+        </div>
 <!-- Kontrol Tabel (Search dan Entries) -->
                 <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-3 md:space-y-0">
                     <div class="flex items-center space-x-2">
@@ -25,7 +34,9 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NO</th>
-                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Grade</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Rombel</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Kelas</th>
+                                <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">Tahun Ajaran</th>
                                 <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">OPSI</th>
                             </tr>
                         </thead>
@@ -34,9 +45,11 @@
                             <!-- Baris Data Siswa -->
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">1</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->kelas }} {{ $kelas->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->rombel }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->nama }}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $kelas->tahunajaran->tahun_mulai }}/{{ $kelas->tahunajaran->tahun_selesai }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="/kelas/{{ $kelas['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <a href="/kelas/{{ $kelas['id'] }}/edit" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Detail
                                     </a>
@@ -45,6 +58,6 @@
                         </tbody>
                     </table>
                 </div>
-                
+    </div>
               {{-- {{ $grades->links() }} --}}
 </x-layout>
