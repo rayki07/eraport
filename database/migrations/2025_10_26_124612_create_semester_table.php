@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('semester', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->cascadeOnDelete();
+            $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->cascadeOnUpdate()->restrictOnDelete();
+            $table->enum('nama_semester', ['Ganjil', 'Genap']);
+            $table->boolean('aktif')->default(false);
             $table->timestamps();
         });
     }

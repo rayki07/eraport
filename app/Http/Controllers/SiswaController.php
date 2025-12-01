@@ -37,14 +37,14 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'nama' => ['required'],
+            'nama_lengkap' => ['required'],
             'gender' => ['required']
         ]);
 
         Siswa::create([
             'nis' =>request('nis'),
             'nisn' =>request('nisn'),
-            'nama' =>request('nama'),
+            'nama_lengkap' =>request('nama_lengkap'),
             'gender' =>request('gender')
             
         ]);
@@ -105,7 +105,7 @@ class SiswaController extends Controller
         request()->validate([
             'nis' => ['required'],
             'nisn' => ['required'],
-            'nama' => ['required'],
+            'nama_lengkap' => ['required'],
             'gender' => ['required']
         ]);
 
@@ -113,7 +113,7 @@ class SiswaController extends Controller
         $siswa->update([
             'nis' => request('nis'),
             'nisn' => request('nisn'),
-            'nama' => request('nama'),
+            'nama_lengkap' => request('nama_lengkap'),
             'gender' => request('gender')
         ]);
 

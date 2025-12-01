@@ -13,7 +13,7 @@ class Kelas extends Model
     use HasFactory;
 
     protected $table = 'kelas';
-    protected $fillable = ['rombel', 'nama', 'tahun_ajaran_id'];
+    protected $fillable = ['rombel', 'nama_kelas', 'tahun_ajaran_id'];
 
     public function siswa()
     {

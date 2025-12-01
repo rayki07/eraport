@@ -23,4 +23,11 @@ class Siswa extends Model
         return $this->belongsToMany(Kelas::class, 'kelas_siswa');
     }
 
+    public function getGenderTextAttribute()
+    {
+        return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
+    }
+
+    
+
 }

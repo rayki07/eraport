@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('nilai_ujian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id')->constrained('siswa')->cascadeOnDelete(); // Relasi siswa
-            $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete(); // Relasi kelas
-            $table->foreignId('semester_id')->constrained('semester')->cascadeOnDelete(); // relasi semester
-            $table->foreignId('ujian_id')->constrained('ujian')->cascadeOnDelete(); // Jenis ujian
-            $table->foreignId('ujian_item_id')->constrained('ujian_item')->cascadeOnDelete(); // Item ujian (surah, doa, hadis)
+            $table->foreignId('siswa_id')->constrained('siswa')->restrictOnDelete(); // Relasi siswa
+            $table->foreignId('kelas_id')->constrained('kelas')->restrictOnDelete(); // Relasi kelas
+            $table->foreignId('semester_id')->constrained('semester')->restrictOnDelete(); // relasi semester
+            $table->foreignId('ujian_id')->constrained('ujian')->restrictOnDelete(); // Jenis ujian
+            $table->foreignId('ujian_item_id')->constrained('ujian_item')->restrictOnDelete(); // Item ujian (surah, doa, hadis)
             $table->integer('nilai')->nullable(); //nilai
             $table->text('catatan')->nullable(); //keterangan
             $table->timestamps();

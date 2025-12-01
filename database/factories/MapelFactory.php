@@ -17,7 +17,7 @@ class MapelFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => $this->faker->randomElement(['ATT'])
+            'nama_pelajaran' => $this->faker->randomElement(['ATT'])
         ];
     }
 }

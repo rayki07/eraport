@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ujian_item', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ujian_id')->constrained('ujian')->cascadeOnDelete();
+            $table->foreignId('ujian_id')->constrained('ujian')->restrictOnDelete();
             $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
             $table->string('jenis')->nullable(); //contoh: surah, gerakan, doa, hadis
             $table->timestamps();

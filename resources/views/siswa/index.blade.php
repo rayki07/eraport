@@ -52,8 +52,8 @@
                         <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
                         <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->nis }}</td>
                         <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->nisn }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->nama }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->gender }}</td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->nama_lengkap }}</td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->gender_text }}</td>
                         <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
                         <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
                             <a href="{{-- /siswa/{{ $student['id'] }} --}}{{ route('siswa.show', $murid->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">

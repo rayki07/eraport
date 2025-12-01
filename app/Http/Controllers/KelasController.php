@@ -33,12 +33,12 @@ class KelasController extends Controller
     {
         request()->validate([
             'rombel' => ['required'],
-            'nama' => ['required']
+            'nama_kelas' => ['required']
         ]);
 
         Kelas::create([
             'rombel' =>request('rombel'),
-            'nama' =>request('nama'),           
+            'nama_kelas' =>request('nama_kelas'),           
         ]);
 
         return redirect('/kelas');
@@ -50,7 +50,7 @@ class KelasController extends Controller
         //validate dan dapatkan data yang bersih
         $validateData = $request->validate([
             'rombel' => ['required', 'string', 'max:1'],
-            'nama' => ['required', 'string', 'max:15'],
+            'nama_kelas' => ['required', 'string', 'max:15'],
             'tahun_ajaran_id' => ['required', 'exists:tahun_ajaran,id']
         ]);
 

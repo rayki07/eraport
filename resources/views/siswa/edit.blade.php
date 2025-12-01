@@ -35,11 +35,11 @@
 
                 {{-- Nama Lengkap --}}
                 <div>
-                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap Siswa</label>
-                    <input type="text" name="nama" id="nama" required
+                    <label for="nama_lengkap" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap Siswa</label>
+                    <input type="text" name="nama_lengkap" id="nama_lengkap" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Masukkan nama lengkap siswa" value="{{ $siswa->nama }}">
-                    @error('nama') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        placeholder="Masukkan nama lengkap siswa" value="{{ $siswa->nama_lengkap }}">
+                    @error('nama_lengkap') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
                 {{-- Jenis Kelamin --}}
@@ -50,13 +50,13 @@
                             
                         <option value="">-- Pilih Jenis Kelamin -- </option>
 
-                        <option value="laki-laki" 
-                            @if(old('gender', $siswa->gender) == 'laki-laki') selected @endif>
+                        <option value="L" 
+                            @if(old('gender', $siswa->gender) == 'L') selected @endif>
                             Laki-laki
                         </option>
                         
-                        <option value="perempuan" 
-                            @if(old('gender',  $siswa->gender) == 'perempuan') selected @endif>
+                        <option value="P" 
+                            @if(old('gender',  $siswa->gender) == 'P') selected @endif>
                             Perempuan
                         </option>
 
