@@ -37,24 +37,19 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NO</th>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NISN</th>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NISN</th>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NAMA</th>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">GENDER</th>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">KELAS</th>
+                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">NAMA MAPEL</th>
                         <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-x">OPSI</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
 
                     <!-- Baris Data Siswa -->
-                    @foreach ($mapel as $index => $mapel)
+                    @foreach ($mapel as $index => $item)
                     <tr class="hover:bg-gray-50">
                         <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $mapel->nama }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $item->nama_pelajaran }}</td>
                         <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                            <a href="/mapel/{{ $mapel['id'] }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                            <a href="{{ route('mapel.index', $item->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                 <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                 Detail
                             </a>

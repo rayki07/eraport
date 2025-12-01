@@ -1,6 +1,6 @@
 @php
     //ambil data lessons dari database
-    $lesson = App\Models\Lessons::all();
+    $mapel = App\Models\Mapel::all();
     
 @endphp
 
@@ -63,9 +63,11 @@
                 <p class="text-xs font-semibold uppercase text-gray-400 mb-2">Mata Pelajaran</p>
                 <div class="space-y-1">
 
-                    @foreach ($lesson as $lessons)
+                    @foreach ($mapel as $item)
                         <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
-                            <span class="truncate">{{ $lessons->lesson }}</span>
+                            <a href="{{ route('mapel.index', $item->id) }}">
+                                <span class="truncate">{{ $item->nama_pelajaran }}</span>    
+                            </a>
                             <span class="text-xs bg-green-500 rounded-full px-2 py-0.5 font-bold">100%</span>
                         </div>
                         

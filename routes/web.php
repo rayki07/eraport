@@ -72,6 +72,10 @@ Route::patch('/tahunajaran/{tahunajaran}', [TahunAjaranController::class, 'updat
 
 // Menampilkan Ujian
 Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
+Route::get('/ujian/create', [UjianController::class, 'edit'])->name('ujian.create');
+Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
+Route::get('/ujian/{ujian}/edit', [UjianController::class, 'edit'])->name('ujian.edit');
+Route::patch('/ujian/{ujian}', [UjianController::class, 'update'])->name('ujian.update');
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

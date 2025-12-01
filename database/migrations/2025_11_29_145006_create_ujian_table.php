@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_ujian');// contoh :  Tahfidz, Praktik Sholat, Wudhu
             $table->string('kategori')->nullable(); // kategori opsional contoh : Tahfidz, Akhlak, Ibadah
-            $table->foreignId('semester_id')->nullable()->constrained('semester')->restrictOnDelete();
+            $table->foreignId('mapel_id')->nullable()->constrained('mapel')->restrictOnDelete();
             $table->timestamps();
         });
     }

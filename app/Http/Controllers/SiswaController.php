@@ -34,21 +34,22 @@ class SiswaController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Siswa $siswa)
     {
-        request()->validate([
-            'nama_lengkap' => ['required'],
-            'gender' => ['required']
+        // authorize (on hold)
+
+        // validasi dapatkan data yang bersih
+        $validateData = $request->validate([
+            'nis' => ['required', 'string', 'max:15'],
+            'nisn' => ['required', 'string', 'max:15'],
+            'nama_lengkap' => ['required', 'string', 'max:30'],
+            'gender' => ['required', 'max:1']
         ]);
 
-        Siswa::create([
-            'nis' =>request('nis'),
-            'nisn' =>request('nisn'),
-            'nama_lengkap' =>request('nama_lengkap'),
-            'gender' =>request('gender')
-            
-        ]);
+        //simpan siswa menggunakan data yang divalidasi
+        $siswa->update($validateData);
 
+        // redirect
         return redirect('/siswa');
     }
     
@@ -98,24 +99,19 @@ class SiswaController extends Controller
         ]);
     }
 
-    public function update(Siswa $siswa)
+    public function update(Request $request, Siswa $siswa)
     {
         // authorize
         // validate
-        request()->validate([
-            'nis' => ['required'],
-            'nisn' => ['required'],
-            'nama_lengkap' => ['required'],
-            'gender' => ['required']
+        $validateData = $request->validate([
+            'nis' => ['required', 'string', 'max:15'],
+            'nisn' => ['required', 'string', 'max:15'],
+            'nama_lengkap' => ['required', 'string', 'max:30'],
+            'gender' => ['required', 'max:1']
         ]);
 
         //update siswa
-        $siswa->update([
-            'nis' => request('nis'),
-            'nisn' => request('nisn'),
-            'nama_lengkap' => request('nama_lengkap'),
-            'gender' => request('gender')
-        ]);
+        $siswa->update($validateData);
 
         //kembali ke halaman siswa
         return redirect("/siswa/{$siswa->id}");

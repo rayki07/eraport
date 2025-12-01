@@ -21,26 +21,36 @@ class KelasController extends Controller
 
     public function show(kelas $kelas)
     {
-        return view('kelas.show', ['kelas' =>$kelas]);
+        return view('kelas.show', [
+            'kelas' => $kelas
+        ]);
     }
 
     public function create()
     {
-        return view('kelas.create');
+        //menampilkan tahun ajaran
+        $tahunajaran = TahunAjaran::all();
+
+        return view('kelas.create', [
+            'tahunajaran' => $tahunajaran
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Kelas $kelas)
     {
-        request()->validate([
-            'rombel' => ['required'],
-            'nama_kelas' => ['required']
+        // authorize (on hold)
+
+        //validasi dan dapatkan data yang bersih
+        $validateData =$request->validate([
+            'rombel' => ['required', 'integer', 'max:1'],
+            'nama_kelas' => ['required', 'string', 'max:15'],
+            'tahun_ajaran_id' => ['required', 'exists:tahun_ajaran,id']
         ]);
 
-        Kelas::create([
-            'rombel' =>request('rombel'),
-            'nama_kelas' =>request('nama_kelas'),           
-        ]);
+        //create kelas menggunakan data yang divalidasi
+        $kelas->create($validateData);
 
+        //redirect ke halaman kelas
         return redirect('/kelas');
     }
 
@@ -49,7 +59,7 @@ class KelasController extends Controller
         //authorize (on hold)
         //validate dan dapatkan data yang bersih
         $validateData = $request->validate([
-            'rombel' => ['required', 'string', 'max:1'],
+            'rombel' => ['required', 'integer', 'max:6' ],
             'nama_kelas' => ['required', 'string', 'max:15'],
             'tahun_ajaran_id' => ['required', 'exists:tahun_ajaran,id']
         ]);
@@ -57,19 +67,22 @@ class KelasController extends Controller
         //update kelas menggunakan data yang divalidasi
         $kelas->update($validateData);
 
-        //redirect ke halaman kelas
+        //redirect ke halaman kelas tersebut
         return redirect()->route('kelas.show', $kelas->id)->with('success', 'Data kelas berhasil diperbarui');
     }
 
     public function edit(Kelas $kelas)
     {
+        // menampilkan tahun ajaran
         $tahunajaran = TahunAjaran::all();
         // jika belum login, redirect ke halaman login
         /* if (Auth::guest()) {
             return redirect('/login');
         } */
 
-        return view('kelas.edit', ['kelas' => $kelas, 'tahunajaran' => $tahunajaran]);
+        return view('kelas.edit', [
+            'kelas' => $kelas, 'tahunajaran' => $tahunajaran
+        ]);
     }
 
     // Halaman daftar siswa berdasarkan kelas

@@ -17,7 +17,7 @@
         <form action="{{ route('kelas.store') }}" method="POST" class="space-y-6">
                 @csrf 
 
-                {{-- Jenis Kelamin --}}
+                {{-- Rombel --}}
                 <div>
                     <label for="rombel" class="block text-sm font-medium text-gray-700 mb-1">Rombel</label>
                     <select name="rombel" id="rombel" required
@@ -33,13 +33,30 @@
                     @error('rombel') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
-                {{-- NIS (Nomor Induk Siswa) --}}
+                {{-- Nama Kelas --}}
                 <div>
                     <label for="nama_kelas" class="block text-sm font-medium text-gray-700 mb-1">Nama Kelas</label>
-                    <input type="text" name="nama_lengkap" id="nama_lengkap" required
+                    <input type="text" name="nama_kelas" id="nama_kelas" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Contoh: Tunisia" value="{{ old('nama_lengkap') }}">
-                    @error('nama_lengkap') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        placeholder="Contoh: Tunisia" value="{{ old('nama_kelas') }}">
+                    @error('nama_kelas') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                </div>
+
+                {{-- Tahun Ajaran) --}}
+                <div>
+                    <label for="tahun_ajaran_id" class="block text-sm font-medium text-gray-700 mb-1">Tahun Ajaran</label>
+                    <select name="tahun_ajaran_id" id="tahun_ajaran_id"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
+                        @foreach ($tahunajaran as $item)
+                            <option value="{{ $item->id }}"
+                                {{-- @if (old('tahun_ajaran_id', $kelas->tahun_ajaran_id) == $item->id) selected   
+                                @endif --}}>
+                            {{ $item->tahun_mulai }}/{{ $item->tahun_selesai }}</option>
+                            {{-- <option value="{{ $kelas->tahunajaran->tahun_mulai }}">{{ $kelas->tahunajaran->tahun_mulai }}</option> --}}
+                            {{-- <option value="{{ $item->tahun_mulai }}" @if(old('rombel', $kelas->rombel) == '6') selected @endif>6</option> --}}
+                        @endforeach
+                    </select>
+                    @error('tahun_ajaran_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 
                 {{-- Tombol Aksi --}}

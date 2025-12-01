@@ -50,11 +50,9 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
                         @foreach ($tahunajaran as $item)
                             <option value="{{ $item->id }}"
-                                {{-- @if (old('tahun_ajaran_id', $kelas->tahun_ajaran_id) == $item->id) selected   
-                                @endif --}}>
+                                @if (old('tahun_ajaran_id', $kelas->tahun_ajaran_id) == $item->id) selected   
+                                @endif>
                             {{ $item->tahun_mulai }}/{{ $item->tahun_selesai }}</option>
-                            {{-- <option value="{{ $kelas->tahunajaran->tahun_mulai }}">{{ $kelas->tahunajaran->tahun_mulai }}</option> --}}
-                            {{-- <option value="{{ $item->tahun_mulai }}" @if(old('rombel', $kelas->rombel) == '6') selected @endif>6</option> --}}
                         @endforeach
                     </select>
                     @error('tahun_ajaran_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror

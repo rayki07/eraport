@@ -14,6 +14,7 @@ class Ujian extends Model
     protected $fillable = [
         'nama_ujian',
         'kategori',
+        'mapel_id'
     ];
 
     // 1 ujian punya banyak item
@@ -26,5 +27,10 @@ class Ujian extends Model
     public function nilai()
     {
         return $this->hasMany(Nilai_ujian::class,'ujian_id');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'mapel_id');
     }
 }
