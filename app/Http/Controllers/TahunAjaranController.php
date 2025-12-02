@@ -10,8 +10,9 @@ class TahunAjaranController extends Controller
     public function index()
     {
         $tahunajaran = TahunAjaran::all();
-            return view('tahunajaran.index', [
-                'tahunajaran' => $tahunajaran
+        
+        return view('tahunajaran.index', [
+            'tahunajaran' => $tahunajaran
 
         ]);
     
@@ -49,7 +50,9 @@ class TahunAjaranController extends Controller
             return redirect('/login');
         } */
 
-        return view('tahunajaran.edit', ['tahunajaran' => $tahunajaran]);
+        return view('tahunajaran.edit', [
+            'tahunajaran' => $tahunajaran
+        ]);
     }
 
     public function update(TahunAjaran $tahunajaran)

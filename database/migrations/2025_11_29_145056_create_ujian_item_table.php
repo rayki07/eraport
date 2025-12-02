@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ujian_id')->constrained('ujian')->restrictOnDelete();
             $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
-            $table->string('jenis')->nullable(); //contoh: surah, gerakan, doa, hadis
+            $table->string('keterangan')->nullable(); //contoh: surah, gerakan, doa, hadis
             $table->timestamps();
         });
     }

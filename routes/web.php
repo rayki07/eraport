@@ -13,6 +13,7 @@ use App\Http\Controllers\RaportAttController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\TahunAjaranController;
+use App\Http\Controllers\UjianItemController;
 
 Route::get('/', function () {
     return view('home');
@@ -72,10 +73,17 @@ Route::patch('/tahunajaran/{tahunajaran}', [TahunAjaranController::class, 'updat
 
 // Menampilkan Ujian
 Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
-Route::get('/ujian/create', [UjianController::class, 'edit'])->name('ujian.create');
+Route::get('/ujian/create', [UjianController::class, 'create'])->name('ujian.create');
 Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
 Route::get('/ujian/{ujian}/edit', [UjianController::class, 'edit'])->name('ujian.edit');
 Route::patch('/ujian/{ujian}', [UjianController::class, 'update'])->name('ujian.update');
+
+// Menampilkan Ujian item
+Route::get('/ujian.item', [UjianItemController::class, 'index'])->name('ujian.item.index');
+Route::get('/ujian.item/create', [UjianItemController::class, 'create'])->name('ujian.item.create');
+Route::post('/ujian.item', [UjianItemController::class, 'store'])->name('ujian.item.store');
+Route::get('/ujian.item/{item}/edit', [UjianItemController::class, 'edit'])->name('ujian.item.edit');
+Route::patch('/ujian.item/{item}', [UjianItemController::class, 'update'])->name('ujian.item.update');
 
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);

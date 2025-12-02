@@ -6,9 +6,9 @@
                 <i data-lucide="users-2" class="w-6 h-6"></i>
                 <h2 class="text-xl font-semibold">Seluruh Kelas</h2>
             </div>
-            <a href="{{ route('kelas.create') }}" class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+            <a href="{{ route('ujian.item.create') }}" class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
                 <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
-                Tambah kelas
+                Tambah Ujian
             </a>                
         </div>
 

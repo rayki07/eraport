@@ -13,7 +13,6 @@ class Ujian extends Model
     protected $table = 'ujian';
     protected $fillable = [
         'nama_ujian',
-        'kategori',
         'mapel_id'
     ];
 

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('ujian', function (Blueprint $table) {
             $table->id();
             $table->string('nama_ujian');// contoh :  Tahfidz, Praktik Sholat, Wudhu
-            $table->string('kategori')->nullable(); // kategori opsional contoh : Tahfidz, Akhlak, Ibadah
             $table->foreignId('mapel_id')->nullable()->constrained('mapel')->restrictOnDelete();
             $table->timestamps();
         });
