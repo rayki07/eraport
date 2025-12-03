@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Guru;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GuruSeeder extends Seeder
 {
@@ -13,6 +14,10 @@ class GuruSeeder extends Seeder
      */
     public function run(): void
     {
-        Guru::factory()->count(1)->create();
+        $items = [
+            ['nip' => '001', 'nama_lengkap' => 'Firman Wahyudi', 'nama_panggilan' => 'Firman', 'gender' => 'L'],
+        ];
+
+        DB::table('guru')->insert($items);
     }
 }

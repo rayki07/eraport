@@ -17,8 +17,9 @@ class SiswaImport implements ToModel
         return new Siswa([
             'nis' => $row[0],
             'nisn' => $row[1],
-            'nama' => $row[2],
-            'gender' => $row[3]
+            'nama_lengkap' => $row[2],
+            'nama_panggilan'=> $row[3],
+            'gender' => $row[4]
         ]);
     }
 }

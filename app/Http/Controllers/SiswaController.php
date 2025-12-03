@@ -56,7 +56,7 @@ class SiswaController extends Controller
     /**
      * Menyimpan data siswa dari file import (Import File).
      */
-    public function import(Request $request)
+    public function import(Request $request, Excel $excel)
     {
         // Validasi file
         $request->validate([

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 
 class KelasSeeder extends Seeder
@@ -13,6 +14,10 @@ class KelasSeeder extends Seeder
      */
     public function run(): void
     {
-        Kelas::factory(6)->create();
+        $items = [
+            ['rombel' => '5', 'nama_kelas' => 'Bahrain', 'tahun_ajaran_id' => '1']
+        ];
+
+        DB::table('kelas')->insert($items);
     }
 }
