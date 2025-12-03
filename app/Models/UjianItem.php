@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ujian_item extends Model
+class UjianItem extends Model
 {
     /** @use HasFactory<\Database\Factories\UjianItemFactory> */
     use HasFactory;
@@ -14,7 +14,7 @@ class Ujian_item extends Model
     protected $fillable = [
         'ujian_id',
         'nama_item',
-        'keterangan'];
+        'kategori'];
 
     public function ujian()
     {

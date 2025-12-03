@@ -8,6 +8,7 @@ use App\Http\Controllers\gradesController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaImportController;
 use App\Http\Controllers\RaportAttController;
 use App\Http\Controllers\MapelController;
@@ -23,7 +24,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// menampilkan detail siswa
+// menampilkan Data Siswa
 Route::get('/siswa', [SiswaController::class,'index'])->name('siswa.index');
 Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
@@ -35,15 +36,21 @@ Route::post('/siswa/confirm', [SiswaImportController::class, 'confirm'])->name('
 //Import file excel */
 
 Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
-Route::post('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::patch('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
 Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 Route::get('/siswa/{siswa}', [SiswaController::class, 'show'])->name('siswa.show');
 Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
 Route::post('/siswa/import/preview', [SiswaController::class, 'import'])->name('siswa.preview');
 
-//update data satu siswa
-/* Route::patch('/siswa') */
+// Menampilkan Data Guru
+Route::get('/guru', [GuruController::class,'index'])->name('guru.index');
+Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
+Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
+Route::get('/guru/{guru}', [GuruController::class, 'show'])->name('guru.show');
+Route::get('/guru/{guru}/edit', [GuruController::class, 'edit'])->name('guru.edit');
+Route::patch('/guru/{guru}', [GuruController::class, 'update'])->name('guru.update');
+Route::delete('/guru/{guru}', [GuruController::class, 'destroy'])->name('guru.destroy');
 
 // Mata pelajaran ATT
 Route::get('/nilai/att/{siswa}', [RaportAttController::class, 'inputNilaiATT'])->name('nilai.input_att');

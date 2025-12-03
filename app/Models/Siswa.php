@@ -15,7 +15,7 @@ class Siswa extends Model
     use HasFactory;
 
     protected $table = 'siswa';
-    protected $fillable = ['nis', 'nisn', 'nama', 'gender'];
+    protected $fillable = ['nis', 'nisn', 'nama_lengkap', 'nama_panggilan', 'gender'];
 
     //setiap siswa mempunyai banyak kelas
     public function kelas()

@@ -13,7 +13,7 @@
 <div id="content-manual" class="tab-content">
             <form action="/siswa/{{ $siswa->id }}" method="POST" class="space-y-6">
                 @csrf
-                {{-- @method('PATCH')  --}}
+                @method('PATCH') 
 
                 {{-- NIS (Nomor Induk Siswa ) --}}
                 <div>

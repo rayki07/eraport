@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ujian;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class UjianSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Ujian::factory()->count(1)->create();
     }
 }

@@ -17,7 +17,9 @@ class UjianItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'ujian_id' => ('1'),
+            'nama_item' => ('Doa Mau Makan'),
+            'kategori' => ('Doa')
         ];
     }
 }

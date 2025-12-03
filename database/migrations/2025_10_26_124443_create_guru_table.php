@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ujian_item', function (Blueprint $table) {
+        Schema::create('guru', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ujian_id')->constrained('ujian')->restrictOnDelete();
-            $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
-            $table->string('keterangan')->nullable(); //contoh: surah, gerakan, doa, hadis
+            $table->string('nip')->nullable();
+            $table->string('nama_lengkap');
+            $table->string('nama_panggilan')->nullable();
+            $table->enum('gender', ['L', 'P']);
+            /* $table->foreignId('user_id'); */
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ujian_item');
+        Schema::dropIfExists('gurus');
     }
 };

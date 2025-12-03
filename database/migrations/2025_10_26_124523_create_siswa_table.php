@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nis')->nullable();
             $table->string('nisn')->nullable();
             $table->string('nama_lengkap');
+            $table->string('nama_panggilan')->nullable();
             $table->enum('gender', ['L','P']);
             /* $table->foreignId('user_id'); */
             $table->timestamps();

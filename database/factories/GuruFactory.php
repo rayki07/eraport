@@ -17,7 +17,10 @@ class GuruFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nip' => ('001'),
+            'nama_lengkap' => ('Firman Wahyudi'),
+            'nama_panggilan' => ('Firman'),
+            'gender' => ('L')
         ];
     }
 }

@@ -17,7 +17,8 @@ class UjianFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_ujian' => ('Doa'),
+            'mapel_id' => ('1')
         ];
     }
 }
