@@ -21,7 +21,7 @@
                 {{-- Tahun Mulai --}}
                 <div>
                     <label for="tahun_mulai" class="block text-sm font-medium text-gray-700 mb-1">Tahun Mulai</label>
-                    <input type="text" name="tahun_mulai" id="tahun_mulai" required
+                    <input type="number" name="tahun_mulai" id="tahun_mulai" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Contoh: 2025" value="{{ old('tahun_mulai', $tahunajaran->tahun_mulai) }}">
                     @error('tahun_mulai') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
@@ -30,7 +30,7 @@
                 {{-- Tahun Selesai --}}
                 <div>
                     <label for="tahun_selesai" class="block text-sm font-medium text-gray-700 mb-1">Tahun Selesai</label>
-                    <input type="text" name="tahun_selesai" id="tahun_selesai" required
+                    <input type="number" name="tahun_selesai" id="tahun_selesai" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Contoh: 2026" value="{{ old('tahun_selesai', $tahunajaran->tahun_selesai) }}">
                     @error('tahun_selesai') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
@@ -42,8 +42,8 @@
                     <select name="status" id="status" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
                         <option value="">-- Pilih Status Tahun Ajaran --</option>
-                        <option value="aktif" @if(old('status', $tahunajaran->status) == 'aktif') selected @endif>AKTIF</option>
-                        <option value="nonaktif" @if(old('status', $tahunajaran->status) == 'nonaktif') selected @endif>NONAKTIF</option>
+                        <option value= "1" @if(old('status', $tahunajaran->status) == '1') selected @endif>AKTIF</option>
+                        <option value= "0" @if(old('status', $tahunajaran->status) == '0') selected @endif>NONAKTIF</option>
                     </select>
                     @error('status') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>

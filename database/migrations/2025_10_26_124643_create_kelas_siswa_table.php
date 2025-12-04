@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('kelas_siswa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id')->nullable()->constrained('siswas')->restrictOnDelete();
+            $table->foreignId('siswa_id')->nullable()->constrained('siswa')->restrictOnDelete();
             $table->foreignId('kelas_id')->nullable()->constrained('kelas')->restrictOnDelete();
-            $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajarans')->restrictOnDelete();
-            $table->foreignId('semester_id')->nullable()->constrained('semesters')->restrictOnDelete();
+            $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajaran')->restrictOnDelete();
+            $table->foreignId('semester_id')->nullable()->constrained('semester')->restrictOnDelete();
             $table->boolean('aktif')->default(false);
             $table->timestamps();
         });

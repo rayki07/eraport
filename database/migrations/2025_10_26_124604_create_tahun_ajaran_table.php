@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tahun_ajaran', function (Blueprint $table) {
             $table->id();
-            $table->string('tahun_mulai');
-            $table->string('tahun_selesai');
-            $table->string('status');
+            $table->integer('tahun_mulai');
+            $table->integer('tahun_selesai');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

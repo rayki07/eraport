@@ -15,8 +15,8 @@ class TahunAjaranSeeder extends Seeder
     public function run(): void
     {
         $items = [
-
-            ['tahun_mulai' => '2025', 'tahun_selesai'=> '2026', 'status' => 'aktif'],
+            ['tahun_mulai' => '2024', 'tahun_selesai'=> '2025', 'status' => '0'],
+            ['tahun_mulai' => '2025', 'tahun_selesai'=> '2026', 'status' => '1'],
         ];
 
         DB::table("tahun_ajaran")->insert($items);

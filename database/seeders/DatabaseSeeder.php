@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MapelSeeder::class);
         $this->call(UjianSeeder::class);
         $this->call(UjianItemSeeder::class);
+        $this->call(KelasSiswaSeeder::class);
 
        /*  $this->call(GradesStudentsSeeder::class);
         $this->call(TeachersSeeder::class);

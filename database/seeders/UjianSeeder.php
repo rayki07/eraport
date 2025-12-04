@@ -12,7 +12,7 @@ class UjianSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): void 
     {
         $items = [
             ['nama_ujian' => 'Adab', 'mapel_id' => '1'],

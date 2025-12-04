@@ -15,26 +15,26 @@ class Kelas_siswa extends Model
     use HasFactory;
 
     protected $table = 'kelas_siswa';
-    protected $fillable = ['siswa_id', 'kelas_id', 'tahun_ajaran_id', 'semester_id'];
+    protected $fillable = ['siswa_id', 'kelas_id', 'tahun_ajaran_id', 'semester_id', 'status'];
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'siswa_id');
+        return $this->belongsTo(Siswa::class);
     }
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
+        return $this->belongsTo(Kelas::class);
     }
 
     public function tahunajaran()
     {
-        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
+        return $this->belongsTo(TahunAjaran::class);
     }
 
     public function semester()
     {
-        return $this->belongsTo(Semester::class, 'semester_id');
+        return $this->belongsTo(Semester::class);
     }
 
 }

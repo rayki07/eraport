@@ -37,8 +37,8 @@
                     <select name="status" id="status" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-bluexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-500 focus:border-blue-500 appearance-none bg-white">
                         <option value="">-- Pilih Status Tahun Ajaran --</option>
-                        <option value="aktif" @if(old('status') == 'aktif') selected @endif>AKTIF</option>
-                        <option value="nonaktif" @if(old('status') == 'nonaktif') selected @endif>NONAKTIF</option>
+                        <option value="1" @if(old('status') == '1') selected @endif>AKTIF</option>
+                        <option value="0" @if(old('status') == '0') selected @endif>NONAKTIF</option>
                     </select>
                     @error('status') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>

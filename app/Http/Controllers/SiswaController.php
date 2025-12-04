@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Kelas_siswa;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Imports\SiswaImport;
@@ -12,9 +14,12 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Kelas_siswa::with('siswa')->get();
+        $item = Kelas_siswa::with('kelas')->get();
+        
         return view("siswa.index", [
-            "siswa"=> $siswa
+            "siswa"=> $siswa,
+            'item'=> $item
         ]);
     }
 

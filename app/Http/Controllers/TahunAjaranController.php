@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\TahunAjaran;
 
 class TahunAjaranController extends Controller
@@ -23,21 +24,27 @@ class TahunAjaranController extends Controller
         return view('tahunajaran.create');
     }
 
-    public function store()
+    public function store(Request $request, TahunAjaran $tahunAjaran)
     {
         //validate
-        request()->validate([
-            'tahun_mulai' => ['required'],
-            'tahun_selesai' => ['required'],
-            'status' => ['required']
+        $validateData = $request->validate([
+            'tahun_mulai' => ['required', 'integer', 'min:2000', 'max:2100', 'unique:tahun_ajaran,tahun_mulai'],
+            'tahun_selesai' => ['required', 'integer', 'after_or_equal:tahun_mulai', 'unique:tahun_ajaran,tahun_selesai'],
+            'status' => ['required', 'boolean']
         ]);
 
+        // Cek selisih tepat 1 tahun (logika tambahan)
+        $mulai = (int) $request->tahun_mulai;
+        $selesai = (int) $request->tahun_selesai;
+
+        if (($selesai - $mulai) != 1) {
+            return redirect()->back()->withErrors([
+                'tahun_selesai'=> 'Tahun selesai harus tepat satu tahun setelahnya'
+            ])->withInput();
+        }
+
         // simpan tahun ajaran
-        TahunAjaran::create([
-            'tahun_mulai' =>request('tahun_mulai'),
-            'tahun_selesai' =>request('tahun_selesai'),
-            'status' =>request ('status')
-        ]);
+        TahunAjaran::create($validateData);
 
         // redirect ke halaman tahun ajaran
         return redirect('/tahunajaran');
@@ -55,24 +62,30 @@ class TahunAjaranController extends Controller
         ]);
     }
 
-    public function update(TahunAjaran $tahunajaran)
+    public function update(Request $request, TahunAjaran $tahunajaran)
     {
-        //authorize (on hold)
         //validate
-        request()->validate([
-            'tahun_mulai' => ['required'],
-            'tahun_selesai' => ['required'],
+        $validateData = $request->validate([
+            'tahun_mulai' => ['required', 'integer', 'min:2000', 'max:2100',
+            Rule::unique('tahun_ajaran', 'tahun_mulai')->ignore($tahunajaran->id)],
+            'tahun_selesai' => ['required', 'integer', 'after_or_equal:tahun_mulai'],
             'status' => ['required']
-        ]);
+        ]); 
 
-        // update tahun ajaran
-        $tahunajaran->update([
-            'tahun_mulai' => request('tahun_mulai'),
-            'tahun_selesai' => request('tahun_selesai'),
-            'status' => request('status')
-        ]);
+        // Cek selisih tepat 1 tahun (logika tambahan)
+        $mulai = (int) $request->tahun_mulai;
+        $selesai = (int) $request->tahun_selesai;
 
-        //redirect ke halaman Tahun Ajaran
-        return redirect("/tahunajaran");
+        if ($selesai - $mulai != 1) {
+            return redirect()->back()->withErrors([
+                'tahun_selesai'=> 'Tahun selesai harus tepat satu tahun setelahnya'
+            ])->withInput();
+        }
+
+        // simpan tahun ajaran
+        $tahunajaran->update ($validateData);
+
+        // redirect ke halaman tahun ajaran
+        return redirect('/tahunajaran');
     }
 }

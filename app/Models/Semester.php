@@ -11,11 +11,17 @@ class Semester extends Model
     use HasFactory;
 
     protected $table = 'semester';
-    protected $fillable = ['semester_id'];
+    protected $fillable = ['tahun_ajaran_id', 'nama_semester', 'status'];
 
     //setiap semester memiliki banyak relasi gradesStudents
-    public function gradesStudent()
+
+    public function kelassiswa()
     {
-        return $this->hasMany(GradesStudents::class, 'semester_id');
+        return $this->hasMany(Kelas_siswa::class);
+    }
+
+    public function tahunajaran()
+    {
+        return $this->belongsTo(TahunAjaran::class);
     }
 }
