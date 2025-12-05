@@ -48,7 +48,7 @@
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->nisn }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->nama_lengkap }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->gender_text }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{-- {{ $student->grades->first()->grade }} {{ $student->grades->first()->grade_name }} --}}</td>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $kelas->rombel }} {{ $kelas->nama_kelas }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
                                     <a href="{{-- /siswa/{{ $siswa->id }}/edit --}}{{ route('siswa.edit', $siswa->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>

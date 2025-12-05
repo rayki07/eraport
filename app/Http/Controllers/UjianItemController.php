@@ -11,9 +11,11 @@ class UjianItemController extends Controller
     public function index()
     {
         $ujian_item = UjianItem::all();
+        $items = UjianItem::with('ujian')->get();
 
         return view('ujian_item.index', [
             'ujian_item'=> $ujian_item,
+            'items'=> $items
         ]);
     }
 

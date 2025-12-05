@@ -25,7 +25,7 @@ class Kelas extends Model
     // 1 nama kelas cuma boleh di satu tahun ajaran
     public function tahunajaran()
     {
-        return $this->belongsTo(TahunAjaran::class);
+        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
     }
 
     public function siswa()

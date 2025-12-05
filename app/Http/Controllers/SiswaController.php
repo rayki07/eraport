@@ -14,12 +14,10 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Kelas_siswa::with('siswa')->get();
-        $item = Kelas_siswa::with('kelas')->get();
+        $siswa = Kelas_siswa::with('kelas','siswa')->get();
         
         return view("siswa.index", [
-            "siswa"=> $siswa,
-            'item'=> $item
+            'siswa'=> $siswa
         ]);
     }
 
@@ -28,9 +26,18 @@ class SiswaController extends Controller
         return view('siswa.create');
     }
 
-    public function show(Siswa $siswa)
+    public function show($id)
     {
-        return view('siswa.show', ['siswa' =>$siswa]);
+        //ambil kelas berdasarkan IDSiswa
+        $murid = Kelas_siswa::with('siswa')->find( $id );
+        $siswa = $murid->siswa;
+        $kelas = $murid->kelas;
+        /* $siswa = Siswa::with('kelas')->findOrFail($id); */
+
+        return view('siswa.show', [
+            'siswa' =>$siswa,
+            'kelas'=>$kelas
+        ]);
     }
 
     public function edit(Siswa $siswa)

@@ -19,7 +19,7 @@ class Ujian extends Model
     // 1 ujian punya banyak item
     public function items()
     {
-        return $this->hasMany(Ujian_item::class, 'ujian_id');
+        return $this->hasMany(UjianItem::class, 'ujian_id');
     }
 
     // 1 ujian punya banyak nilai

@@ -20,14 +20,14 @@ class Siswa extends Model
 
     public Function kelassiswa()
     {
-        return $this->belongsToMany(Kelas_siswa::class, 'kelas_siswa');
+        return $this->hasMany(Kelas_siswa::class);
     }
     
     //setiap siswa mempunyai banyak kelas
     public function kelas()
     {
         return $this->belongsToMany(Kelas::class, 'kelas_siswa')
-                    ->withPivot(['siswa_id', 'tahun_ajaran_id', 'semester_id'/* , 'status' */]);
+                    ->withPivot(['tahun_ajaran_id', 'semester_id', 'status']);
     }
 
     public function getGenderTextAttribute()

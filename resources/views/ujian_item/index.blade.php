@@ -45,7 +45,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
 
                     <!-- Baris Data Siswa -->
-                    @foreach ($ujian_item as $index => $item)
+                    @foreach ($items as $index => $item)
                     <tr class="hover:bg-gray-50">
                         <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
                         <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $item->ujian->nama_ujian }}</td>
