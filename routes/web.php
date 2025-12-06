@@ -15,6 +15,9 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\UjianItemController;
+use App\Http\Controllers\NilaiUjianController;
+use App\Http\Controllers\NilaiAttController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -92,6 +95,20 @@ Route::post('/ujian.item', [UjianItemController::class, 'store'])->name('ujian.i
 Route::get('/ujian.item/{item}/edit', [UjianItemController::class, 'edit'])->name('ujian.item.edit');
 Route::patch('/ujian.item/{item}', [UjianItemController::class, 'update'])->name('ujian.item.update');
 
+// Menampilkan nilai ujian
+Route::get('/nilai-ujian', [NilaiUjianController::class, 'index'])->name('nilai.index');
+Route::get('/nilai-ujian/{siswa}', [NilaiUjianController::class, 'show'])->name('nilai.show');
+Route::post('/nilai-ujian', [NilaiUjianController::class, 'store'])->name('nilai.store');
+Route::get('/nilai-ujian/input', [NilaiUjianController::class, 'input'])->name('nilai.input');
+
+//menampilkan nilai ujian ATT
+Route::get('/att', [NilaiAttController::class, 'index'])->name('att.index');
+Route::get('/att/{id}', [NilaiAttController::class, 'show'])->name('att.show');
+Route::post('/att', [NilaiAttController::class, 'store'])->name('att.store');
+Route::get('/att/input', [NilaiAttController::class, 'input'])->name('att.input');
+
+
+
 //pakai Controller
 Route::get('/students', [StudentController::class, 'index']);
 
@@ -113,4 +130,6 @@ Route::get('/login', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+
 

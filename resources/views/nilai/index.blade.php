@@ -47,16 +47,16 @@
                 <tbody class="bg-white divide-y divide-gray-200">
 
                     <!-- Baris Data Siswa -->
-                    @foreach ($siswa as $index => $murid)
+                    @foreach ($mapel as $index => $item)
                     <tr class="hover:bg-gray-50">
                         <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index +1 }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->siswa->nis }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->siswa->nisn }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->siswa->nama_lengkap }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->siswa->gender_text }}</td>
-                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $murid->kelas->rombel }} {{ $murid->kelas->nama_kelas }}</td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $item->nama_pelajaran }}</td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
+                        <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x"></td>
                         <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                            <a href="{{ route('att.show', $murid->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                            <a href="{{ route('nilai.show', $item->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                 <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                 Detail
                             </a>

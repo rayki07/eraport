@@ -46,7 +46,7 @@ class UjianController extends Controller
         $ujian->create($validateData);
 
         //redirect ke halaman ujian
-        return redirect()->route('ujian.index')->with('success', 'data berhasil disimpan');
+        return redirect()->route('ujian.index')->with('success', 'Data berhasil disimpan');
     }
 
     public function update(Request $request, Ujian $ujian)

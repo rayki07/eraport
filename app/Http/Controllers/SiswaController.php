@@ -16,9 +16,11 @@ class SiswaController extends Controller
     {
         $siswa = Kelas_siswa::with('kelas','siswa')->get();
         
-        return view("siswa.index", [
+        /* return view("siswa.index", [
             'siswa'=> $siswa
-        ]);
+        ]); */
+
+        return view("siswa.index", compact('siswa'));
     }
 
     public function create()

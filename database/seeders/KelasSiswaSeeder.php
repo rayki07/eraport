@@ -39,7 +39,6 @@ class KelasSiswaSeeder extends Seeder
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,
                 'semester_id' => 1,
-                'status' => '1',
             ]);
         }
 
@@ -50,7 +49,6 @@ class KelasSiswaSeeder extends Seeder
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,
                 'semester_id' => 1,
-                'status' => '1',
             ]);
         }
 
@@ -61,7 +59,6 @@ class KelasSiswaSeeder extends Seeder
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,
                 'semester_id' => 1,
-                'status' => 1,
             ]);
         }
     }

@@ -15,8 +15,8 @@ class SemesterSeeder extends Seeder
     {
         $items = [
 
-            ['tahun_ajaran_id' => '1', 'nama_semester' => 'Ganjil'],
-            ['tahun_ajaran_id' => '1', 'nama_semester' => 'Genap']
+            ['tahun_ajaran_id' => '1', 'nama_semester' => 'Ganjil', 'aktif' => '1'],
+            ['tahun_ajaran_id' => '1', 'nama_semester' => 'Genap', 'aktif' => '0']
         ];
 
         DB::table('semester')->insert($items);

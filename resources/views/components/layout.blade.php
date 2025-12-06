@@ -46,7 +46,11 @@
             border-radius: 4px;
         }
     </style>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
+
 <body class="flex min-h-screen">
 
     <x-sidebar />
@@ -75,7 +79,15 @@
 
         <!-- Konten Dashboard -->
         <main class="p-4 md:p-6 flex-1">
+
+            <x-alert />
+            
+            <!--isi Halaman -->
+            
             {{ $slot }}
+
+            <!-- isi Halaman -->
+
         </main>
 
         <!-- Footer -->

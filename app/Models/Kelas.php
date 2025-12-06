@@ -15,11 +15,20 @@ class Kelas extends Model
     use HasFactory;
 
     protected $table = 'kelas';
-    protected $fillable = ['rombel', 'nama_kelas', 'tahun_ajaran_id'];
+    protected $fillable = ['rombel', 'nama_kelas', 'guru_id', 'tahun_ajaran_id'];
 
+    public function walikelas()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
     public function kelassiswa()
     {
-        return $this->hasMany(Kelas_siswa::class);
+        return $this->hasMany(Kelas_siswa::class, 'kelas_id');
+    }
+
+    public Function nilaiujian()
+    {
+        return $this->hasMany(Nilai_ujian::class, 'kelas_id');
     }
 
     // 1 nama kelas cuma boleh di satu tahun ajaran

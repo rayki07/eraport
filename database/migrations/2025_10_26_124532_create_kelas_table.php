@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('rombel');
             $table->string('nama_kelas');
-            /* $table->foreignId('wali_kelas_id')->nullable()->constrained('wali_kelas')->cascadeOnDelete(); */
+            $table->foreignId('guru_id')->nullable()->constrained('guru')->nullOnDelete();
             $table->foreignId('tahun_ajaran_id')->nullable()->constrained('tahun_ajaran')->restrictOnDelete();
             $table->timestamps();
         });

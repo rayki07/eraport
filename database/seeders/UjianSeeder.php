@@ -24,6 +24,7 @@ class UjianSeeder extends Seeder
             ['nama_ujian' => 'Hadis', 'mapel_id' => '1'],
             ['nama_ujian' => 'Tahfidz', 'mapel_id' => '1'],
             ['nama_ujian' => 'Tahsinul Kitabah', 'mapel_id' => '1'],
+            ['nama_ujian' => 'Kesenian', 'mapel_id' => '2'],
         ];
 
         DB::table('ujian')->insert($items);

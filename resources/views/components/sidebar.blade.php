@@ -28,39 +28,49 @@
 
         <!-- Konten Menu -->
         <nav class="sidebar-content flex-grow overflow-y-auto pt-2 pb-4 space-y-1">
-            <x-side-style href="/siswa" :active="request()->is('siswa')">
+            <x-side-style href="{{ route('siswa.index') }}" :active="request()->is('siswa')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Siswa</span>
             </x-side-style>
 
-            <x-side-style href="/kelas" :active="request()->is('kelas')">
+            <x-side-style href="{{ route('kelas.index') }}" :active="request()->is('kelas')">
                 <i data-lucide="clipboard-list" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Kelas</span>
             </x-side-style>
 
-            <x-side-style href="/guru" :active="request()->is('guru')">
+            <x-side-style href="{{ route('guru.index') }}" :active="request()->is('guru')">
                 <i data-lucide="users" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Guru</span>
             </x-side-style>
 
-            <x-side-style href="/mapel" :active="request()->is('lessons')">
+            <x-side-style href="{{ route('mapel.index') }}" :active="request()->is('lessons')">
                 <i data-lucide="book" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Mata Pelajaran</span>
             </x-side-style>
 
-            <x-side-style href="/tahunajaran" :active="request()->is('tahunajaran')">
+            <x-side-style href="{{ route('tahunajaran.index') }}" :active="request()->is('tahunajaran')">
                 <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
                 <span>Daftar Tahun Ajaran</span>
             </x-side-style>
 
-            <x-side-style href="/ujian" :active="request()->is('ujian')">
+            <x-side-style href="{{ route('ujian.index') }}" :active="request()->is('ujian')">
                 <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
                 <span>Ujian</span>
             </x-side-style>
 
-            <x-side-style href="/ujian.item" :active="request()->is('ujian.item')">
+            <x-side-style href="{{ route('ujian.item.index') }}" :active="request()->is('ujian.item')">
                 <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
                 <span>Ujian item</span>
+            </x-side-style>
+
+            <x-side-style href="{{ route('nilai.index') }}" :active="request()->is('nilai.index')">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
+                <span>Daftar Nilai</span>
+            </x-side-style>
+
+            <x-side-style href="{{ route('att.index') }}" :active="request()->is('att.index')">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
+                <span>Nilai ATT</span>
             </x-side-style>
 
             <!-- Submenu Mata Pelajaran -->
@@ -69,7 +79,7 @@
                 <div class="space-y-1">
 
                     @foreach ($mapel as $item)
-                        <div class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
+                        <div href="/#" class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
                             <a href="{{ route('mapel.index', $item->id) }}">
                                 <span class="truncate">{{ $item->nama_pelajaran }}</span>    
                             </a>

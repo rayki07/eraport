@@ -55,7 +55,7 @@ class UjianItemController extends Controller
         ]);
     }
 
-    public function update(Request $request, Ujian_item $ujian_item)
+    public function update(Request $request, UjianItem $ujian_item)
     {
         // authoriz (on Hold)
         $validateData = $request->validate([

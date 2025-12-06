@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->cascadeOnUpdate()->restrictOnDelete();
             $table->enum('nama_semester', ['Ganjil', 'Genap']);
-            $table->boolean('status')->default(false);
+            $table->boolean('aktif')->default(false);
             $table->timestamps();
         });
     }

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('ujian_id')->constrained('ujian')->restrictOnDelete();
             $table->string('nama_item'); // contoh : "An-Naba", "Doa Masuk WC"
             $table->string('kategori')->nullable(); //contoh: surah, gerakan, doa, hadis
+            $table->foreignId('mapel_id')->constrained('mapel')->restrictOnDelete();
+            $table->integer('urutan')->default(0); // untuk sorting
             $table->timestamps();
         });
     }

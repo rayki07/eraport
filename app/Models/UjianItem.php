@@ -11,13 +11,20 @@ class UjianItem extends Model
     use HasFactory;
 
     protected $table = 'ujian_item';
-    protected $fillable = [
-        'ujian_id',
-        'nama_item',
-        'kategori'];
+    protected $fillable = ['ujian_id', 'nama_item',  'kategori', 'urutan', 'mapel_id'];
 
     public function ujian()
     {
         return $this->belongsTo(Ujian::class, 'ujian_id');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'mapel_id');
+    }
+
+    public Function nilaiujian()
+    {
+        return $this->hasMany(Nilai_ujian::class, 'ujian_item_id');
     }
 }

@@ -30,7 +30,7 @@ class TahunAjaranController extends Controller
         $validateData = $request->validate([
             'tahun_mulai' => ['required', 'integer', 'min:2000', 'max:2100', 'unique:tahun_ajaran,tahun_mulai'],
             'tahun_selesai' => ['required', 'integer', 'after_or_equal:tahun_mulai', 'unique:tahun_ajaran,tahun_selesai'],
-            'status' => ['required', 'boolean']
+            'aktif' => ['required', 'boolean']
         ]);
 
         // Cek selisih tepat 1 tahun (logika tambahan)
@@ -69,7 +69,7 @@ class TahunAjaranController extends Controller
             'tahun_mulai' => ['required', 'integer', 'min:2000', 'max:2100',
             Rule::unique('tahun_ajaran', 'tahun_mulai')->ignore($tahunajaran->id)],
             'tahun_selesai' => ['required', 'integer', 'after_or_equal:tahun_mulai'],
-            'status' => ['required']
+            'aktif' => ['required']
         ]); 
 
         // Cek selisih tepat 1 tahun (logika tambahan)

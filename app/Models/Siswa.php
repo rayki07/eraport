@@ -16,11 +16,16 @@ class Siswa extends Model
     use HasFactory;
 
     protected $table = 'siswa';
-    protected $fillable = ['nis', 'nisn', 'nama_lengkap', 'nama_panggilan', 'gender'];
+    protected $fillable = ['nis', 'nisn', 'nama_lengkap', 'nama_panggilan', 'gender', 'status'];
 
     public Function kelassiswa()
     {
-        return $this->hasMany(Kelas_siswa::class);
+        return $this->hasMany(Kelas_siswa::class, 'siswa_id');
+    }
+
+    public Function nilaiujian()
+    {
+        return $this->hasMany(Nilai_ujian::class, 'siswa_id');
     }
     
     //setiap siswa mempunyai banyak kelas
@@ -34,8 +39,5 @@ class Siswa extends Model
     {
         return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
     }
-
-    
-    
 
 }

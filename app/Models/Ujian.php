@@ -11,10 +11,7 @@ class Ujian extends Model
     use HasFactory;
 
     protected $table = 'ujian';
-    protected $fillable = [
-        'nama_ujian',
-        'mapel_id'
-    ];
+    protected $fillable = ['nama_ujian', 'mapel_id'];
 
     // 1 ujian punya banyak item
     public function items()
@@ -23,7 +20,7 @@ class Ujian extends Model
     }
 
     // 1 ujian punya banyak nilai
-    public function nilai()
+    public function nilaiujian()
     {
         return $this->hasMany(Nilai_ujian::class,'ujian_id');
     }

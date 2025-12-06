@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Mapel;
@@ -13,6 +14,11 @@ class MapelSeeder extends Seeder
      */
     public function run(): void
     {
-        Mapel::factory()->count(1)->create();
+        $items = [
+            ['nama_pelajaran' => 'ATT'],
+            ['nama_pelajaran' => 'Kesenian']
+        ];
+
+        DB::table('mapel')->insert($items);
     }
 }

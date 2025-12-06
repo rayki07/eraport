@@ -11,10 +11,15 @@ class Guru extends Model
     use HasFactory;
 
     protected $table = 'guru';
-    protected $fillable = ['nip', 'nama_lengkap', 'nama_panggilan', 'gender'];
+    protected $fillable = ['nip', 'nama_lengkap', 'nama_panggilan', 'gender', 'email'];
 
     public function getGenderTextAttribute()
     {
         return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
+    }
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'guru_id');
     }
 }
