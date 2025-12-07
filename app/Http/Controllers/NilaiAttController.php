@@ -24,32 +24,23 @@ class NilaiAttController extends Controller
         $ujianitem = UjianItem::all();
         $siswa = $murid->siswa;
         $kelas = $murid->kelas;
-        $ujian = UjianItem::with('ujian')->get();
-        $kategori = UjianItem::where('kategori');
-        $doa = UjianItem::where('kategori', 'doa')->get();
-        $hadis = UjianItem::where('kategori', 'hadis')->get();
-        $sholat = UjianItem::where('kategori', 'praktek sholat')->get();
-        $wudhu = UjianItem::where('kategori', 'praktek wudhu')->get();
+        /* $doa = UjianItem::where('kategori', 'doa')->get(); */
+        $doa = $ujianitem->where('kategori', 'Doa');
+        $hadis = $ujianitem->where('kategori', 'Hadis');
+        $sholat = $ujianitem->where('kategori', 'Praktek sholat');
+        $wudhu = $ujianitem->where('kategori', 'Praktek Wudhu');
         $kategoriSurah = ['Surah 30', 'Surah 29', 'Surah 28'];
+        $adab = $ujianitem->where('kategori', 'Adab')->first();
+        $kitabah = $ujianitem->where('kategori', 'Kitabah')->first();
         
 
         // di group berdasarkan kategori
-        $groupDoa = $doa->groupBy('kategori');
-        $groupHadis = $hadis->groupBy('kategori');
-        $groupSholat = $sholat->groupBy('kategori');
-        $groupWudhu = $wudhu->groupBy('kategori');
         $groupSurah = UjianItem::whereIn('kategori', $kategoriSurah)
                         ->get()          // Ambil semua data dari DB dalam 1 query
                         ->groupBy('kategori'); // Kelompokkan data setelah diambil
-        
-
-        $groupedItems = $ujian->groupBy('kategori');
-
-        /* dd($groupDoa); */
 
         return view('att.show', compact('murid', 'siswa', 'kelas',
-                            'kelas', 'ujian', 'doa', 'hadis',
-                            'sholat', 'wudhu', 'groupedItems',
-                            'groupDoa', 'groupHadis', 'groupSurah', 'groupSholat', 'groupWudhu'));
+                        'kelas', 'doa', 'hadis', 'adab', 'kitabah',
+                        'sholat', 'wudhu', 'groupSurah'));
     }
 }

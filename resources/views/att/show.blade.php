@@ -74,10 +74,18 @@
                         @foreach ($listSurah as $surah)
                             <div>
                                 {{-- Menggunakan clean_key() sebagai pengganti str_slug() --}}
-                                <label for="tahfidz_{{ $surah->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $surah->nama_item }}</label>
+                                {{-- <label for="tahfidz_{{ $surah->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $surah->nama_item }}</label>
                                 <input type="number" name="tahfidz[{{ $surah->id }}]" id="tahfidz_{{ $surah->id }}" 
                                        min="0" max="100" placeholder="Nilai (0-100)"
-                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm">
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"> --}}
+
+                                <x-input-error 
+                                    name="{{ $surah->id }}" 
+                                    type="number"
+                                    label="{{ $surah->nama_item }}"
+                                    class="text-sm"
+                                />
+
                             </div>
                         @endforeach
                     </div>
@@ -96,11 +104,13 @@
                     @php $doas = ['Doa Sebelum Tidur', 'Doa Bangun Tidur', 'Doa Sebelum Makan', 'Doa Sesudah Makan']; @endphp
                     @foreach ($doa as $index => $item)
                         <div>
-                            {{-- Menggunakan clean_key() sebagai pengganti str_slug() --}}
-                            <label for="doa_{{ $item->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $item->nama_item }}</label>
-                            <input type="number" name="doa_lisan[{{ $item->id }}]" id="doa_{{ $item->id  }}" 
-                                   min="0" max="100" placeholder="Nilai"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+
+                            <x-input-error 
+                                name="{{ $item->id }}" 
+                                type="number"
+                                label="{{ $item->nama_item }}"
+                                />
+
                         </div>
                     @endforeach
                 </div>
@@ -112,10 +122,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @foreach ($hadis as $index => $h)
                         <div>
-                            <label for="hadis_{{ $h->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $h->nama_item }}</label>
-                            <input type="number" name="hadis_lisan[{{ $h->id }}]" id="hadis_{{ $h->id }}" 
-                                   min="0" max="100" placeholder="Nilai"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+
+                            <x-input-error 
+                                name="{{ $h->id }}" 
+                                type="number"
+                                label="{{ $h->nama_item }}"
+                                />
+
                         </div>
                     @endforeach
                 </div>
@@ -128,16 +141,18 @@
 
             {{-- Ujian Praktik Salat (13 Gerakan) --}}
             <div class="mb-6 p-4 border rounded-lg bg-gray-50">
-                <h4 class="font-bold mb-3 text-gray-800 flex items-center"><i data-lucide="user-check" class="w-4 h-4 mr-2"></i> Praktik Salat (13 Komponen)</h4>
+                <h4 class="font-bold mb-3 text-gray-800 flex items-center"><i data-lucide="user-check" class="w-4 h-4 mr-2"></i> Praktik Shalat (13 Komponen)</h4>
                 <p class="text-xs text-gray-600 mb-3">Nilai harus diisi per komponen. Total nilai akan dihitung otomatis oleh sistem (*Simulasi: masukkan nilai akhir*).</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($sholat as $index => $gerakan)
                         <div>
-                            {{-- Menggunakan clean_key() sebagai pengganti str_slug() --}}
-                            <label for="salat_{{ $gerakan->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $gerakan->nama_item }}</label>
-                            <input type="number" name="praktik_salat[{{ $gerakan->id }}]" id="salat_{{ $gerakan->id }}" 
-                                   min="0" max="100" placeholder="Nilai"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+
+                            <x-input-error 
+                                name="{{ $gerakan->id }}" 
+                                type="number"
+                                label="{{ $gerakan->nama_item }}"
+                                /> 
+
                         </div>
                     @endforeach
                 </div>
@@ -147,13 +162,15 @@
             <div class="mb-6 p-4 border rounded-lg bg-gray-50">
                 <h4 class="font-bold mb-3 text-gray-800 flex items-center"><i data-lucide="droplet" class="w-4 h-4 mr-2"></i> Praktik Wudu (10 Komponen)</h4>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    @foreach ($wudhu as $index => $gerakan)
+                    @foreach ($wudhu as $index => $gerak)
                         <div>
-                            {{-- Menggunakan clean_key() sebagai pengganti str_slug() --}}
-                            <label for="wudu_{{ $gerakan->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $gerakan->nama_item }}</label>
-                            <input type="number" name="praktik_wudu[{{ $gerakan->id }}]" id="wudu_{{ $gerakan->id }}" 
-                                   min="0" max="100" placeholder="Nilai"
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+
+                            <x-input-error 
+                                name="{{ $gerak->id }}" 
+                                type="number"
+                                label="{{ $gerak->nama_item }}"
+                                /> 
+                                   
                         </div>
                     @endforeach
                 </div>
@@ -167,31 +184,23 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Ujian Tulis --}}
                 <div class="p-4 border rounded-lg bg-gray-50">
-                    <label for="nilai_tulis" class="block text-sm font-medium text-gray-700 mb-1">Nilai Ujian Tulis (Angka Akhir)</label>
-                    <input type="number" name="nilai_tulis" id="nilai_tulis" min="0" max="100" placeholder="Nilai 0-100" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-lg font-bold">
+                    <x-input-error 
+                        name="{{ $kitabah->id }}" 
+                        type="number"
+                        label="Nilai Ujian Tulis"
+                        class="text-lg font-bold"
+                        />                
                 </div>
 
                 {{-- Nilai Adab --}}
-                <!-- <div class="p-4 border rounded-lg bg-gray-50">
-                    <label for="nama_kelas" class="block text-sm font-medium text-gray-700 mb-1">Nilai Adab / Sikap (Angka Akhir)</label>
-                    <input type="number" name="nama_kelas" id="nama_kelas" min="0" max="100" placeholder="Nilai 0-100" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-lg font-bold">
-                    
-                    {{-- Tempat untuk menampilkan error JavaScript --}}
-                    <p id="nama_kelas-error" class="text-red-500 text-sm mt-1" style="display: none;"></p>
-                </div> -->
-                <x-erscript
-        name="nama_kelas" 
-        label="nama_kelas"
-        type="number"
-        min="75"
-        max="95"
-        
-        {{-- :value="$kelas->nama_kelas" --}}
-        :required="true"
-        ></x-erscript>
-
+                <div class="p-4 border rounded-lg bg-gray-50">
+                    <x-input-error 
+                        name="{{ $adab->id }}" 
+                        type="number"
+                        label="Nilai Adab / Sikap (Angka Akhir)"
+                        class="font-bold"
+                        />
+                </div>
 
 
             </div>
@@ -282,42 +291,7 @@
 </script>
 
 
-<!-- script error 
-<script>
-    // 1. Dapatkan elemen input dan error message
-    const inputNamaKelas = document.getElementById('nama_kelas');
-    const errorNamaKelas = document.getElementById('nama_kelas-error');
 
-    // 2. Tambahkan Event Listener untuk 'input' atau 'blur'
-    // 'blur' terjadi saat user KLIK KELUAR dari input field
-    inputNamaKelas.addEventListener('blur', function() {
-        validateNamaKelas();
-    });
-
-    // 'input' terjadi setiap kali user mengetik
-    inputNamaKelas.addEventListener('input', function() {
-        validateNamaKelas();
-    });
-
-    // 3. Fungsi Validasi Sederhana di Sisi Klien
-    function validateNamaKelas() {
-        const value = inputNamaKelas.value;
-        const maxLength = 7;
-
-        if (value.length > (maxLength)) {
-            // Jika validasi gagal, tampilkan pesan error
-            errorNamaKelas.textContent = 'Nama kelas tidak boleh lebih dari 15 karakter.';
-            errorNamaKelas.style.display = 'block';
-            inputNamaKelas.classList.add('border-red-500'); // Tambah border merah (Tailwind CSS)
-        } else {
-            // Jika validasi sukses, sembunyikan pesan error
-            errorNamaKelas.textContent = '';
-            errorNamaKelas.style.display = 'none';
-            inputNamaKelas.classList.remove('border-red-500');
-        }
-    }
-</script>
--->
 
 <!-- selesai Data -->
     </div>                

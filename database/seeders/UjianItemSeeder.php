@@ -17,7 +17,7 @@ class UjianItemSeeder extends Seeder
         $items = [
 
             // Tahsinul Kitabah
-            ['mapel_id' => '1', 'ujian_id' => '9', 'kategori' => 'tahsinul kitabah', 'nama_item' => 'Tahsinul Kitabah'],
+            ['mapel_id' => '1', 'ujian_id' => '9', 'kategori' => 'Kitabah', 'nama_item' => 'Tahsinul Kitabah'],
 
             // Adab
             ['mapel_id' => '1', 'ujian_id' => '1', 'kategori' => 'Adab', 'nama_item' => 'Adab'],
@@ -25,18 +25,18 @@ class UjianItemSeeder extends Seeder
             // ============================
             // HADIS (4)
             // ============================
-            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'hadis', 'nama_item' => 'Hadis memuliakan tamu'],
-            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'hadis', 'nama_item' => 'Hadis jangan berburuk sangka'],
-            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'hadis', 'nama_item' => 'Hadis rukun islam'],
-            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'hadis', 'nama_item' => 'Hadis rukun iman'],
+            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'Hadis', 'nama_item' => 'Hadis memuliakan tamu'],
+            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'Hadis', 'nama_item' => 'Hadis jangan berburuk sangka'],
+            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'Hadis', 'nama_item' => 'Hadis rukun islam'],
+            ['mapel_id' => '1', 'ujian_id' => '7', 'kategori' => 'Hadis', 'nama_item' => 'Hadis rukun iman'],
 
             // ============================
             // DOA (4)
             // ============================
-            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'doa', 'nama_item' => 'Doa ketika ada petir'],
-            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'doa', 'nama_item' => 'Doa pembuka acara'],
-            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'doa', 'nama_item' => 'Doa menjadi anak soleh'],
-            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'doa', 'nama_item' => 'Doa mendengar berita duka'],
+            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'Doa', 'nama_item' => 'Doa ketika ada petir'],
+            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'Doa', 'nama_item' => 'Doa pembuka acara'],
+            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'Doa', 'nama_item' => 'Doa menjadi anak soleh'],
+            ['mapel_id' => '1', 'ujian_id' => '6', 'kategori' => 'Doa', 'nama_item' => 'Doa mendengar berita duka'],
 
             // ============================
             // SURAH JUZ 28
@@ -110,35 +110,35 @@ class UjianItemSeeder extends Seeder
             // ============================
             // PRAKTEK SHOLAT (83)
             // ============================
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Niat Shalat'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Takbiratul Ihram'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Bacaan Iftitah'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Surah Al-Fatihah'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Surah Pendek'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Rukuk'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'I’tidal'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Sujud'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Duduk di antara dua sujud'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Tasyahud'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Sholawat'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Doa setelah tasyahud'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'praktek sholat', 'nama_item' => 'Salam'],            
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Niat Shalat'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Takbiratul Ihram'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Bacaan Iftitah'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Surah Al-Fatihah'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Surah Pendek'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Rukuk'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'I’tidal'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Sujud'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Duduk di antara dua sujud'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Tasyahud'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Sholawat'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Doa setelah tasyahud'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Salam'],            
 
             // ============================
             // PRAKTEK WUDHU (80)
             // ============================
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Niat'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Membasuh tangan'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Berkumur'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mencuci hidung'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mencuci wajah'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mecuci lengan'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mengusap kepala'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mengusap Telinga'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Mencuci Kaki'],
-            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'praktek wudhu', 'nama_item' => 'Berurutan'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Niat'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Membasuh tangan'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Berkumur'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mencuci hidung'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mencuci wajah'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mecuci lengan'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mengusap kepala'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mengusap Telinga'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Mencuci Kaki'],
+            ['mapel_id' => '1', 'ujian_id' => '5', 'kategori' => 'Praktek Wudhu', 'nama_item' => 'Berurutan'],
 
-            ['mapel_id' => '2', 'ujian_id' => '10', 'kategori' => 'prakarya', 'nama_item' => 'Membuat Prakarya'],
+            ['mapel_id' => '2', 'ujian_id' => '10', 'kategori' => 'Prakarya', 'nama_item' => 'Membuat Prakarya'],
 
             
 
