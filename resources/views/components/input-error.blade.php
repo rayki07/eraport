@@ -7,12 +7,12 @@
         name="{{ $name }}"
         {{-- Menggunakan $attributes->merge() untuk menambahkan kelas default Tailwind --}}
         {{ $attributes->merge(['class' => 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm']) }}
-        value="{{ old($name) }}"
+        value="{{ old($name, '$value') }}"
         {{ $required ??  '' }}
         maxlength="{{ $maxLength ?? '' }}"
         min="75"
         max="95"
-        placeholder="Nilai (75 - 95)"
+        placeholder="{{ $placeholder ?? 'Nilai (75 - 95)' }}"
     >
 
     {{-- Tempat untuk error PHP (dari Laravel validation saat submit) --}}

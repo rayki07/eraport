@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mapel;
 use App\Models\Ujian;
 use App\Models\UjianItem;
 use Illuminate\Http\Request;
@@ -21,19 +22,21 @@ class UjianItemController extends Controller
 
     public function create()
     {
-        $ujian_item = UjianItem::all();
+        $ujian = Ujian::all();
+        $mapel = Mapel::all();
 
-        return view('ujian_item.create', [
-            'ujian_item'=> $ujian_item,
-        ]);
+        return view('ujian_item.create', compact(
+                'ujian', 'mapel'
+        ))/* ->with('sucsess', 'Data Berhasil disimpan') */;
     }
 
     public function store(Request $request, UjianItem $ujian_item)
     {
         // authoriz (on Hold)
         $validateData = $request->validate([
-            'ujian_id' => ['required', 'exists:mapel,id'],
-            'nama_item' => ['required'],
+            'mapel_id' => ['required', 'exists:mapel,id'],
+            'ujian_id' => ['required', 'exists:ujian,id'],
+            'nama_item' => ['required', 'string'],
             'kategori' => ['required'],
             
         ]);
@@ -42,7 +45,7 @@ class UjianItemController extends Controller
         $ujian_item->create($validateData);
 
         //redirect ke halaman ujian
-        return redirect()->route('ujian.item.index')->with('success', 'data berhasil disimpan');
+        return redirect()->route('ujian.item.index')->with('success', 'data Ujian Item berhasil disimpan');
     }
 
     public function edit(UjianItem $ujian_item)

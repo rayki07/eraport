@@ -7,7 +7,7 @@
                 <i data-lucide="user" class="w-6 h-6"></i>
                 <h2 class="text-xl font-semibold">Data Nilai</h2>
             </div>
-            <a href="{{ route('nilai.index') }}" class="flex items-center bg-gray-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition-colors">
+            <a href="{{ route('att.index') }}" class="flex items-center bg-gray-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition-colors">
                 <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
                 Kembali 
             </a>               
@@ -23,7 +23,7 @@
             Input Nilai Mata Pelajaran ATT (Agama, Tahsin, Tahfidz)
         </h2>
         <p id="nama_lengkap" class="text-3xl font-extrabold text-blue-400 mt-1">{{ $siswa->nama_lengkap }}</p>
-        <p class="text-sm text-gray-500 mt-1">Kelas: {{ $kelas->rombel }} {{ $kelas->nama_kelas }} | NISN: {{ $siswa->nisn }}</p>
+        <p class="text-sm text-gray-500 mt-1">Kelas: {{ $kelas->rombel }} {{ $kelas->nama_kelas }} | NISN: {{ $siswa->nisn }} | Tahun Ajaran: {{ $tahun->tahun_mulai }}/{{ $tahun->tahun_selesai }} | Semester {{ $semester->nama_semester }}</p>
     </div>
 
     {{-- Tabs Navigasi UTAMA --}}
@@ -44,8 +44,14 @@
 
 
     {{-- Form Utama --}}
-    <form action="{{ route('nilai.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('att.store') }}" method="POST" class="space-y-6">
         @csrf 
+
+        <!-- Kirim Tersembunyi -->
+        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+        <input type="hidden" name="ujian_id" value="{{ $ujian->id }}">
+        <input type="hidden" name="semester_id" value="{{ $semester->id }}">
+        <input type="hidden" name="tahun_ajaran_id" value="{{ $tahun->id }}">
 
         {{-- 1. Tab: Tahfidz (DIPISAHKAN DENGAN SUB-TAB) --}}
         <div id="content-tahfidz" class="tab-content">
@@ -72,18 +78,19 @@
                     
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                         @foreach ($listSurah as $surah)
+                                
+                            @php
+                                $nilai = $existingNilai->where('ujian_item_id', $surah->id)->where('siswa_id', $siswa->id)->first();
+                            @endphp
+
                             <div>
-                                {{-- Menggunakan clean_key() sebagai pengganti str_slug() --}}
-                                {{-- <label for="tahfidz_{{ $surah->id }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $surah->nama_item }}</label>
-                                <input type="number" name="tahfidz[{{ $surah->id }}]" id="tahfidz_{{ $surah->id }}" 
-                                       min="0" max="100" placeholder="Nilai (0-100)"
-                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"> --}}
 
                                 <x-input-error 
-                                    name="{{ $surah->id }}" 
+                                    name="nilai[{{ $siswa->id }}][{{ $surah->id }}]" 
                                     type="number"
                                     label="{{ $surah->nama_item }}"
                                     class="text-sm"
+                                    value="{{ $nilai->nilai ?? '' }}"
                                 />
 
                             </div>
@@ -103,12 +110,18 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @php $doas = ['Doa Sebelum Tidur', 'Doa Bangun Tidur', 'Doa Sebelum Makan', 'Doa Sesudah Makan']; @endphp
                     @foreach ($doa as $index => $item)
+
+                        @php
+                            $nilai = $existingNilai->where('ujian_item_id', $item->id)->where('siswa_id', $siswa->id)->first();
+                        @endphp
+
                         <div>
 
                             <x-input-error 
-                                name="{{ $item->id }}" 
+                                name="nilai[{{ $siswa->id }}][{{ $item->id }}]" 
                                 type="number"
                                 label="{{ $item->nama_item }}"
+                                value="{{ $nilai->nilai ?? '' }}"
                                 />
 
                         </div>
@@ -121,12 +134,18 @@
                 <h4 class="font-bold mb-3 text-gray-800 flex items-center"><i data-lucide="clipboard-list" class="w-4 h-4 mr-2"></i> 4 Hadis Pilihan</h4>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @foreach ($hadis as $index => $h)
+
+                        @php
+                            $nilai = $existingNilai->where('ujian_item_id', $h->id)->where('siswa_id', $siswa->id)->first();
+                        @endphp
+
                         <div>
 
                             <x-input-error 
-                                name="{{ $h->id }}" 
+                                name="nilai[{{ $siswa->id }}][{{ $h->id }}]" 
                                 type="number"
                                 label="{{ $h->nama_item }}"
+                                value="{{ $nilai->nilai ?? '' }}"
                                 />
 
                         </div>
@@ -145,12 +164,18 @@
                 <p class="text-xs text-gray-600 mb-3">Nilai harus diisi per komponen. Total nilai akan dihitung otomatis oleh sistem (*Simulasi: masukkan nilai akhir*).</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($sholat as $index => $gerakan)
+
+                        @php
+                            $nilai = $existingNilai->where('ujian_item_id', $gerakan->id)->where('siswa_id', $siswa->id)->first();
+                        @endphp
+
                         <div>
 
                             <x-input-error 
-                                name="{{ $gerakan->id }}" 
+                                name="nilai[{{ $siswa->id }}][{{ $gerakan->id }}]" 
                                 type="number"
                                 label="{{ $gerakan->nama_item }}"
+                                value="{{ $nilai->nilai ?? '' }}"
                                 /> 
 
                         </div>
@@ -163,12 +188,18 @@
                 <h4 class="font-bold mb-3 text-gray-800 flex items-center"><i data-lucide="droplet" class="w-4 h-4 mr-2"></i> Praktik Wudu (10 Komponen)</h4>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($wudhu as $index => $gerak)
+
+                        @php
+                            $nilai = $existingNilai->where('ujian_item_id', $gerak->id)->where('siswa_id', $siswa->id)->first();
+                        @endphp
+
                         <div>
 
                             <x-input-error 
-                                name="{{ $gerak->id }}" 
+                                name="nilai[{{ $siswa->id }}][{{ $gerak->id }}]" 
                                 type="number"
                                 label="{{ $gerak->nama_item }}"
+                                value="{{ $nilai->nilai ?? '' }}"
                                 /> 
                                    
                         </div>
@@ -182,23 +213,31 @@
             <h3 class="text-lg font-semibold mb-4 text-red-700">Ujian Tulis & Penilaian Adab</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                @php
+                    $nilaiTulis = $existingNilai->where('ujian_item_id', $kitabah->id)->where('siswa_id', $siswa->id)->first();
+                    $nilaiAdab = $existingNilai->where('ujian_item_id', $adab->id)->where('siswa_id', $siswa->id)->first();
+                @endphp
+
                 {{-- Ujian Tulis --}}
                 <div class="p-4 border rounded-lg bg-gray-50">
                     <x-input-error 
-                        name="{{ $kitabah->id }}" 
+                        name="nilai[{{ $siswa->id }}][{{ $kitabah->id }}]" 
                         type="number"
                         label="Nilai Ujian Tulis"
                         class="text-lg font-bold"
+                        value="{{ $nilaiTulis->nilai ?? ''}}"
                         />                
                 </div>
 
                 {{-- Nilai Adab --}}
                 <div class="p-4 border rounded-lg bg-gray-50">
                     <x-input-error 
-                        name="{{ $adab->id }}" 
+                        name="nilai[{{ $siswa->id }}][{{ $adab->id }}]" 
                         type="number"
                         label="Nilai Adab / Sikap (Angka Akhir)"
                         class="font-bold"
+                        value="{{ $nilaiAdab->nilai ?? ''}}"
                         />
                 </div>
 

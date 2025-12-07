@@ -19,14 +19,29 @@
 
                 {{-- Ujian --}}
                 <div>
+                    <label for="mapel_id" class="block text-sm font-medium text-gray-700 mb-1">Mata pelajaran</label>
+                    <select name="mapel_id" id="mapel_id"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
+                        @foreach ($mapel as $item)
+                            <option value="{{ $item->id }}"
+                                @if (old('mapel_id') == $item->id) selected   
+                                @endif>
+                            {{ $item->nama_pelajaran }}</option>
+                        @endforeach
+                    </select>
+                    @error('mapel_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                </div>
+
+                {{-- Ujian --}}
+                <div>
                     <label for="ujian_id" class="block text-sm font-medium text-gray-700 mb-1">Mata pelajaran</label>
                     <select name="ujian_id" id="ujian_id"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
-                        @foreach ($ujian_item as $item)
+                        @foreach ($ujian as $item)
                             <option value="{{ $item->id }}"
-                                @if (old('ujian_id') == $item->ujian->id) selected   
+                                @if (old('ujian_id') == $item->id) selected   
                                 @endif>
-                            {{ $item->ujian->nama_ujian }}</option>
+                            {{ $item->nama_ujian }}</option>
                         @endforeach
                     </select>
                     @error('ujian_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
@@ -43,11 +58,11 @@
 
                 {{-- keterangan --}}
                 <div>
-                    <label for="keterangan" class="block text-sm font-medium text-gray-700 mb-1">keterangan Ujian</label>
-                    <input type="text" name="keterangan" id="keterangan" required
+                    <label for="kategori" class="block text-sm font-medium text-gray-700 mb-1">keterangan Ujian</label>
+                    <input type="text" name="kategori" id="kategori" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Contoh: Doa" value="{{ old('keterangan') }}">
-                    @error('keterangan') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        placeholder="Contoh: Doa" value="{{ old('kategori') }}">
+                    @error('kategori') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>              
                 
                 {{-- Tombol Aksi --}}
