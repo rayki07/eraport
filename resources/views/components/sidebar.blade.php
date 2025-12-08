@@ -73,6 +73,11 @@
                 <span>Nilai ATT</span>
             </x-side-style>
 
+            <x-side-style href="{{ route('raport.index') }}" :active="request()->is('att.index')">
+                <i data-lucide="calendar" class="w-5 h-5 mr-3"></i>
+                <span>Raport</span>
+            </x-side-style>
+
             <!-- Submenu Mata Pelajaran -->
             <div class="pt-3 px-4">
                 <p class="text-xs font-semibold uppercase text-gray-400 mb-2">Mata Pelajaran</p>

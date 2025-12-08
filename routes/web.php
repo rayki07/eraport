@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\RaportController;
 use Illuminate\Support\Facades\Route;   
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\gradesController;
@@ -10,7 +11,6 @@ use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaImportController;
-use App\Http\Controllers\RaportAttController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\TahunAjaranController;
@@ -55,9 +55,7 @@ Route::get('/guru/{guru}/edit', [GuruController::class, 'edit'])->name('guru.edi
 Route::patch('/guru/{guru}', [GuruController::class, 'update'])->name('guru.update');
 Route::delete('/guru/{guru}', [GuruController::class, 'destroy'])->name('guru.destroy');
 
-// Mata pelajaran ATT
-Route::get('/nilai/att/{siswa}', [RaportAttController::class, 'inputNilaiATT'])->name('nilai.input_att');
-Route::post('/nilai/att/{siswa}', [RaportAttController::class, 'storeNilaiATT'])->name('nilai.store_att');
+
 
 
 //menampilkan detail kelas
@@ -106,6 +104,13 @@ Route::get('/att', [NilaiAttController::class, 'index'])->name('att.index');
 Route::get('/att/{id}', [NilaiAttController::class, 'show'])->name('att.show');
 Route::post('/att', [NilaiAttController::class, 'store'])->name('att.store');
 Route::get('/att/input', [NilaiAttController::class, 'input'])->name('att.input');
+
+// Menampilkan data raport
+Route::get('/raport', [RaportController::class, 'index'])->name('raport.index');
+Route::get('/tampil', [RaportController::class, 'tampil'])->name('raport.tampil');
+Route::post('/raport', [RaportController::class, 'store'])->name('raport.store');
+Route::get('/raport/input', [RaportController::class, 'input'])->name('raport.input');
+Route::get('/raport/{id}', [RaportController::class, 'show'])->name('raport.show');
 
 
 
