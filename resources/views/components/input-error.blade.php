@@ -10,9 +10,9 @@
         value="{{ old($name, '$value') }}"
         {{ $required ??  '' }}
         maxlength="{{ $maxLength ?? '' }}"
-        min="75"
-        max="95"
-        placeholder="{{ $placeholder ?? 'Nilai (75 - 95)' }}"
+        min="0"
+        max="100"
+        placeholder="{{ $placeholder ?? 'Nilai (0 - 100)' }}"
     >
 
     {{-- Tempat untuk error PHP (dari Laravel validation saat submit) --}}
@@ -77,3 +77,14 @@
         inputElement.addEventListener('input', validateRange);
     }
 </script>
+
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach($errors->all() as $e)
+                <li>{{ $e }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

@@ -73,9 +73,12 @@ class NilaiAttController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            /* 'kelas_id' => 'required',
-            'ujian_id' => 'required', */
-            'nilai' => 'array'
+/*             'siswa_id' => ['required','exists:siswa','id'],
+            'kelas_id' => ['required', 'exists:kelas,id'],
+            'ujian_id' => ['required', 'exists:ujian,id'],
+            'tahun_ajaran_id' => ['required','exists:tahun_ajaran,id'],
+            'semester_id' => ['required','exists:semester,id'], */
+            'nilai' => ['array']
         ]);
 
 
