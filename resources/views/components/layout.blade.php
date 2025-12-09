@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Rapor SD - Dashboard Guru</title>
-{{--     <!-- Memuat Tailwind CSS CDN -->
+    <!-- Memuat Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Menggunakan font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Memuat Heroicons untuk ikon -->
-    <script src="https://unpkg.com/lucide@latest"></script> --}}
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Mengatur font default */
         body {
