@@ -247,7 +247,7 @@
         
         {{-- Tombol Simpan Akhir --}}
         <div class="flex justify-end space-x-4 pt-4 border-t mt-6">
-            <a href="{{ route('nilai.index') }}" class="inline-flex items-center py-2 px-4 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors shadow-md">
+            <a href="{{ route('raport.index') }}" class="inline-flex items-center py-2 px-4 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors shadow-md">
                 <i data-lucide="x" class="w-4 h-4 mr-2"></i>
                 Batal & Kembali
             </a>

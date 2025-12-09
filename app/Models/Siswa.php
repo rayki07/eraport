@@ -40,4 +40,5 @@ class Siswa extends Model
         return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
     }
 
+
 }

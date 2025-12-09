@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rapor ATT - ALFIAN RIZKI MUTHA</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap"> --}}
+<x-layout>
     <style>
         @page {
             size: 21cm 33cm; /* Ukuran F4 */
@@ -15,16 +17,19 @@
         
         body {
             font-family: 'Calibri', sans-serif;
-            width: 21cm;
-            min-height: 33cm;
             margin: 0 auto;
             background: white;
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
             position: relative;
-            padding: 1.5cm;
+            
             box-sizing: border-box;
             margin-right: 2,54cm;
             margin-left: 2,54cm;
+
+            /* stle yang mengganngu saat digabungin layout */
+            /* width: 21cm;
+            min-height: 33cm;
+            padding: 1.5cm; */
         }
         
         .page-border {
@@ -142,18 +147,18 @@
                         <p>Kelas</p>
                     </div>
                     <div>
-                        <p>: ALFIAN RIZKI MUTHA</p>
-                        <p>: V (LIMA)</p>
+                        <p>: {{ $siswa->nama_lengkap }}</p>
+                        <p>: {{ $kelas->rombel }}  {{ $kelas->nama_kelas }}</p>
                     </div>
                     <div></div>
                     <div></div>
                     <div class="text-left">
                         <p><span >Tahun Pelajaran</span></p>
-                        <p><span >Semester</span></p>
+                        <p><span ></span>Semester</p>
                     </div>
                     <div>
-                        <p>: 00123</p>
-                        <p>: 2</p>  
+                        <p>: {{ $tahun->tahun_mulai }}/{{ $tahun->tahun_selesai }}</p>
+                        <p>: {{ $semester->nama_semester }}</p>  
                     </div>
                     <div></div>
                 </div>
@@ -180,55 +185,55 @@
                             <tr>
                                 <td class="table-cell text-center">1</td>
                                 <td class="table-cell">Adab di Dalam Halaqah</td>
-                                <td class="table-cell text-center">85</td>
-                                <td class="table-cell text-center font-bold">A</td>
+                                <td class="table-cell text-center">{{ $adab }}</td>
+                                <td class="table-cell text-center font-bold">{{ $adabPredikat }}</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">2</td>
                                 <td class="table-cell">Bacaan IQRO USTMANI jilid 5 Halaman 12</td>
-                                <td class="table-cell text-center">80</td>
+                                <td class="table-cell text-center"></td>
                                 <td class="table-cell text-center font-bold">B</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">3</td>
                                 <td class="table-cell">Bacaan Al-Qur'an s/d Juz 30 Al-Baqarah: 1-10</td>
-                                <td class="table-cell text-center">90</td>
+                                <td class="table-cell text-center"></td>
                                 <td class="table-cell text-center font-bold">A</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">4</td>
                                 <td class="table-cell">Hafalan Bacaan Shalat</td>
-                                <td class="table-cell text-center">78</td>
+                                <td class="table-cell text-center"></td>
                                 <td class="table-cell text-center font-bold">B</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">5</td>
                                 <td class="table-cell">Praktek/ Amalan Shalat</td>
-                                <td class="table-cell text-center">82</td>
+                                <td class="table-cell text-center"></td>
                                 <td class="table-cell text-center font-bold">B</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">6</td>
                                 <td class="table-cell">Do'a dan Adab Harian</td>
-                                <td class="table-cell text-center">88</td>
-                                <td class="table-cell text-center font-bold">A</td>
+                                <td class="table-cell text-center">{{ $doa }}</td>
+                                <td class="table-cell text-center font-bold">{{$doaPredikat }}</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">7</td>
                                 <td class="table-cell">Hadis</td>
-                                <td class="table-cell text-center">76</td>
-                                <td class="table-cell text-center font-bold">B</td>
+                                <td class="table-cell text-center">{{ $hadis }}</td>
+                                <td class="table-cell text-center font-bold">{{ $hadisPredikat }}</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">8</td>
                                 <td class="table-cell">Tahsinul Kitabah</td>
-                                <td class="table-cell text-center">85</td>
-                                <td class="table-cell text-center font-bold">A</td>
+                                <td class="table-cell text-center">{{ $kitabah }}</td>
+                                <td class="table-cell text-center font-bold">{{ $kitabahPredikat }}</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">9</td>
                                 <td class="table-cell">Pencapaian Target Hafalan</td>
-                                <td class="table-cell text-center">92</td>
+                                <td class="table-cell text-center"></td>
                                 <td class="table-cell text-center font-bold">A</td>
                             </tr>
                         </tbody>
@@ -256,8 +261,8 @@
                             <tr style="background-color: #FFFF00;" style="padding:0.2rem;">
                                 <td class="table-cell text-center" style="padding:0.2rem;">1</td>
                                 <td class="table-cell" colspan="2" style="padding:0.2rem;">Al-Qoriah - An-Naba</td>
-                                <td class="table-cell text-center" style="padding:0.2rem;">87</td>
-                                <td class="table-cell text-center" style="padding:0.2rem;">87</td>
+                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $surah28 }}</td>
+                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $surah28Predikat }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -272,7 +277,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="table-cell"><p class="mb-3">Alhamdulillaah Ananda <span class="font-bold">ALFIAN RIZKI MUTHA</span> selalu bersemangat dalam menghafal, Ananda sudah terbiasa menyetorkan hafalan. Mohon bimbingan Ayah dan Bunda dirumah untuk selalu mengingatkan murojaah dan hafalan di rumah. Semoga Ananda <span class="font-bold">ALFIAN RIZKI MUTHA</span> senantiasa istiqomah murojaah menjaga hafalannya Amiin.</p></td>
+                            <td class="table-cell"><p class="mb-3">Alhamdulillaah Ananda <span class="font-bold">{{ $siswa->nama_panggilan }}</span> selalu bersemangat dalam menghafal, Ananda sudah terbiasa menyetorkan hafalan. Mohon bimbingan Ayah dan Bunda dirumah untuk selalu mengingatkan murojaah dan hafalan di rumah. Semoga Ananda <span class="font-bold">{{ $siswa->nama_panggilan }}</span> senantiasa istiqomah murojaah menjaga hafalannya Amiin.</p></td>
                         </tr>
                     </tbody>
                 </table>
@@ -318,14 +323,28 @@
                     </div>
                     
                     <!-- Tombol untuk Print (hanya ditampilkan di browser) -->
-                    <div class="no-print mt-0 text-center">
-                        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow">
+                    <div class="no-print mt-0 text-center justify-between" style="display: flex; align-items: baseline;">
+                        <div style="width: auto">
+                            <!-- Tombol untuk kembali (hanya ditampilkan di browser) -->
+                            <a href="{{ route('raport.index') }}" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow">
+                            <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
+                            Kembali
+                            </a>
+                        </div>
+                        <div >
+                            <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow">
                             Cetak Rapor
                         </button>
                         <p class="text-xs text-gray-500 mt-2">Ukuran kertas: F4 (21cm x 33cm)</p>
+                        </div>
+                        <div style="width: 20%;"></div>
+                        
                     </div>
+
+                    
                 </div>
         </div>
     </div>
-</body>
-</html>
+</x-layout>
+{{-- </body>
+</html> --}}

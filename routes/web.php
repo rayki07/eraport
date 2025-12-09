@@ -107,7 +107,7 @@ Route::get('/att/input', [NilaiAttController::class, 'input'])->name('att.input'
 
 // Menampilkan data raport
 Route::get('/raport', [RaportController::class, 'index'])->name('raport.index');
-Route::get('/tampil', [RaportController::class, 'tampil'])->name('raport.tampil');
+Route::get('/tampil/{id}', [RaportController::class, 'tampil'])->name('raport.tampil');
 Route::post('/raport', [RaportController::class, 'store'])->name('raport.store');
 Route::get('/raport/input', [RaportController::class, 'input'])->name('raport.input');
 Route::get('/raport/{id}', [RaportController::class, 'show'])->name('raport.show');

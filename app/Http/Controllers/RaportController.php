@@ -45,10 +45,89 @@ class RaportController extends Controller
         ]);
     }
 
-        public function tampil()
+        public function tampil($id)
     {
+        $tahun = TahunAjaran::where('aktif', '1')->first();
+        $semester = Semester::where('aktif', '1')->first();
+        $daftarSiswa = Kelas_siswa::with('kelas','siswa')->find($id);
+        $siswa = $daftarSiswa->siswa;
+        $kelas = $daftarSiswa->kelas;
+        $murid = Siswa::findOrFail($id);
 
-        return view('raport.tampil');
+        // mengambil data ujian
+        $ujianitem = UjianItem::all();
+        $doa = $siswa->nilaiujian()->whereHas('ujianitem', function($q)  {
+                $q->where('kategori', 'Doa');
+                })
+                ->avg('nilai');
+        $hadis = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Hadis');
+                })
+                ->avg('nilai');
+        $kitabah = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Kitabah');
+                })
+                ->avg('nilai');
+        $adab = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Adab');
+                })
+                ->avg('nilai');
+        $surah28 = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Surah 28');
+                })
+                ->avg('nilai');
+        $surah29 = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Surah 29');
+                })
+                ->avg('nilai');
+        $surah30 = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->where('kategori','Surah 30');
+                })
+                ->avg('nilai');
+        
+        // menampilkan predikat
+        $doaPredikat = match(true) {
+            $doa >= 85 => 'A',
+            $doa >= 75 => 'B',
+            $doa >= 65 => 'C',
+            $doa >= 55 => 'D',
+            default => 'E'};
 
+        $hadisPredikat = match(true) {
+            $hadis >= 85 => 'A',
+            $hadis >= 75 => 'B',
+            $hadis >= 65 => 'C',
+            $hadis >= 55 => 'D',
+            default => 'E'};
+        
+        $kitabahPredikat = match(true) {
+            $kitabah >= 85 => 'A',
+            $kitabah >= 75 => 'B',
+            $kitabah >= 65 => 'C',
+            $kitabah >= 55 => 'D',
+            default => 'E'};
+        
+        $adabPredikat = match(true) {
+            $adab >= 85 => 'A',
+            $adab >= 75 => 'B',
+            $adab >= 65 => 'C',
+            $adab >= 55 => 'D',
+            default => 'E'};
+        
+        $surah28Predikat = match(true) {
+            $surah28 >= 85 => 'A',
+            $surah28 >= 75 => 'B',
+            $surah28 >= 65 => 'C',
+            $surah28 >= 55 => 'D',
+            default => 'E'};
+
+        return view('raport.tampil', compact([
+            'siswa', 'kelas', 'tahun','semester',
+            'doa','hadis', 'kitabah', 'adab', 'surah28', 'surah29', 'surah30',
+            'doaPredikat', 'hadisPredikat', 'kitabahPredikat', 'adabPredikat',
+            'surah28Predikat'
+        ]));
     }
+
+
 }

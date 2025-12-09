@@ -9144,5 +9144,13 @@
         "php": "^8.2"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.9.0",
+
+
+    "scripts": {
+    "post-install-cmd": [
+        "php artisan key:generate --force",
+        "php artisan storage:link"
+        ]
+    }
 }

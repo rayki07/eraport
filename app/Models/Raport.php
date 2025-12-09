@@ -9,4 +9,6 @@ class Raport extends Model
 {
     /** @use HasFactory<\Database\Factories\RaportFactory> */
     use HasFactory;
+
+
 }
