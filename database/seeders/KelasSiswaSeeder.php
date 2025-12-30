@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Siswa;
-use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 
 class KelasSiswaSeeder extends Seeder
 {
@@ -34,7 +34,7 @@ class KelasSiswaSeeder extends Seeder
 
         // masukkan data BAhrain ke tabel
         foreach ($kelasBahrain as $murid) {
-            Kelas_siswa::create([
+            KelasSiswa::create([
                 'kelas_id' => 1,
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,
@@ -44,7 +44,7 @@ class KelasSiswaSeeder extends Seeder
 
         // masukkan data Oman ke tabel
         foreach ($kelasOman as $murid) {
-            Kelas_siswa::create([
+            KelasSiswa::create([
                 'kelas_id' => 2,
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,
@@ -54,7 +54,7 @@ class KelasSiswaSeeder extends Seeder
 
         // masukkan data Tunisia ke tabel
         foreach ($kelasTunisia as $murid) {
-            Kelas_siswa::create([
+            KelasSiswa::create([
                 'kelas_id' => 3,
                 'siswa_id' => $murid->id,
                 'tahun_ajaran_id' => 1,

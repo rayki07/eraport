@@ -7,10 +7,21 @@
                 <i data-lucide="user" class="w-6 h-6"></i>
                 <h2 class="text-xl font-semibold">Data Nilai</h2>
             </div>
-            <a href="{{ route('att.index') }}" class="flex items-center bg-gray-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition-colors">
-                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
-                Kembali 
-            </a>               
+            <div style="justify-content: flex-end; display: inline-flex">
+                <div>
+                    <a href="{{ route('att.index') }}" class="flex items-center bg-gray-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-500 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Kembali
+                    </a>
+                </div>
+                <div style="padding-left: 8px;">
+                    
+                    <a href="{{ route('raport.tampil', $siswa->id) }}" class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition-colors">
+                    <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
+                    Print Preview
+                    </a>
+                </div>  
+            </div>                              
         </div>
 
         <!-- Data Mulai -->
@@ -28,6 +39,9 @@
 
     {{-- Tabs Navigasi UTAMA --}}
     <div class="flex border-b mb-6 overflow-x-auto">
+        <button type="button" onclick="showTab('bacaan')" class="tab-button py-2 px-4 text-sm font-semibold border-b-2 border-red-500 text-red-600 transition-colors duration-300 whitespace-nowrap">
+            <i data-lucide="notebook" class="w-4 h-4 inline mr-2"></i> Bacaan (Bacaan)
+        </button>
         <button type="button" onclick="showTab('tahfidz')" class="tab-button py-2 px-4 text-sm font-semibold border-b-2 border-red-500 text-red-600 transition-colors duration-300 whitespace-nowrap">
             <i data-lucide="book-open" class="w-4 h-4 inline mr-2"></i> Tahfidz (Hafalan)
         </button>
@@ -52,6 +66,13 @@
         <input type="hidden" name="ujian_id" value="{{ $ujian->id }}">
         <input type="hidden" name="semester_id" value="{{ $semester->id }}">
         <input type="hidden" name="tahun_ajaran_id" value="{{ $tahun->id }}">
+
+
+        {{-- 1. Tab Bacaan --}}
+        <div id="content-bacaan" class="tab-content">
+            <h3 class="text-lg font-semibold mb-4 text-red-700">Bacaan (Bacaan Iqra, Tahsin, dan Al-Qur'an) - Nilai Maks 100 per Surah</h3>
+
+        </div>
 
         {{-- 1. Tab: Tahfidz (DIPISAHKAN DENGAN SUB-TAB) --}}
         <div id="content-tahfidz" class="tab-content">
@@ -98,6 +119,46 @@
                     </div>
                 </div>
             @endforeach
+
+            <!-- menambah input nilai Hafalan -->
+            <div class="p-4 border rounded-lg bg-gray-50 mb-6">
+                <div class="grid gap-4 mb-4">
+                    <label for="target" class="block text-sm font-medium text-gray-700 mb-1">Pencapaian Target Hafalan</label>
+                    <input 
+                        type="text" 
+                        id="target" 
+                        name="target"
+                        class ="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"
+                        value="{{ old('target')}}"
+                        placeholder="Al-Qariah - An-Naba"
+                        >
+                    @error('target')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+                    <x-input-error
+                        name="hafalan_nilai" 
+                        type="number"
+                        label="Nilai Pencapaian"
+                        class="text-sm"
+                        value="{{ $nilai->nilai ?? '' }}"
+                    />
+                    @error('target')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                    <x-input-error
+                        name="hafalan_nilai" 
+                        type="number"
+                        label="Nilai Target"
+                        class="text-sm"
+                        value="{{ $nilai->nilai ?? '' }}"
+                    />
+                    @error('target')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
         </div>
 
         {{-- 2. Tab: Lisan (Doa & Hadis) --}}
@@ -266,7 +327,7 @@
     });
 
     function showTab(tabName) {
-        const tabs = ['tahfidz', 'lisan_hadis', 'praktik_ibadah', 'tulis_adab'];
+        const tabs = ['tahfidz', 'lisan_hadis', 'praktik_ibadah', 'tulis_adab','bacaan'];
 
         tabs.forEach(tab => {
             const button = document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`);

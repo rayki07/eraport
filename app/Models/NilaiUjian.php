@@ -4,8 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Siswa;
+use App\Models\Kelas;
+use App\Models\Ujian;
+use App\Models\UjianItem;
+use App\Models\TahunAjaran;
+use App\Models\Semester;
 
-class Nilai_ujian extends Model
+class NilaiUjian extends Model
 {
     /** @use HasFactory<\Database\Factories\NilaiUjianFactory> */
     use HasFactory;
@@ -31,12 +37,12 @@ class Nilai_ujian extends Model
         return $this->belongsTo(Ujian::class, 'ujian_id');
     }
 
-    public function ujianitem()
+    public function ujianItem()
     {
         return $this->belongsTo(UjianItem::class, 'ujian_item_id');
     }
 
-    public function tahunajaran()
+    public function tahunAjaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
     }

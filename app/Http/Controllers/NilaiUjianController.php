@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 use App\Models\Mapel;
-use App\Models\Nilai_ujian;
+use App\Models\NilaiUjian;
 use App\Models\Semester;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
@@ -25,7 +25,7 @@ class NilaiUjianController extends Controller
     public function show($id)
     {
         //ambil kelas berdasarkan IDSiswa
-        $murid = Kelas_siswa::with('siswa')->find( $id );
+        $murid = KelasSiswa::with('siswa')->find( $id );
         $siswa = $murid->siswa;
         $kelas = $murid->kelas;
         $ujian = UjianItem::with('ujian')->get();
@@ -69,7 +69,7 @@ class NilaiUjianController extends Controller
         $semester = Semester::where('aktif', '1')->first();
 
         // Semua siswa
-        $siswa = Kelas_siswa::with('siswa')
+        $siswa = KelasSiswa::with('siswa')
                 ->where('kelas_id', $request->kelas_id)
                 ->where('tahun_ajaran_id', $tahun->id)
                 ->where('semester_id', $semester->id)
@@ -84,7 +84,7 @@ class NilaiUjianController extends Controller
         $ujian = UjianItem::where('ujian_id', $request->ujian_id)->get();
 
         //Ambil nilai ujian existing
-        $nilai = Nilai_ujian::where('kelas_id', $request->kelas_id)
+        $nilai = NilaiUjian::where('kelas_id', $request->kelas_id)
                 ->where('ujian_id', $request->ujian_id)
                 ->where('tahun_ajaran_id', $request->id)
                 ->where('semester_id', $request->id)

@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Siswa;
-use App\Models\TahunAjaran;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\KelasSiswa;
+use App\Models\NilaiUjian;
+use App\Models\TahunAjaran;
 
 class Kelas extends Model
 {
@@ -21,18 +24,18 @@ class Kelas extends Model
     {
         return $this->belongsTo(Guru::class, 'guru_id');
     }
-    public function kelassiswa()
+    public function nelasSiswa()
     {
-        return $this->hasMany(Kelas_siswa::class, 'kelas_id');
+        return $this->hasMany(KelasSiswa::class, 'kelas_id');
     }
 
-    public Function nilaiujian()
+    public Function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class, 'kelas_id');
+        return $this->hasMany(NilaiUjian::class, 'kelas_id');
     }
 
     // 1 nama kelas cuma boleh di satu tahun ajaran
-    public function tahunajaran()
+    public function tahunAjaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
     }

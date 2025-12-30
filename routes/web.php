@@ -101,31 +101,17 @@ Route::get('/nilai-ujian/input', [NilaiUjianController::class, 'input'])->name('
 
 //menampilkan nilai ujian ATT
 Route::get('/att', [NilaiAttController::class, 'index'])->name('att.index');
-Route::get('/att/{id}', [NilaiAttController::class, 'show'])->name('att.show');
 Route::post('/att', [NilaiAttController::class, 'store'])->name('att.store');
 Route::get('/att/input', [NilaiAttController::class, 'input'])->name('att.input');
+Route::get('/att/{id}', [NilaiAttController::class, 'show'])->name('att.show');
 
 // Menampilkan data raport
 Route::get('/raport', [RaportController::class, 'index'])->name('raport.index');
-Route::get('/tampil/{id}', [RaportController::class, 'tampil'])->name('raport.tampil');
 Route::post('/raport', [RaportController::class, 'store'])->name('raport.store');
 Route::get('/raport/input', [RaportController::class, 'input'])->name('raport.input');
+Route::get('/tampil/{id}', [RaportController::class, 'tampil'])->name('raport.tampil');
 Route::get('/raport/{id}', [RaportController::class, 'show'])->name('raport.show');
 
-
-
-//pakai Controller
-Route::get('/students', [StudentController::class, 'index']);
-
-//Untuk menampilkan detail grade
-Route::get('/grades', [GradesController::class, 'index']);
-Route::get('/grades/{grade}', [GradesController::class, 'show']);
-
-//Untuk menampilkan detail teacher
-Route::get('/teachers', [TeachersController::class,'index']);
-
-//Untuk menampilkan matapelajaran
-Route::get('/lessons', [LessonsController::class,'index']);
 
 
 Route::get('/login', function () {

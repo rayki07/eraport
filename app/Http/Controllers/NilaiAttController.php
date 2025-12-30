@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
-use App\Models\Nilai_ujian;
+use App\Models\NilaiUjian;
 use App\Models\NilaiAtt;
 use App\Models\Siswa;
 use DB;
 use Illuminate\Http\Request;
-use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 use App\Models\UjianItem;
 use App\Models\TahunAjaran;
 use App\Models\Semester;
@@ -17,7 +17,7 @@ class NilaiAttController extends Controller
 {
     public function index()
     {
-        $siswa = Kelas_siswa::with('kelas','siswa')->get();
+        $siswa = KelasSiswa::with('kelas','siswa')->get();
         return view("att.index", compact('siswa'));
 
     }
@@ -30,7 +30,7 @@ class NilaiAttController extends Controller
 
         //ambil kelas berdasarkan IDSiswa
         $daftarsiswa = Siswa::all();
-        $murid = Kelas_siswa::with('siswa')->find( $id );
+        $murid = KelasSiswa::with('siswa')->find( $id );
         $ujianitem = UjianItem::all();
         $ujian = UjianItem::with('ujian')->first();
         $siswa = $murid->siswa;
@@ -46,7 +46,7 @@ class NilaiAttController extends Controller
 
 
         // Ambil nilai ujian yang ada
-        $existingNilai = Nilai_ujian::where('kelas_id', $kelas->id)
+        $existingNilai = NilaiUjian::where('kelas_id', $kelas->id)
                                     ->where('ujian_id', '1')
                                     ->where('tahun_ajaran_id', $tahun->id)
                                     ->where('semester_id', $semester->id)
@@ -94,7 +94,7 @@ class NilaiAttController extends Controller
 
         foreach ($request->nilai as $siswa_id => $itemArray){
             foreach ($itemArray as $item_id =>$value){
-                Nilai_ujian::updateOrCreate([
+                NilaiUjian::updateOrCreate([
                     'siswa_id' => $siswa_id, 
                     'kelas_id' => $request->kelas_id,
                     'ujian_id' => $request->ujian_id,

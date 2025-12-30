@@ -20,9 +20,9 @@ class Ujian extends Model
     }
 
     // 1 ujian punya banyak nilai
-    public function nilaiujian()
+    public function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class,'ujian_id');
+        return $this->hasMany(NilaiUjian::class,'ujian_id');
     }
 
     public function mapel()

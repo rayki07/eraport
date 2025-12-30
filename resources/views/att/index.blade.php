@@ -58,7 +58,7 @@
                         <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
                             <a href="{{ route('att.show', $murid->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                 <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
-                                Detail
+                                Masukkan Nilai
                             </a>
                         </td>
                     </tr>

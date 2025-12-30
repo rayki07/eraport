@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 use App\Models\TahunAjaran;
 use App\Models\Semester;
-use App\Models\Nilai_ujian;
+use App\Models\NilaiUjian;
 use App\Models\UjianItem;
 use App\Models\Siswa;
 
@@ -15,7 +15,7 @@ class RaportController extends Controller
 {
     public function index()
     {
-        $siswa = Kelas_siswa::with('kelas','siswa')->get();
+        $siswa = KelasSiswa::with('kelas','siswa')->get();
         return view("raport.index", compact('siswa'));
 
     }
@@ -24,7 +24,7 @@ class RaportController extends Controller
     {
         $tahun = TahunAjaran::where('aktif', '1')->first();
         $semester = Semester::where('aktif', '1')->first();
-        $daftarSiswa = Kelas_siswa::with('siswa')->find( $id );
+        $daftarSiswa = KelasSiswa::with('siswa')->find( $id );
         $ujianitem = UjianItem::all();
         $siswa = $daftarSiswa->siswa;
         $kelas = $daftarSiswa->kelas;
@@ -49,29 +49,36 @@ class RaportController extends Controller
     {
         $tahun = TahunAjaran::where('aktif', '1')->first();
         $semester = Semester::where('aktif', '1')->first();
-        $daftarSiswa = Kelas_siswa::with('kelas','siswa')->find($id);
+        $daftarSiswa = KelasSiswa::with('kelas','siswa')->find($id);
         $siswa = $daftarSiswa->siswa;
         $kelas = $daftarSiswa->kelas;
         $murid = Siswa::findOrFail($id);
 
         // mengambil data ujian
         $ujianitem = UjianItem::all();
-        $doa = $siswa->nilaiujian()->whereHas('ujianitem', function($q)  {
+        $nilaidoa = $siswa->nilaiujian()->whereHas('ujianitem', function($q)  {
                 $q->where('kategori', 'Doa');
                 })
                 ->avg('nilai');
-        $hadis = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+        $doa = round($nilaidoa);
+        $nilaihadis = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
                 $q->where('kategori','Hadis');
                 })
                 ->avg('nilai');
-        $kitabah = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+        $hadis = round($nilaihadis);
+
+        $nilaikitabah = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
                 $q->where('kategori','Kitabah');
                 })
                 ->avg('nilai');
-        $adab = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+        $kitabah = round($nilaikitabah);
+
+        $nilaiadab = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
                 $q->where('kategori','Adab');
                 })
                 ->avg('nilai');
+        $adab = round($nilaiadab);
+
         $surah28 = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
                 $q->where('kategori','Surah 28');
                 })
@@ -85,6 +92,16 @@ class RaportController extends Controller
                 })
                 ->avg('nilai');
         
+        $kategoriSurah = ['Surah 30', 'Surah 29', 'Surah 28'];
+        $ratasurah = $siswa->nilaiujian()->whereHas('ujianitem', function($q) {
+                $q->whereIn('kategori',['Surah 28', 'Surah 29','Surah 30']);
+                })
+                ->avg('nilai');
+
+        // menghandle jika null/tidak ada data
+        $ratasurah = is_numeric($ratasurah) ? (float)$ratasurah : 0;
+        $ratasurahBulat = round($ratasurah);
+               
         // menampilkan predikat
         $doaPredikat = match(true) {
             $doa >= 85 => 'A',
@@ -114,18 +131,18 @@ class RaportController extends Controller
             $adab >= 55 => 'D',
             default => 'E'};
         
-        $surah28Predikat = match(true) {
-            $surah28 >= 85 => 'A',
-            $surah28 >= 75 => 'B',
-            $surah28 >= 65 => 'C',
-            $surah28 >= 55 => 'D',
+        $surahPredikat = match(true) {
+            $ratasurahBulat >= 85 => 'A',
+            $ratasurahBulat >= 75 => 'B',
+            $ratasurahBulat >= 65 => 'C',
+            $ratasurahBulat >= 55 => 'D',
             default => 'E'};
 
         return view('raport.tampil', compact([
             'siswa', 'kelas', 'tahun','semester',
-            'doa','hadis', 'kitabah', 'adab', 'surah28', 'surah29', 'surah30',
+            'doa','hadis', 'kitabah', 'adab', 'ratasurahBulat',
             'doaPredikat', 'hadisPredikat', 'kitabahPredikat', 'adabPredikat',
-            'surah28Predikat'
+            'surahPredikat'
         ]));
     }
 

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Kelas;
 use App\Models\Kelas_siswa;
-use App\Models\TahunAjaran;
-use App\Models\Semester;
+use App\Models\Nilai_ujian;
+use App\Models\Nilai_hafalan;
+use App\Models\Nilai_iqra;
+
 use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Siswa extends Model
@@ -18,17 +20,27 @@ class Siswa extends Model
     protected $table = 'siswa';
     protected $fillable = ['nis', 'nisn', 'nama_lengkap', 'nama_panggilan', 'gender', 'status'];
 
-    public Function kelassiswa()
+    public function kelasSiswa()
     {
-        return $this->hasMany(Kelas_siswa::class, 'siswa_id');
+        return $this->hasMany(KelasSiswa::class, 'siswa_id');
     }
 
-    public Function nilaiujian()
+    public function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class, 'siswa_id');
+        return $this->hasMany(NilaiUjian::class, 'siswa_id');
+    }
+
+    public function nilaiHafalan()
+    {
+        return $this->hasMany(NilaiHafalan::class,'siswa_id');
+    }
+
+    public function nilaiIqra()
+    {
+        return $this->hasMany(NilaiIqra::class,'siswa_id');
     }
     
-    //setiap siswa mempunyai banyak kelas
+    //setiap kelas mempunyai banyak siswa
     public function kelas()
     {
         return $this->belongsToMany(Kelas::class, 'kelas_siswa')

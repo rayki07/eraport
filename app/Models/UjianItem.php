@@ -23,8 +23,8 @@ class UjianItem extends Model
         return $this->belongsTo(Mapel::class, 'mapel_id');
     }
 
-    public Function nilaiujian()
+    public Function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class, 'ujian_item_id');
+        return $this->hasMany(NilaiUjian::class, 'ujian_item_id');
     }
 }

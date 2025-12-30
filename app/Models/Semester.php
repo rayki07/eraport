@@ -14,19 +14,19 @@ class Semester extends Model
     protected $fillable = ['tahun_ajaran_id', 'nama_semester', 'aktif'];
 
 
-    public function tahunajaran()
+    public function tahunAjaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
     }
     
-    public function kelassiswa()
+    public function kelasSiswa()
     {
-        return $this->hasMany(Kelas_siswa::class, 'semester_id');
+        return $this->hasMany(KelasSiswa::class, 'semester_id');
     }
 
-    public Function nilaiujian()
+    public Function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class, 'semester_id');
+        return $this->hasMany(NilaiUjian::class, 'semester_id');
     }
 
     

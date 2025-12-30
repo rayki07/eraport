@@ -24,14 +24,14 @@ class TahunAjaran extends Model
         return $this->hasMany(Semester::class, 'tahun_ajaran_id');
     }
 
-    public function kelassiswa()
+    public function kelasSiswa()
     {
-        return $this->hasMany(Kelas_siswa::class, 'tahun_ajaran_id');
+        return $this->hasMany(KelasSiswa::class, 'tahun_ajaran_id');
     }
 
-    public function nilaiujian()
+    public function nilaiUjian()
     {
-        return $this->hasMany(Nilai_ujian::class, 'tahun_ajaran_id');
+        return $this->hasMany(NilaiUjian::class, 'tahun_ajaran_id');
     }
 
     public function getStatusLabelAttribute()

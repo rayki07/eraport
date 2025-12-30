@@ -261,8 +261,8 @@
                             <tr style="background-color: #FFFF00;" style="padding:0.2rem;">
                                 <td class="table-cell text-center" style="padding:0.2rem;">1</td>
                                 <td class="table-cell" colspan="2" style="padding:0.2rem;">Al-Qoriah - An-Naba</td>
-                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $surah28 }}</td>
-                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $surah28Predikat }}</td>
+                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $ratasurahBulat }}</td>
+                                <td class="table-cell text-center" style="padding:0.2rem;">{{ $surahPredikat }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -337,7 +337,15 @@
                         </button>
                         <p class="text-xs text-gray-500 mt-2">Ukuran kertas: F4 (21cm x 33cm)</p>
                         </div>
-                        <div style="width: 20%;"></div>
+                        <div style="width: 20%;">
+                            <div style="width: auto">
+                            <!-- Tombol untuk kembali (hanya ditampilkan di browser) -->
+                            <a href="{{ route('att.show', $siswa->id) }}" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow">
+                            <i data-lucide="pen" class="w-3 h-3 mr-1"></i>
+                            Edit
+                            </a>
+                        </div>
+                        </div>
                         
                     </div>
 

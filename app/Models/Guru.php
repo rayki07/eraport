@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kelas;
 
 class Guru extends Model
 {
@@ -18,7 +19,7 @@ class Guru extends Model
         return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
     }
 
-    public function kelas()
+    public function daftarKelas()
     {
         return $this->hasMany(Kelas::class, 'guru_id');
     }

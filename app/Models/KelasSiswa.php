@@ -9,7 +9,7 @@ use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use App\Models\Semester;
 
-class Kelas_siswa extends Model
+class KelasSiswa extends Model
 {
     /** @use HasFactory<\Database\Factories\KelasSiswaFactory> */
     use HasFactory;
@@ -27,7 +27,7 @@ class Kelas_siswa extends Model
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
-    public function tahunajaran()
+    public function tahunAjaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
     }

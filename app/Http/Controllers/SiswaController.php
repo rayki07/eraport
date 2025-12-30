@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Imports\SiswaImport;
@@ -14,7 +14,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Kelas_siswa::with('kelas','siswa')->get();
+        $siswa = KelasSiswa::with('kelas','siswa')->get();
         
         /* return view("siswa.index", [
             'siswa'=> $siswa
@@ -31,7 +31,7 @@ class SiswaController extends Controller
     public function show($id)
     {
         //ambil kelas berdasarkan IDSiswa
-        $murid = Kelas_siswa::with('siswa')->find( $id );
+        $murid = KelasSiswa::with('siswa')->find( $id );
         $siswa = $murid->siswa;
         $kelas = $murid->kelas;
         /* $siswa = Siswa::with('kelas')->findOrFail($id); */
