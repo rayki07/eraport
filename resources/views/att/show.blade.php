@@ -62,16 +62,102 @@
         @csrf 
 
         <!-- Kirim Tersembunyi -->
-        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-        <input type="hidden" name="ujian_id" value="{{ $ujian->id }}">
-        <input type="hidden" name="semester_id" value="{{ $semester->id }}">
-        <input type="hidden" name="tahun_ajaran_id" value="{{ $tahun->id }}">
+        <div>
+            <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+            <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+            <input type="hidden" name="ujian_id" value="{{ $ujian->id }}">
+            <input type="hidden" name="semester_id" value="{{ $semester->id }}">
+            <input type="hidden" name="tahun_ajaran_id" value="{{ $tahun->id }}">
+        </div>
+        
 
 
         {{-- 1. Tab Bacaan --}}
         <div id="content-bacaan" class="tab-content">
-            <h3 class="text-lg font-semibold mb-4 text-red-700">Bacaan (Bacaan Iqra, Tahsin, dan Al-Qur'an) - Nilai Maks 100 per Surah</h3>
+            
+            <!-- input jenis bacaan -->
+            <label class="text-lg font-semibold mb-4 text-red-700">Jenis Bacaan</label>
+            <div class="p-4 border rounded-lg bg-gray-50 mb-6">
+                <p class="block text-sm font-medium text-gray-700 mb-1"><span class="font-bold">PILIH</span> Pencapaian siswa dalam bacaan (Iqra, Tahsin, Al-Qur'an)</p>
+                <div class="flex gap-4 mt-1">
+                    <label>
+                        <input type="radio" name="jenis_bacaan" value="iqra" checked
+                        @checked(old('jenis_bacaan', $nilaiBacaan->jenis ?? null) == 'iqra')>
+                        Iqra
+                    </label>
 
+                    <label>
+                        <input type="radio" name="jenis_bacaan" value="tahsin"
+                        @checked(old('jenis_bacaan', $nilaiBacaan->jenis ?? null) == 'tahsin')>
+                        Tahsin
+                    </label>
+                    <label>
+                        <input type="radio" name="jenis_bacaan" value="alquran"
+                        @checked(old('jenis_bacaan', $nilaiBacaan->jenis ?? null) == 'alquran')>
+                        Al-Qur’an
+                    </label>
+                </div>
+                @error('jenis_bacaan') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+            
+            <!-- memasukkan data bacaan -->
+            <h3 class="text-lg font-semibold mb-4 text-red-700">Bacaan Iqra / Tahsin</h3>
+
+            <div class="p-4 border rounded-lg bg-gray-50 mb-6">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:grid-cols-3 gap-4">
+                    <div>
+                        <x-input-error
+                            name="bacaan_jilid" 
+                            type="number"
+                            label="Jilid / juz"
+                            class="text-sm"
+                            placeholder="Jilid (1-6)"
+                            value="{{ $nilaiBacaan->jilid ?? $nilaiBacaan->juz ?? '' }}"
+                        />
+                        @error('bacaan_jilid')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <x-input-error
+                            name="bacaan_halaman" 
+                            type="number"
+                            label="Halaman / ayat "
+                            class="text-sm"
+                            placeholder="Halaman (1-31)"
+                            value="{{ $nilaiBacaan->halaman ?? $nilaiBacaan->ayat ?? '' }}"
+                        />
+                        @error('bacaan_halaman')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <x-input-error
+                            name="bacaan_nilai" 
+                            type="number"
+                            label="Nilai"
+                            class="text-sm"
+                            value="{{ $nilaiBacaan->nilai ?? '' }}"
+                        />
+                        @error('bacaan_nilai')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <x-input-error
+                            name="bacaan_surah" 
+                            type="text"
+                            label="Surah"
+                            class="text-sm"
+                            placeholder="An-Naba"
+                            value="{{ $nilaiBacaan->surah ?? '' }}"
+                        />
+                        @error('bacaan_surah')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
         </div>
 
         {{-- 1. Tab: Tahfidz (DIPISAHKAN DENGAN SUB-TAB) --}}
@@ -113,12 +199,13 @@
                                     class="text-sm"
                                     value="{{ $nilai->nilai ?? '' }}"
                                 />
-
                             </div>
                         @endforeach
                     </div>
                 </div>
             @endforeach
+
+
 
             <!-- menambah input nilai Hafalan -->
             <div class="p-4 border rounded-lg bg-gray-50 mb-6">
@@ -320,14 +407,15 @@
     </form>
 </div>
 
+<!-- script buka tab -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        showTab('tahfidz'); // Tampilkan tab Tahfidz secara default
+        showTab('bacaan'); // Pilih tampilkan tab secara default
         lucide.createIcons();
     });
 
     function showTab(tabName) {
-        const tabs = ['tahfidz', 'lisan_hadis', 'praktik_ibadah', 'tulis_adab','bacaan'];
+        const tabs = ['bacaan', 'tahfidz', 'lisan_hadis', 'praktik_ibadah', 'tulis_adab'];
 
         tabs.forEach(tab => {
             const button = document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`);
@@ -390,6 +478,32 @@
     }
 </script>
 
+<!-- script mengisi surah di tab bacaan -->
+<script>
+document.querySelectorAll('input[name="jenis_bacaan"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+        const jenis = this.value;
+
+        const jilid   = document.getElementById('bacaan_jilid');
+        const halaman = document.getElementById('bacaan_halaman');
+        const surah   = document.getElementById('bacaan_surah');
+
+        // Reset
+        surah.disabled = true;
+        surah.value = '';
+
+        jilid.disabled = false;
+        halaman.disabled = false;
+
+        if (jenis === 'alquran') {
+            surah.disabled = false;
+            /* jilid.disabled = true;
+            jilid.value = ''; */
+        }
+        
+    });
+});
+</script>
 
 
 

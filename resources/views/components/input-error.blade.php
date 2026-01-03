@@ -79,12 +79,14 @@
 </script>
 
 
-@if($errors->any())
+<!-- biar muncul error di tempat input -->
+
+{{-- @if($errors->any())
     <div class="alert alert-danger">
-        <ul class="mb-0">
+        <ul class="mb-0 text-blue-500">
             @foreach($errors->all() as $e)
                 <li>{{ $e }}</li>
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}

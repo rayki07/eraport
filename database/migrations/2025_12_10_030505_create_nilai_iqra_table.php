@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('nilai_iqra', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswa')->restrictOnDelete();
-            $table->enum('jenis', ['iqra','quran'])->default('iqra');
+            $table->enum('jenis', ['iqra', 'tahsin', 'alquran'])->default('iqra');
             $table->integer('jilid')->nullable();
             $table->string('halaman')->nullable();
             $table->integer('juz')->nullable();

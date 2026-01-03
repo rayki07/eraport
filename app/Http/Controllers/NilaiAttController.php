@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mapel;
 use App\Models\NilaiUjian;
 use App\Models\NilaiAtt;
+use App\Models\NilaiHafalan;
+use App\Models\NilaiIqra;
 use App\Models\Siswa;
 use DB;
 use Illuminate\Http\Request;
@@ -56,9 +58,13 @@ class NilaiAttController extends Controller
                                         return $item->siswa_id . '_' . $item->ujian_item_id;
                                     });
 
-/*         $cobaan = $coba->nilai; */
-        /* dd($daftarsiswa->nama_siswa); */
-        
+        // Ambil nilai bacaan 
+        $nilaiBacaan = NilaiIqra::where('siswa_id', $siswa->id)
+                                ->where('tahun_ajaran_id', $tahun->id)
+                                ->where('semester_id', $semester->id)
+                                ->first();
+        /* dd($nilaiBacaan->jilid); */
+       
 
         // di group berdasarkan kategori
         $groupSurah = UjianItem::whereIn('kategori', $kategoriSurah)
@@ -66,31 +72,158 @@ class NilaiAttController extends Controller
                         ->groupBy('kategori'); // Kelompokkan data setelah diambil
 
         return view('att.show', compact('murid', 'siswa', 'kelas', 'ujianitem', 'existingNilai',
-                        /* 'nilai' */ 'ujian', 'doa', 'hadis', 'adab', 'kitabah',
+                        'nilaiBacaan', 'ujian', 'doa', 'hadis', 'adab', 'kitabah',
                         'sholat', 'wudhu', 'groupSurah', 'tahun', 'semester'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-/*             'siswa_id' => ['required','exists:siswa','id'],
+            // Data
+            'siswa_id' => ['required', 'exists:siswa,id'],
             'kelas_id' => ['required', 'exists:kelas,id'],
             'ujian_id' => ['required', 'exists:ujian,id'],
             'tahun_ajaran_id' => ['required','exists:tahun_ajaran,id'],
-            'semester_id' => ['required','exists:semester,id'], */
+            'semester_id' => ['required','exists:semester,id'],
+
+            // Nilai bacaan bentuk array
+            'bacaan_nilai'=> 'nullable|numeric|min:0|max:100',
+
+            // Nilai ujian
+            'nilai'=> 'required|array',
+            'nilai.*'=> 'nullable|min:0|max:100',
+        ]);
+
+        // validasi bacaan
+        $rules = [
+            'jenis_bacaan'=> 'nullable|string|in:iqra,tahsin,alquran',
+            'bacaan_nilai'=> 'nullable|numeric|min:0|max:100',
+        ];
+
+        if ($request->jenis_bacaan === 'alquran') {
+            $rules['bacaan_jilid'] = 'nullable|numeric|min:0|max:30';
+            $rules['bacaan.surah'] = 'nullable|string|max:40';
+            $rules['bacaan.halaman'] = 'nullable|numeric|min:0|max:282';
+            } else {
+                $rules['bacaan_jilid'] = 'nullable|numeric|min:0|max:6';
+                $rules['bacaan.halaman'] = 'nullable|numeric|min:0|max:40';
+            }
+
+        $request->validate($rules);
+
+         /* dd($request->all()); */
+
+        DB::beginTransaction();
+        try {
+            // data
+            $siswaId = $request->siswa_id;
+            $kelasId = $request->kelas_id;
+            $ujianId = $request->ujian_id;
+            $ujianItemId = $request->item_id;
+            $tahunAjaranId = $request->tahun_ajaran_id;
+            $semesterId = $request->semester_id;
+
+            /* 1. Simpan data bacaan */
+            foreach ($request->nilai as $loopSiswa => $itemArray){
+            foreach ($itemArray as $ujianItemId =>$value){
+                NilaiUjian::updateOrCreate([
+                    'siswa_id' => $loopSiswa, 
+                    'kelas_id' => $kelasId,
+                    'ujian_id' => $ujianId,
+                    'ujian_item_id' => $ujianItemId,
+                    'tahun_ajaran_id' => $tahunAjaranId,
+                    'semester_id' => $semesterId
+                    ],
+                    [
+                        'nilai' => $value ?? null
+                    ]);
+                }
+            };
+
+            // 2. Simpan Nilai Bacaan
+/*             NilaiIqra::updateOrCreate(
+            [
+                'siswa_id' => $siswaId,
+                'tahun_ajaran_id' => $tahunAjaranId,
+                'semester_id' => $semesterId
+            ],
+            [
+                'jenis'   => $request->jenis_bacaan,
+                'jilid'   => $request->bacaan_jilid ?? null,
+                'halaman' => $request->bacaan_halaman ?? null,
+                'surah'   => $request->bacaan_surah ?? null,
+                'nilai'   => $request->bacaan_nilai ?? null
+            ], */
+
+            if ($request->jenis_bacaan === 'alquran') {
+                NilaiIqra::updateOrCreate(
+                [
+                    'siswa_id'        => $siswaId,
+                    'tahun_ajaran_id' => $tahunAjaranId,
+                    'semester_id'     => $semesterId
+                ],
+                [
+                    'jenis'   => 'alquran',
+                    'juz'     => $request->bacaan_jilid ?? null,
+                    'surah'   => $request->bacaan_surah ?? null,
+                    'ayat'    => $request->bacaan_halaman ?? null,
+                    'nilai'   => $request->bacaan_nilai ?? null,
+                    'jilid'   => $request->null,
+                    'halaman' => $request->null,
+                ],
+                );
+            } else {
+                NilaiIqra::updateOrCreate(
+                [
+                    'siswa_id'       => $siswaId,
+                    'tahun_ajaran_id' => $tahunAjaranId,
+                    'semester_id'     => $semesterId,
+                ],
+                [
+                    'jenis'   => $request->jenis_bacaan,
+                    'jilid'   => $request->bacaan_jilid ?? null,
+                    'halaman' => $request->bacaan_halaman ?? null,
+                    'nilai'   => $request->bacaan_nilai ?? null,
+                    'juz'     => null,
+                    'surah'   => null,
+                    'ayat'    => null,
+                ]);
+                    }
+
+            DB::commit();
+            return back()->withInput()->with('success', 'Nilai berhasil disimpan');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        
+
+
+
+
+
+        // disimpan dulu, untuk diperbaiki
+        // $request->validate([
+        /*    'siswa_id' => ['required','exists:siswa','id'],
+            'kelas_id' => ['required', 'exists:kelas,id'],
+            'ujian_id' => ['required', 'exists:ujian,id'],
+            'tahun_ajaran_id' => ['required','exists:tahun_ajaran,id'],
+            'semester_id' => ['required','exists:semester,id'],
             'nilai' => ['array']
         ]);
 
 
-        /* dd($request->nilai,
+        dd($request->nilai,
          $request->kelas_id,
          $request->ujian_id,
          $request->tahun_ajaran_id,
          $request->semester_id,
-        ); */
+        ); 
 
-/*         $tahun = TahunAjaran::where('aktif', true)->first();
-        $semester = Semester::where('aktif', true)->first(); */
+        // $tahun = TahunAjaran::where('aktif', true)->first();
+        //$semester = Semester::where('aktif', true)->first(); 
 
         foreach ($request->nilai as $siswa_id => $itemArray){
             foreach ($itemArray as $item_id =>$value){
@@ -108,7 +241,6 @@ class NilaiAttController extends Controller
             }
         }
 
-        /* return redirect(route('att.show')); */
-        return back()->withInput()->with('success', 'Nilai berhasil disimpan');
+        return back()->withInput()->with('success', 'Nilai berhasil disimpan'); */
     }
 }
