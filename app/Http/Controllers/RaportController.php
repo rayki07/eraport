@@ -9,6 +9,8 @@ use App\Models\Semester;
 use App\Models\NilaiUjian;
 use App\Models\UjianItem;
 use App\Models\Siswa;
+use App\Models\NilaiHafalan;
+use App\Models\NilaiIqra;
 
 
 class RaportController extends Controller
@@ -33,7 +35,8 @@ class RaportController extends Controller
         $nilaiTahfidz = UjianItem::whereIn('kategori', $kategoriSurah)
                         ->get()          // Ambil semua data dari DB dalam 1 query
                         ->groupBy('kategori'); // Kelompokkan data setelah diambil
-
+        
+        
 
         return view('raport.show', [
             'siswa' => $siswa,
@@ -97,6 +100,18 @@ class RaportController extends Controller
                 $q->whereIn('kategori',['Surah 28', 'Surah 29','Surah 30']);
                 })
                 ->avg('nilai');
+        /* dd($murid->id); */
+        // Ambil nilai Hafalan
+        $nilaiHafalan = NilaiHafalan::where('siswa_id', $murid->id)
+                                ->where('tahun_ajaran_id', $tahun->id)
+                                ->where('semester_id', $semester->id)
+                                ->first();
+        
+        // Ambil nilai bacaan 
+        $nilaiBacaan = NilaiIqra::where('siswa_id', $murid->id)
+                                ->where('tahun_ajaran_id', $tahun->id)
+                                ->where('semester_id', $semester->id)
+                                ->first();
 
         // menghandle jika null/tidak ada data
         $ratasurah = is_numeric($ratasurah) ? (float)$ratasurah : 0;
@@ -142,7 +157,7 @@ class RaportController extends Controller
             'siswa', 'kelas', 'tahun','semester',
             'doa','hadis', 'kitabah', 'adab', 'ratasurahBulat',
             'doaPredikat', 'hadisPredikat', 'kitabahPredikat', 'adabPredikat',
-            'surahPredikat'
+            'surahPredikat', 'nilaiBacaan', 'nilaiHafalan'
         ]));
     }
 

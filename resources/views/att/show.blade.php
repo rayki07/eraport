@@ -210,13 +210,13 @@
             <!-- menambah input nilai Hafalan -->
             <div class="p-4 border rounded-lg bg-gray-50 mb-6">
                 <div class="grid gap-4 mb-4">
-                    <label for="target" class="block text-sm font-medium text-gray-700 mb-1">Pencapaian Target Hafalan</label>
+                    <label for="target_hafalan" class="block text-sm font-medium text-gray-700 mb-1">Pencapaian Target Hafalan</label>
                     <input 
                         type="text" 
                         id="target" 
                         name="target"
                         class ="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"
-                        value="{{ old('target')}}"
+                        value="{{  $nilaiHafalan->target ?? ''}}"
                         placeholder="Al-Qariah - An-Naba"
                         >
                     @error('target')
@@ -225,23 +225,13 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
                     <x-input-error
-                        name="pencapaian" 
+                        name="nilai_pencapaian" 
                         type="number"
                         label="Nilai Pencapaian"
                         class="text-sm"
-                        value="{{ $nilai->nilai ?? '' }}"
+                        value="{{ $nilaiHafalan->nilai ?? ''}}"
                     />
-                    @error('pencapaian')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                    <x-input-error
-                        name="target_nilai" 
-                        type="number"
-                        label="Nilai Target"
-                        class="text-sm"
-                        value="{{ $nilai->nilai ?? '' }}"
-                    />
-                    @error('target_nilai')
+                    @error('nilai_pencapaian')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -384,7 +374,7 @@
                         name="nilai[{{ $siswa->id }}][{{ $adab->id }}]" 
                         type="number"
                         label="Nilai Adab / Sikap (Angka Akhir)"
-                        class="font-bold"
+                        class="text-lg font-bold"
                         value="{{ $nilaiAdab->nilai ?? ''}}"
                         />
                 </div>

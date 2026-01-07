@@ -103,6 +103,8 @@
         const toggleSidebarButton = document.getElementById('toggle-sidebar');
         const closeSidebarButton = document.getElementById('close-sidebar');
 
+        
+
         // Fungsi untuk membuka/menutup sidebar
         function toggleSidebar() {
             const isClosed = sidebar.classList.toggle('closed');
@@ -124,13 +126,14 @@
         closeSidebarButton.addEventListener('click', toggleSidebar);
 
         //biar otomatis nutup
-        sidebar.classList.add('closed');
+        /* sidebar.classList.add('closed');
+        sidebar.style.transform = 'translateX(0)'; */
         
         // Menutup sidebar secara default di perangkat seluler saat halaman dimuat
         if (window.innerWidth < 768) { // aslinya (biar otomatis nutup)"< 768"
             sidebar.classList.add('closed');
             sidebar.style.transform = 'translateX(-100%)';
-        } else {
+        }else {
             sidebar.classList.remove('closed');
             sidebar.style.transform = 'translateX(0)';
         }

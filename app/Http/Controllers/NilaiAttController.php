@@ -98,10 +98,11 @@ class NilaiAttController extends Controller
             'nilai.*'         => 'nullable|min:0|max:100',
 
             //nilai target
-            'target'          => 'nullable|string|max:20',
-            'pencapaian'      => 'nullable|numeric|min:0|max:100',
-            'terget_nilai'    => 'nullable|numeric|min:0|max:100',
+            'target'    => 'nullable|string',
+            'nilai_pencapaian'  => 'nullable|numeric|min:0|max:100',
         ]);
+
+        /* dd($request->all()); */
 
         // validasi bacaan
         $rules = [
@@ -149,21 +150,6 @@ class NilaiAttController extends Controller
                 }
             };
 
-            // 2. Simpan Nilai Bacaan
-/*             NilaiIqra::updateOrCreate(
-            [
-                'siswa_id' => $siswaId,
-                'tahun_ajaran_id' => $tahunAjaranId,
-                'semester_id' => $semesterId
-            ],
-            [
-                'jenis'   => $request->jenis_bacaan,
-                'jilid'   => $request->bacaan_jilid ?? null,
-                'halaman' => $request->bacaan_halaman ?? null,
-                'surah'   => $request->bacaan_surah ?? null,
-                'nilai'   => $request->bacaan_nilai ?? null
-            ], */
-
             if ($request->jenis_bacaan === 'alquran') {
                 NilaiIqra::updateOrCreate(
                 [
@@ -197,7 +183,7 @@ class NilaiAttController extends Controller
                     'surah'   => null,
                     'ayat'    => null,
                 ]);
-                    }
+                    };
             
             NilaiHafalan::updateOrCreate(
                 [
@@ -206,13 +192,13 @@ class NilaiAttController extends Controller
                     'semester_id'     => $semesterId,
                 ],
                 [
-                    'terget'     => $request->target ?? null,
-                    'pencapaian' => $request->pencapaian ?? null,
-                    'nilai'      => $request->target->nilai ?? null,
+                    'nilai'      => $request->nilai_pencapaian ?? null,
+                    'target'     => $request->target ?? null,
+                    
                 ]
                 );
             
-            
+            /* dd($request->target); */
 
             DB::commit();
             return back()->withInput()->with('success', 'Nilai berhasil disimpan');

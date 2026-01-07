@@ -37,7 +37,8 @@ class TahunAjaran extends Model
     public function getStatusLabelAttribute()
     {
 
-        return $this->status == 1? 'Aktif':'Tidak Aktif';
+        /* return $this->status == 1? 'Aktif':'Tidak Aktif'; */
+        return $this->aktif == 1 ? 'Aktif' : 'Tidak Aktif';
 
     }
 }

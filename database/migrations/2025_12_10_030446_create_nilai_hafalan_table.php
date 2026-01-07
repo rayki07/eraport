@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswa')->restrictOnDelete();
             $table->string('target')->nullable();
-            $table->integer('pencapaian')->nullable();
-            $table->string('nilai')->nullable();
+            $table->integer('nilai')->nullable();
             $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->restrictOnDelete();
             $table->foreignId('semester_id')->constrained('semester')->restrictOnDelete();
             $table->timestamps();
