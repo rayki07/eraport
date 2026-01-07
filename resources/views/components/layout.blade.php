@@ -123,8 +123,11 @@
         // Event listener untuk tombol tutup di dalam sidebar (hanya terlihat di mobile)
         closeSidebarButton.addEventListener('click', toggleSidebar);
 
+        //biar otomatis nutup
+        sidebar.classList.add('closed');
+        
         // Menutup sidebar secara default di perangkat seluler saat halaman dimuat
-        if (window.innerWidth < 1000) { // aslinya (biar otomatis nutup)"< 768"
+        if (window.innerWidth < 768) { // aslinya (biar otomatis nutup)"< 768"
             sidebar.classList.add('closed');
             sidebar.style.transform = 'translateX(-100%)';
         } else {
@@ -142,7 +145,7 @@
                  // Di mobile, jika sidebar terbuka, pastikan transformnya nol
                  sidebar.style.transform = 'translateX(0)';
             }
-        }) */;
+        }) ;*/
 
     </script>
 </body>

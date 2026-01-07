@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('nilai_hafalan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswa')->restrictOnDelete();
-            $table->string('pencapaian')->nullable();
-            $table->integer('nilai')->nullable();
-            $table->string('catatan')->nullable();
+            $table->string('target')->nullable();
+            $table->integer('pencapaian')->nullable();
+            $table->string('nilai')->nullable();
             $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran')->restrictOnDelete();
             $table->foreignId('semester_id')->constrained('semester')->restrictOnDelete();
             $table->timestamps();

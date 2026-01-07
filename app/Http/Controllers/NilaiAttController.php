@@ -63,8 +63,12 @@ class NilaiAttController extends Controller
                                 ->where('tahun_ajaran_id', $tahun->id)
                                 ->where('semester_id', $semester->id)
                                 ->first();
-        /* dd($nilaiBacaan->jilid); */
-       
+
+        // Ambil nilai pencapaian 
+        $nilaiHafalan = NilaiHafalan::where('siswa_id', $siswa->id)
+                                ->where('tahun_ajaran_id', $tahun->id)
+                                ->where('semester_id', $semester->id)
+                                ->first();       
 
         // di group berdasarkan kategori
         $groupSurah = UjianItem::whereIn('kategori', $kategoriSurah)
@@ -72,7 +76,7 @@ class NilaiAttController extends Controller
                         ->groupBy('kategori'); // Kelompokkan data setelah diambil
 
         return view('att.show', compact('murid', 'siswa', 'kelas', 'ujianitem', 'existingNilai',
-                        'nilaiBacaan', 'ujian', 'doa', 'hadis', 'adab', 'kitabah',
+                        'nilaiBacaan', 'nilaiHafalan', 'ujian', 'doa', 'hadis', 'adab', 'kitabah',
                         'sholat', 'wudhu', 'groupSurah', 'tahun', 'semester'));
     }
 
@@ -80,33 +84,38 @@ class NilaiAttController extends Controller
     {
         $request->validate([
             // Data
-            'siswa_id' => ['required', 'exists:siswa,id'],
-            'kelas_id' => ['required', 'exists:kelas,id'],
-            'ujian_id' => ['required', 'exists:ujian,id'],
+            'siswa_id'        => ['required', 'exists:siswa,id'],
+            'kelas_id'        => ['required', 'exists:kelas,id'],
+            'ujian_id'        => ['required', 'exists:ujian,id'],
             'tahun_ajaran_id' => ['required','exists:tahun_ajaran,id'],
-            'semester_id' => ['required','exists:semester,id'],
+            'semester_id'     => ['required','exists:semester,id'],
 
             // Nilai bacaan bentuk array
-            'bacaan_nilai'=> 'nullable|numeric|min:0|max:100',
+            'bacaan_nilai'    => 'nullable|numeric|min:0|max:100',
 
             // Nilai ujian
-            'nilai'=> 'required|array',
-            'nilai.*'=> 'nullable|min:0|max:100',
+            'nilai'           => 'required|array',
+            'nilai.*'         => 'nullable|min:0|max:100',
+
+            //nilai target
+            'target'          => 'nullable|string|max:20',
+            'pencapaian'      => 'nullable|numeric|min:0|max:100',
+            'terget_nilai'    => 'nullable|numeric|min:0|max:100',
         ]);
 
         // validasi bacaan
         $rules = [
-            'jenis_bacaan'=> 'nullable|string|in:iqra,tahsin,alquran',
-            'bacaan_nilai'=> 'nullable|numeric|min:0|max:100',
+            'jenis_bacaan'    => 'nullable|string|in:iqra,tahsin,alquran',
+            'bacaan_nilai'    => 'nullable|numeric|min:0|max:100',
         ];
 
         if ($request->jenis_bacaan === 'alquran') {
             $rules['bacaan_jilid'] = 'nullable|numeric|min:0|max:30';
-            $rules['bacaan.surah'] = 'nullable|string|max:40';
-            $rules['bacaan.halaman'] = 'nullable|numeric|min:0|max:282';
+            $rules['bacaan_surah'] = 'nullable|string|max:40';
+            $rules['bacaan_halaman'] = 'nullable|numeric|min:0|max:282';
             } else {
                 $rules['bacaan_jilid'] = 'nullable|numeric|min:0|max:6';
-                $rules['bacaan.halaman'] = 'nullable|numeric|min:0|max:40';
+                $rules['bacaan_halaman'] = 'nullable|numeric|min:0|max:40';
             }
 
         $request->validate($rules);
@@ -189,6 +198,21 @@ class NilaiAttController extends Controller
                     'ayat'    => null,
                 ]);
                     }
+            
+            NilaiHafalan::updateOrCreate(
+                [
+                    'siswa_id'        => $siswaId,
+                    'tahun_ajaran_id' => $tahunAjaranId,
+                    'semester_id'     => $semesterId,
+                ],
+                [
+                    'terget'     => $request->target ?? null,
+                    'pencapaian' => $request->pencapaian ?? null,
+                    'nilai'      => $request->target->nilai ?? null,
+                ]
+                );
+            
+            
 
             DB::commit();
             return back()->withInput()->with('success', 'Nilai berhasil disimpan');

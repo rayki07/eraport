@@ -225,23 +225,23 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
                     <x-input-error
-                        name="hafalan_nilai" 
+                        name="pencapaian" 
                         type="number"
                         label="Nilai Pencapaian"
                         class="text-sm"
                         value="{{ $nilai->nilai ?? '' }}"
                     />
-                    @error('target')
+                    @error('pencapaian')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                     <x-input-error
-                        name="hafalan_nilai" 
+                        name="target_nilai" 
                         type="number"
                         label="Nilai Target"
                         class="text-sm"
                         value="{{ $nilai->nilai ?? '' }}"
                     />
-                    @error('target')
+                    @error('target_nilai')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
