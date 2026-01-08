@@ -8,6 +8,6 @@ class NilaiHafalan extends Model
 {
     protected $table = "nilai_hafalan";
     protected $fillable = [
-        'siswa_id', 'pencapaian', 'nilai', 'catatan',
+        'siswa_id', 'nilai', 'target',
         'tahun_ajaran_id', 'semester_id',];
 }

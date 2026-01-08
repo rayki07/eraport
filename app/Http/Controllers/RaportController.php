@@ -102,17 +102,21 @@ class RaportController extends Controller
                 ->avg('nilai');
         /* dd($murid->id); */
         // Ambil nilai Hafalan
-        $nilaiHafalan = NilaiHafalan::where('siswa_id', $murid->id)
+        $hafalan = NilaiHafalan::where('siswa_id', $murid->id)
                                 ->where('tahun_ajaran_id', $tahun->id)
                                 ->where('semester_id', $semester->id)
                                 ->first();
         
+        $nilaiHafalan = $hafalan->nilai ?? 0;
+        
         // Ambil nilai bacaan 
-        $nilaiBacaan = NilaiIqra::where('siswa_id', $murid->id)
+        $bacaan = NilaiIqra::where('siswa_id', $murid->id)
                                 ->where('tahun_ajaran_id', $tahun->id)
                                 ->where('semester_id', $semester->id)
                                 ->first();
-
+        
+        $nilaiBacaan = $bacaan->nilai ?? 0;
+        
         // menghandle jika null/tidak ada data
         $ratasurah = is_numeric($ratasurah) ? (float)$ratasurah : 0;
         $ratasurahBulat = round($ratasurah);
@@ -147,17 +151,34 @@ class RaportController extends Controller
             default => 'E'};
         
         $surahPredikat = match(true) {
+            empty($ratasurahBulat) => 'F',
             $ratasurahBulat >= 85 => 'A',
             $ratasurahBulat >= 75 => 'B',
             $ratasurahBulat >= 65 => 'C',
             $ratasurahBulat >= 55 => 'D',
             default => 'E'};
+        
+        $nilaiBacaan = match(true) {
+            $nilaiBacaan >= 85 => 'A',
+            $nilaiBacaan >= 75 => 'B',
+            $nilaiBacaan >= 65 => 'C',
+            $nilaiBacaan >= 55 => 'D',
+            $nilaiBacaan == null => '',
+            default => 'E'};
+        
+        $nilaiHafalan = match(true) {
+            $nilaiHafalan >= 85 => 'A',
+            $nilaiHafalan >= 75 => 'B',
+            $nilaiHafalan >= 65 => 'C',
+            $nilaiHafalan >= 55 => 'D',
+            default => 'E'};
+        
 
         return view('raport.tampil', compact([
             'siswa', 'kelas', 'tahun','semester',
             'doa','hadis', 'kitabah', 'adab', 'ratasurahBulat',
             'doaPredikat', 'hadisPredikat', 'kitabahPredikat', 'adabPredikat',
-            'surahPredikat', 'nilaiBacaan', 'nilaiHafalan'
+            'surahPredikat', 'bacaan', 'hafalan', 'nilaiBacaan', 'nilaiHafalan'
         ]));
     }
 

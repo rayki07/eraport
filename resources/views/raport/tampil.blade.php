@@ -192,31 +192,38 @@
                                 <td class="table-cell text-center">2</td>
                                 {{-- <td class="table-cell">Bacaan IQRO USTMANI jilid 5 Halaman 12</td> --}}
                                 <td class="table-cell">
-                                    @if($nilaiBacaan->jenis === 'iqra')
-                                    Bacaan IQRO USTMANI jilid {{ $nilaiBacaan->jilid }} Halaman {{ $nilaiBacaan->halaman }}
+                                    @if($bacaan?->jenis === 'iqra')
+                                    Bacaan IQRO USTMANI jilid {{ $bacaan?->jilid }} Halaman {{ $bacaan?->halaman }}
                                     @endif
-                                    @if($nilaiBacaan->jenis === 'tahsin')
-                                    Bacaan TAHSIN USTMANI jilid {{ $nilaiBacaan->jilid }} Halaman {{ $nilaiBacaan->halaman }}
+                                    @if($bacaan?->jenis === 'tahsin')
+                                    Bacaan TAHSIN USTMANI jilid {{ $bacaan?->jilid }} Halaman {{ $bacaan?->halaman }}
                                     @endif
-                                    @if($nilaiBacaan->jenis === 'alquran')
+                                    @if(in_array($bacaan?->jenis, ['alquran', null]))
                                     Bacaan IQRO USTMANI jilid ... Halaman ... 
                                     @endif
                                 </td>
-                                <td class="table-cell text-center">@if(in_array($nilaiBacaan->jenis, ['iqra', 'tahsin']))
-                                    {{ $nilaiBacaan->nilai }} @endif
+                                <td class="table-cell text-center">
+                                    @if(in_array($bacaan?->jenis, ['iqra', 'tahsin']))
+                                    {{ $bacaan?->nilai }} @endif
                                 </td>
-                                <td class="table-cell text-center font-bold">B</td>
+                                <td class="table-cell text-center font-bold">
+                                    @if(in_array($bacaan?->jenis, ['iqra', 'tahsin']))
+                                    {{ $nilaiBacaan }} @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">3</td>
                                 <td class="table-cell">
-                                    @if(in_array($nilaiBacaan->jenis, ['iqra', 'tahsin']))
+                                    @if(in_array($bacaan?->jenis, ['iqra', 'tahsin', null]))
                                     Bacaan Al-Qur'an s/d Juz ... @endif
-                                    @if($nilaiBacaan->jenis === 'alquran')
-                                    Bacaan Al-Qur'an s/d Juz {{ $nilaiBacaan->juz }}  {{ $nilaiBacaan->surah }} {{ $nilaiBacaan->ayat }}@endif
+                                    @if($bacaan?->jenis === 'alquran')
+                                    Bacaan Al-Qur'an s/d Juz {{ $bacaan?->juz }}  {{ $bacaan?->surah }} {{ $bacaan?->ayat }}@endif
                                 </td>
-                                <td class="table-cell text-center">@if($nilaiBacaan->jenis === 'alquran') {{ $nilaiBacaan->nilai }} @endif</td>
-                                <td class="table-cell text-center font-bold">A</td>
+                                <td class="table-cell text-center">@if($bacaan?->jenis === 'alquran') {{ $bacaan?->nilai }} @endif</td>
+                                <td class="table-cell text-center font-bold">
+                                    @if($bacaan?->jenis === 'alquran') {{ $nilaiBacaan }}
+                                        
+                                    @endif</td>
                             </tr>
                             <tr>
                                 <td class="table-cell text-center">4</td>
@@ -251,8 +258,8 @@
                             <tr>
                                 <td class="table-cell text-center">9</td>
                                 <td class="table-cell">Pencapaian Target Hafalan</td>
-                                <td class="table-cell text-center">{{ $nilaiHafalan->pencapaian }}</td>
-                                <td class="table-cell text-center font-bold">A</td>
+                                <td class="table-cell text-center">{{ $hafalan?->nilai }}</td>
+                                <td class="table-cell text-center font-bold">{{ $nilaiHafalan }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -278,7 +285,7 @@
                         <tbody>
                             <tr style="background-color: #FFFF00;" style="padding:0.2rem;">
                                 <td class="table-cell text-center" style="padding:0.2rem;">1</td>
-                                <td class="table-cell" colspan="2" style="padding:0.2rem;">{{ $nilaiHafalan->target }}</td>
+                                <td class="table-cell" colspan="2" style="padding:0.2rem;">{{ $hafalan?->target }}</td>
                                 <td class="table-cell text-center" style="padding:0.2rem;">{{ $ratasurahBulat }}</td>
                                 <td class="table-cell text-center" style="padding:0.2rem;">{{ $surahPredikat }}</td>
                             </tr>

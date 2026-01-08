@@ -210,15 +210,14 @@
             <!-- menambah input nilai Hafalan -->
             <div class="p-4 border rounded-lg bg-gray-50 mb-6">
                 <div class="grid gap-4 mb-4">
-                    <label for="target_hafalan" class="block text-sm font-medium text-gray-700 mb-1">Pencapaian Target Hafalan</label>
-                    <input 
-                        type="text" 
-                        id="target" 
-                        name="target"
-                        class ="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm"
-                        value="{{  $nilaiHafalan->target ?? ''}}"
-                        placeholder="Al-Qariah - An-Naba"
-                        >
+                    <x-input-error
+                        name="target" 
+                        type="text"
+                        label="Nilai Pencapaian"
+                        class="text-sm"
+                        value="{{ old('target', $nilaiHafalan->target ?? '') }}"
+                        placeholder="Al-Qori'ah - An-Naba"
+                    />
                     @error('target')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -229,7 +228,7 @@
                         type="number"
                         label="Nilai Pencapaian"
                         class="text-sm"
-                        value="{{ $nilaiHafalan->nilai ?? ''}}"
+                        value="{{ old('nilai_percapaian', $nilaiHafalan->nilai ?? '') }}"
                     />
                     @error('nilai_pencapaian')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

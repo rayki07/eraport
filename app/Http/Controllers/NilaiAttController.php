@@ -98,11 +98,11 @@ class NilaiAttController extends Controller
             'nilai.*'         => 'nullable|min:0|max:100',
 
             //nilai target
-            'target'    => 'nullable|string',
+            'target'            => 'nullable|string',
             'nilai_pencapaian'  => 'nullable|numeric|min:0|max:100',
         ]);
 
-        /* dd($request->all()); */
+        /* dd($request->target); */
 
         // validasi bacaan
         $rules = [
@@ -193,16 +193,16 @@ class NilaiAttController extends Controller
                 ],
                 [
                     'nilai'      => $request->nilai_pencapaian ?? null,
-                    'target'     => $request->target ?? null,
+                    'target'     => $request->target,
                     
                 ]
                 );
-            
+                
             /* dd($request->target); */
 
             DB::commit();
             return back()->withInput()->with('success', 'Nilai berhasil disimpan');
-
+            
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors(['error' => $e->getMessage()]);

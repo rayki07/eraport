@@ -110,7 +110,9 @@ class UjianItemSeeder extends Seeder
             // ============================
             // PRAKTEK SHOLAT (83)
             // ============================
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Niat Shalat'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Bacaan sholat', 'nama_item' => 'Bacaan sholat'],
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Praktek sholat'],
+            /* ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Niat Shalat'],
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Takbiratul Ihram'],
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Bacaan Iftitah'],
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Surah Al-Fatihah'],
@@ -122,7 +124,7 @@ class UjianItemSeeder extends Seeder
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Tasyahud'],
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Sholawat'],
             ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Doa setelah tasyahud'],
-            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Salam'],            
+            ['mapel_id' => '1', 'ujian_id' => '4', 'kategori' => 'Praktek sholat', 'nama_item' => 'Salam'], */            
 
             // ============================
             // PRAKTEK WUDHU (80)

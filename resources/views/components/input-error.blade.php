@@ -7,7 +7,7 @@
         name="{{ $name }}"
         {{-- Menggunakan $attributes->merge() untuk menambahkan kelas default Tailwind --}}
         {{ $attributes->merge(['class' => 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 text-sm']) }}
-        value="{{ old($name, '$value') }}"
+        value="{{ $value }}"
         {{ $required ??  '' }}
         maxlength="{{ $maxLength ?? '' }}"
         min="0"
