@@ -1,4 +1,4 @@
-<x-layout>
+<x-app-layout>
     <x-slot:heading>
         Seluruh Kelas
     </x-slot:heading>
@@ -50,4 +50,4 @@
                 </div>
                 
               {{-- {{ $grades->links() }} --}}
-</x-layout>
+</x-app-layout>

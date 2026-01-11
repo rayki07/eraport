@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas_siswa;
+use App\Models\KelasSiswa;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
@@ -20,17 +21,17 @@ class KelasController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Kelas $kelas)
     {
         // ambil kelas berdasarkan ID
-        $kelas = Kelas::with('siswa')->findOrFail( $id );
-
-        // Ambil daftar siswa dari relasi
+      
         $siswa = $kelas->siswa;
-        return view('kelas.show', [
-            'kelas' => $kelas,
-            'siswa' => $siswa
-        ]);
+        $mulai = $kelas->tahunAjaran->tahun_mulai;
+        $selesai = $kelas->tahunAjaran->tahun_selesai;
+        
+        return view('kelas.show', compact('siswa', 'kelas', 'mulai', 'selesai')
+            
+        );
     }
 
     public function create()

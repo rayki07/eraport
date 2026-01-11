@@ -15,8 +15,8 @@ class MapelSeeder extends Seeder
     public function run(): void
     {
         $items = [
-            ['nama_pelajaran' => 'ATT'],
-            ['nama_pelajaran' => 'Kesenian']
+            ['nama_pelajaran' => 'ATT', 'aktif' => '1'],
+            ['nama_pelajaran' => 'Kesenian', 'aktif' => '1']
         ];
 
         DB::table('mapel')->insert($items);

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mapel', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pelajaran');
+            $table->boolean('aktif')->default(false);
             $table->timestamps();
         });
     }

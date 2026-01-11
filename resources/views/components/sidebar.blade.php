@@ -1,15 +1,11 @@
-@php
-    //ambil data lessons dari database
-    $mapel = App\Models\Mapel::all();
-    
-@endphp
+
 
 
 <!-- 1. Sidebar (Menu Samping) -->
     <aside id="sidebar" class="sidebar fixed inset-y-0 left-0 z-40 flex flex-col w-64 bg-gray-800 text-white shadow-xl md:relative md:translate-x-0">
         <!-- Header Sidebar Merah -->
         <header class="h-16 flex items-center justify-between px-4 bg-red-600 shadow-lg">
-            <h1 class="text-xl font-bold tracking-tight truncate">Guru Bahasa Indonesia</h1>
+            <h1 class="text-xl font-bold tracking-tight truncate uppercase">{{ Auth::user()->name }}</h1>
             <button id="close-sidebar" class="md:hidden p-1 rounded hover:bg-red-700">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
@@ -20,8 +16,8 @@
             <div class="flex items-center space-x-3">
                 <img src="https://placehold.co/40x40/4a5568/ffffff?text=G" alt="Foto Profil" class="w-10 h-10 rounded-full object-cover ring-2 ring-gray-600">
                 <div>
-                    <p class="text-sm font-semibold">Guru Bahasa Indonesia</p>
-                    <p class="text-xs text-gray-400">19 Januari 2018</p>
+                    <a href="{{ route('dashboard') }}" class="text-sm font-semibold">{{ Auth::user()->name }}</a>
+                    <p class="text-xs text-gray-400">{{ date('d F Y') }}</p>
                 </div>
             </div>
         </div>
@@ -83,7 +79,7 @@
                 <p class="text-xs font-semibold uppercase text-gray-400 mb-2">Mata Pelajaran</p>
                 <div class="space-y-1">
 
-                    @foreach ($mapel as $item)
+                    @foreach ($sidebar_mapel as $item)
                         <div href="/#" class="flex justify-between items-center py-1.5 px-2 text-sm text-gray-300 hover:bg-gray-700 rounded-lg">
                             <a href="{{ route('mapel.index', $item->id) }}">
                                 <span class="truncate">{{ $item->nama_pelajaran }}</span>    

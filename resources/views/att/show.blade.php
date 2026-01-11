@@ -1,4 +1,4 @@
-<x-layout>
+<x-app-layout>
 
     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
         <!-- Header Konten -->
@@ -106,7 +106,7 @@
             <div class="p-4 border rounded-lg bg-gray-50 mb-6">
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:grid-cols-3 gap-4">
                     <div>
-                        <x-input-error
+                        <x-input-att
                             name="bacaan_jilid" 
                             type="number"
                             label="Jilid / juz"
@@ -119,7 +119,7 @@
                         @enderror
                     </div>
                     <div>
-                        <x-input-error
+                        <x-input-att
                             name="bacaan_halaman" 
                             type="number"
                             label="Halaman / ayat "
@@ -132,7 +132,7 @@
                         @enderror
                     </div>
                     <div>
-                        <x-input-error
+                        <x-input-att
                             name="bacaan_nilai" 
                             type="number"
                             label="Nilai"
@@ -144,7 +144,7 @@
                         @enderror
                     </div>
                     <div>
-                        <x-input-error
+                        <x-input-att
                             name="bacaan_surah" 
                             type="text"
                             label="Surah"
@@ -192,7 +192,7 @@
 
                             <div>
 
-                                <x-input-error 
+                                <x-input-att 
                                     name="nilai[{{ $siswa->id }}][{{ $surah->id }}]" 
                                     type="number"
                                     label="{{ $surah->nama_item }}"
@@ -210,7 +210,7 @@
             <!-- menambah input nilai Hafalan -->
             <div class="p-4 border rounded-lg bg-gray-50 mb-6">
                 <div class="grid gap-4 mb-4">
-                    <x-input-error
+                    <x-input-att
                         name="target" 
                         type="text"
                         label="Nilai Pencapaian"
@@ -223,7 +223,7 @@
                     @enderror
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-                    <x-input-error
+                    <x-input-att
                         name="nilai_pencapaian" 
                         type="number"
                         label="Nilai Pencapaian"
@@ -254,7 +254,7 @@
 
                         <div>
 
-                            <x-input-error 
+                            <x-input-att 
                                 name="nilai[{{ $siswa->id }}][{{ $item->id }}]" 
                                 type="number"
                                 label="{{ $item->nama_item }}"
@@ -278,7 +278,7 @@
 
                         <div>
 
-                            <x-input-error 
+                            <x-input-att 
                                 name="nilai[{{ $siswa->id }}][{{ $h->id }}]" 
                                 type="number"
                                 label="{{ $h->nama_item }}"
@@ -308,7 +308,7 @@
 
                         <div>
 
-                            <x-input-error 
+                            <x-input-att 
                                 name="nilai[{{ $siswa->id }}][{{ $gerakan->id }}]" 
                                 type="number"
                                 label="{{ $gerakan->nama_item }}"
@@ -332,7 +332,7 @@
 
                         <div>
 
-                            <x-input-error 
+                            <x-input-att 
                                 name="nilai[{{ $siswa->id }}][{{ $gerak->id }}]" 
                                 type="number"
                                 label="{{ $gerak->nama_item }}"
@@ -358,7 +358,7 @@
 
                 {{-- Ujian Tulis --}}
                 <div class="p-4 border rounded-lg bg-gray-50">
-                    <x-input-error 
+                    <x-input-att 
                         name="nilai[{{ $siswa->id }}][{{ $kitabah->id }}]" 
                         type="number"
                         label="Nilai Ujian Tulis"
@@ -369,7 +369,7 @@
 
                 {{-- Nilai Adab --}}
                 <div class="p-4 border rounded-lg bg-gray-50">
-                    <x-input-error 
+                    <x-input-att 
                         name="nilai[{{ $siswa->id }}][{{ $adab->id }}]" 
                         type="number"
                         label="Nilai Adab / Sikap (Angka Akhir)"
@@ -498,4 +498,4 @@ document.querySelectorAll('input[name="jenis_bacaan"]').forEach(radio => {
 
 <!-- selesai Data -->
     </div>                
-</x-layout>
+</x-app-layout>

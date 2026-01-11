@@ -67,6 +67,7 @@
                     <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
                     2016/2017 Semester 2
                 </span>
+                
                 <div class="relative">
                     <button class="p-1 rounded-full hover:bg-red-700">
                         <i data-lucide="bell" class="w-6 h-6"></i>
@@ -137,18 +138,6 @@
             sidebar.classList.remove('closed');
             sidebar.style.transform = 'translateX(0)';
         }
-
-        // Memastikan sidebar responsif saat ukuran jendela diubah
-/*         window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                // Di desktop, pastikan sidebar selalu terbuka
-                sidebar.classList.remove('closed');
-                sidebar.style.transform = 'translateX(0)';
-            } else if (!sidebar.classList.contains('closed')) {
-                 // Di mobile, jika sidebar terbuka, pastikan transformnya nol
-                 sidebar.style.transform = 'translateX(0)';
-            }
-        }) ;*/
 
     </script>
 </body>

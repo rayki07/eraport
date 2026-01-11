@@ -44,7 +44,7 @@ class Siswa extends Model
     public function kelas()
     {
         return $this->belongsToMany(Kelas::class, 'kelas_siswa')
-                    ->withPivot(['tahun_ajaran_id', 'semester_id', 'status']);
+                    ->withPivot(['tahun_ajaran_id']);
     }
 
     public function getGenderTextAttribute()
@@ -52,5 +52,15 @@ class Siswa extends Model
         return $this->gender === 'L' ? 'Laki-laki' : 'Perempuan';
     }
 
+    public function getRouteKey()
+    {
+        
+        return $this->id . '_' . \Str::slug($this->nama_lengkap);
+    }
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        $id = explode('-', $value[0]);
+        return $this->where('id', $id)->firstOrFail();
+    }
 }

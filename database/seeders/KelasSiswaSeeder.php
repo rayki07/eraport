@@ -35,31 +35,46 @@ class KelasSiswaSeeder extends Seeder
         // masukkan data BAhrain ke tabel
         foreach ($kelasBahrain as $murid) {
             KelasSiswa::create([
-                'kelas_id' => 1,
+                'kelas_id' => 5,
                 'siswa_id' => $murid->id,
-                'tahun_ajaran_id' => 1,
-                'semester_id' => 1,
+                'tahun_ajaran_id' => 5,
             ]);
         }
 
         // masukkan data Oman ke tabel
         foreach ($kelasOman as $murid) {
             KelasSiswa::create([
-                'kelas_id' => 2,
+                'kelas_id' => 6,
                 'siswa_id' => $murid->id,
-                'tahun_ajaran_id' => 1,
-                'semester_id' => 1,
+                'tahun_ajaran_id' => 5,
             ]);
         }
 
         // masukkan data Tunisia ke tabel
         foreach ($kelasTunisia as $murid) {
             KelasSiswa::create([
-                'kelas_id' => 3,
+                'kelas_id' => 7,
                 'siswa_id' => $murid->id,
-                'tahun_ajaran_id' => 1,
-                'semester_id' => 1,
+                'tahun_ajaran_id' => 5,
             ]);
+        }
+
+        //Riwayat siswa Bahrain kelas 1-4
+        foreach ($kelasBahrain as $murid) {
+            $riwayat = [
+                ['kelas_id' => 1, 'tahun_ajaran_id' => 1],
+                ['kelas_id' => 2, 'tahun_ajaran_id' => 2],
+                ['kelas_id' => 3, 'tahun_ajaran_id' => 3],
+                ['kelas_id' => 4, 'tahun_ajaran_id' => 4],
+            ];
+
+            foreach ($riwayat as $item) {
+                KelasSiswa::create([
+                    'siswa_id' => $murid->id,
+                    'kelas_id' => $item['kelas_id'],
+                    'tahun_ajaran_id' => $item['tahun_ajaran_id'],
+                ]);
+            }
         }
     }
 }

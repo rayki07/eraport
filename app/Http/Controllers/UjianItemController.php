@@ -51,10 +51,14 @@ class UjianItemController extends Controller
     public function edit(UjianItem $ujian_item)
     {
         $ujian = Ujian::all();
+        $mapel = Mapel::where('aktif', '1')->get();
+
+        /* dd($mapel->nama_pelajaran); */
 
         return view('ujian_item.edit', [
             'ujian_item'=> $ujian_item,
-            'ujian' => $ujian
+            'ujian' => $ujian,
+            'mapel' => $mapel
         ]);
     }
 

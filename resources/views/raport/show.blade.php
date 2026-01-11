@@ -1,4 +1,4 @@
-<x-layout>
+<x-app-layout>
     <div class="max-w-4xl mx-auto bg-white p-10 shadow-lg border border-gray-300">
 
         <!-- HEADER -->
@@ -108,4 +108,4 @@
         </div>
 
     </div>
-</x-layout>
+</x-app-layout>

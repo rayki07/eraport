@@ -8,17 +8,12 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Imports\SiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
-use illuminate\Support\Str;
 
 class SiswaController extends Controller
 {
     public function index()
     {
         $siswa = KelasSiswa::with('kelas','siswa')->get();
-        
-        /* return view("siswa.index", [
-            'siswa'=> $siswa
-        ]); */
 
         return view("siswa.index", compact('siswa'));
     }
@@ -28,13 +23,10 @@ class SiswaController extends Controller
         return view('siswa.create');
     }
 
-    public function show($id)
+    public function show(Kelas $kelas,Siswa $siswa)
     {
-        //ambil kelas berdasarkan IDSiswa
-        $murid = KelasSiswa::with('siswa')->find( $id );
-        $siswa = $murid->siswa;
-        $kelas = $murid->kelas;
-        /* $siswa = Siswa::with('kelas')->findOrFail($id); */
+        $kelasnya = KelasSiswa::with('kelas')->find($siswa)->first();
+        $kelas = $kelasnya->kelas;
 
         return view('siswa.show', [
             'siswa' =>$siswa,

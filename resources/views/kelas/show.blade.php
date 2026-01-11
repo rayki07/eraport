@@ -1,10 +1,10 @@
-<x-layout>
+<x-app-layout>
     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
         <!-- Header Konten -->
         <div class="flex items-center justify-between border-b pb-4 mb-4">
             <div class="flex items-center space-x-2 text-gray-700">
                 <i data-lucide="users-2" class="w-6 h-6"></i>
-                <h2 class="text-xl font-semibold">{{ $kelas->rombel }} {{ $kelas->nama_kelas }}</h2>
+                <h2 class="text-xl font-semibold">{{ $kelas->rombel }} {{ $kelas->nama_kelas }} ( {{ $mulai }} / {{ $selesai }} )</h2>
             </div>
             <a href="{{ route('kelas.create') }}" class="flex items-center bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
                 <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
@@ -47,12 +47,12 @@
                             @foreach ($siswa as $index => $item)         
                             <tr class="hover:bg-gray-50">
                                 <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $index + 1 }}</td>
-                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $item->nis }}</td>
-                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item->nisn }}</th>
-                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item->nama_lengkap }}</th>
-                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item->gender_text }}</th>
+                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x text-center">{{ $item?->nis }}</td>
+                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item?->nisn }}</th>
+                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item?->nama_lengkap }}</th>
+                                <th class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border-x text-center">{{ $item?->gender_text }}</th>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="{{ route('siswa.show', $item->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <a href="{{ route('kelas.siswa.show', [$kelas, $item]) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Detail Siswa
                                     </a>
@@ -64,4 +64,4 @@
                 </div>
     </div>
               {{-- {{ $grades->links() }} --}}
-</x-layout>
+</x-app-layout>

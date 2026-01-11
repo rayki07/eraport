@@ -15,6 +15,9 @@ class TahunAjaranSeeder extends Seeder
     public function run(): void
     {
         $items = [
+            ['tahun_mulai' => '2021', 'tahun_selesai'=> '2022', 'aktif' => '0'],
+            ['tahun_mulai' => '2022', 'tahun_selesai'=> '2023', 'aktif' => '0'],
+            ['tahun_mulai' => '2023', 'tahun_selesai'=> '2024', 'aktif' => '0'],
             ['tahun_mulai' => '2024', 'tahun_selesai'=> '2025', 'aktif' => '0'],
             ['tahun_mulai' => '2025', 'tahun_selesai'=> '2026', 'aktif' => '1'],
         ];

@@ -15,7 +15,7 @@ class KelasSiswa extends Model
     use HasFactory;
 
     protected $table = 'kelas_siswa';
-    protected $fillable = ['siswa_id', 'kelas_id', 'tahun_ajaran_id', 'semester_id'];
+    protected $fillable = ['siswa_id', 'kelas_id', 'tahun_ajaran_id'];
 
     public function siswa()
     {

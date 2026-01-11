@@ -1,5 +1,5 @@
 
-<x-layout>
+<x-app-layout>
     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
         <!-- Header Konten -->
         <div class="flex items-center justify-between border-b pb-4 mb-4">

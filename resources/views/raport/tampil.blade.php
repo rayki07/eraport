@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap"> --}}
-<x-layout>
+<x-app-layout>
     <style>
         @page {
             size: 21cm 33cm; /* Ukuran F4 */

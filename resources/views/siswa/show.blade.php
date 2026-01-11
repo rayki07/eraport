@@ -10,7 +10,7 @@
     }
 @endphp
 
-<x-layout>
+<x-app-layout>
     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6">
         <!-- Header Konten -->
         <div class="flex items-center justify-between border-b pb-4 mb-4">
@@ -50,7 +50,7 @@
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $siswa->gender_text }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-900 border-x">{{ $kelas->rombel }} {{ $kelas->nama_kelas }}</td>
                                 <td class="px-3 py-3 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="{{-- /siswa/{{ $siswa->id }}/edit --}}{{ route('siswa.edit', $siswa->id) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                                    <a href="{{ route('siswa.edit', $siswa) }}" class="inline-flex items-center bg-green-500 text-white py-1.5 px-3 rounded-lg text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
                                         <i data-lucide="settings" class="w-3 h-3 mr-1"></i>
                                         Edit Siswa
                                     </a>
@@ -66,4 +66,4 @@
 
     </div>
                 
-</x-layout>
+</x-app-layout>

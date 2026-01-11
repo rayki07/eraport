@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Siswa;
 use App\Models\Guru;
 use App\Models\KelasSiswa;
@@ -24,7 +22,7 @@ class Kelas extends Model
     {
         return $this->belongsTo(Guru::class, 'guru_id');
     }
-    public function nelasSiswa()
+    public function kelasSiswa()
     {
         return $this->hasMany(KelasSiswa::class, 'kelas_id');
     }
@@ -43,6 +41,19 @@ class Kelas extends Model
     public function siswa()
     {
         return $this->BelongsToMany(Siswa::class, 'kelas_siswa')
-                    ->withPivot(['tahun_ajaran_id', 'semester_id', 'status']);
+                    ->withPivot(['siswa_id', 'tahun_ajaran_id']);
+    }
+
+    public function getRouteKey()
+    {
+        
+        /* return $this->id . '-' . \Str::slug($this->nama_kelas); */
+        return $this->id . '_' . \Str::slug($this->rombel) . \Str::slug($this->nama_kelas);
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        $id = explode('-', $value[0]);
+        return $this->where('id', $id)->firstOrFail();
     }
 }
