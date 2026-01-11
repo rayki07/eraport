@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 use App\Models\TahunAjaran;
 use App\Models\Semester;
 use App\Models\Mapel;
@@ -57,6 +58,11 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('sidebar_mapel', $mapel);
         });
+
+        // force https di laravel
+        if (app()->environment('production')){
+            URL::forceScheme('https');
+        }
 
     }
 }
