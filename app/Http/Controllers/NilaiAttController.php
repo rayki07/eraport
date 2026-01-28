@@ -206,7 +206,7 @@ class NilaiAttController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors(['error' => $e->getMessage()]);
-        }
+            }
 
         
 
